@@ -22,6 +22,10 @@ The skills follow the order you work in:
 | [course-dev](skills/course-dev/SKILL.md) | Drafts lessons from an approved outline, runs lesson-eval, builds the course in your LMS through its MCP connector, and checks the LMS against the drafts | Approving each draft, choosing the reviewer, and when the course goes live | [course-dev.zip](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/course-dev.zip) |
 | [lesson-eval](skills/lesson-eval/SKILL.md) | Checks a lesson draft in one pass and lists only what needs fixing: a clear point, specific media placeholders, a forward-pointing ending, and writing that sounds like a person | Only Fix items block. Take a look items are your call. | [lesson-eval.zip](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/lesson-eval.zip) |
 
+## Also: job-me (job search)
+
+[job-me](skills/job-me/SKILL.md) scans public company job boards for roles that match your search, keeps one list with a status per role, and builds a filterable apply board. It ships set up for L&D, training, instructional design, and customer education titles. Change the terms, exclusions, and boards in `config.json` and `companies.csv`. Your own matches stay on your machine. The skill is not in the ZIP downloads yet; copy the `skills/job-me` folder instead.
+
 ## Add a skill to Claude
 
 1. Download the skill's ZIP from the table above.

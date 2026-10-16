@@ -1,0 +1,13 @@
+platform,slug,company,api_url
+Ashby,ashby,Ashby,https://api.ashbyhq.com/posting-api/job-board/ashby?includeCompensation=true
+Ashby,mural,Mural,https://api.ashbyhq.com/posting-api/job-board/mural?includeCompensation=true
+Ashby,openai,OpenAI,https://api.ashbyhq.com/posting-api/job-board/openai
+Ashby,runway-ml,Runway,https://api.ashbyhq.com/posting-api/job-board/runway-ml
+Ashby,thumbtack,Thumbtack,https://api.ashbyhq.com/posting-api/job-board/thumbtack
+Greenhouse,affirm,Affirm,https://boards-api.greenhouse.io/v1/boards/affirm/jobs
+Greenhouse,launchdarkly,Launchdarkly,https://boards-api.greenhouse.io/v1/boards/launchdarkly/jobs
+Greenhouse,samsara,Samsara,https://boards-api.greenhouse.io/v1/boards/samsara/jobs
+Greenhouse,thumbtack,Thumbtack,https://boards-api.greenhouse.io/v1/boards/thumbtack/jobs
+Greenhouse,toast,Toast,https://boards-api.greenhouse.io/v1/boards/toast/jobs
+Greenhouse,toast,Toast,https://boards-api.greenhouse.io/v1/boards/toast/jobs
+Greenhouse,twilio,Twilio,https://boards-api.greenhouse.io/v1/boards/twilio/jobs
