@@ -6,30 +6,28 @@ Some skills were built and used on a real customer education team, then rewritte
 
 **[Click through the webinar walkthrough](https://clea-mahoney.github.io/clea-skills/)** to see how lesson-eval and course-dev changed over time.
 
-## How they fit together
-
-The skills follow the order you work in:
-
-1. **call-evidence** reads customer call transcripts and tells you what customers are stuck on, so you know what to build.
-2. **course-dev** turns an approved outline into drafted lessons and builds the course in Skilljar LMS. It runs lesson-eval on every draft.
-3. **lesson-eval** checks a lesson draft for audience relevance and AI slop before a person reviews it. It also works on its own, on a draft from any source.
-
 ## The skills
 
 | Skill | What it does | Where a person decides | Download |
 |---|---|---|---|
-| [call-evidence](skills/call-evidence/SKILL.md) | Turns customer call transcripts into ranked themes, ordered by what education can act on rather than by volume. Can run weekly on a schedule. | New themes, ties, themes put on Hold, and anything that may be a product bug | [call-evidence.zip](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/call-evidence.zip) |
-| [course-dev](skills/course-dev/SKILL.md) | Drafts lessons from an approved outline, runs lesson-eval, builds the course in your LMS through its MCP connector, and checks the LMS against the drafts | Approving each draft, choosing the reviewer, and when the course goes live | [course-dev.zip](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/course-dev.zip) |
-| [lesson-eval](skills/lesson-eval/SKILL.md) | Checks a lesson draft in one pass and lists only what needs fixing: a clear point, specific media placeholders, a forward-pointing ending, and writing that sounds like a person | Only Fix items block. Take a look items are your call. | [lesson-eval.zip](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/lesson-eval.zip) |
+| [call-evidence](skills/call-evidence/SKILL.md) | Turns customer call transcripts into ranked themes, ordered by what education can act on rather than by volume. Can run weekly on a schedule. | New themes, ties, themes put on Hold, and anything that may be a product bug | [Download](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/call-evidence.zip) |
+| [course-dev](skills/course-dev/SKILL.md) | Drafts lessons from an approved outline, runs lesson-eval, builds the course in your LMS through its MCP connector, and checks the LMS against the drafts | Approving each draft, choosing the reviewer, and when the course goes live | [Download](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/course-dev.zip) |
+| [lesson-eval](skills/lesson-eval/SKILL.md) | Checks a lesson draft in one pass and lists only what needs fixing: a clear point, specific media placeholders, a forward-pointing ending, and writing that sounds like a person | Only Fix items block. Take a look items are your call. | [Download](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/lesson-eval.zip) |
 
 ## job-me (job search)
 
-[job-me](skills/job-me/SKILL.md) scans public company job boards for roles that match your search, keeps one list with a status per role, and builds a filterable apply board. It ships set up for L&D, training, instructional design, and customer education titles. Change the terms, exclusions, and boards in `config.json` and `companies.csv`. Your own matches stay on your machine. The skill is not in the ZIP downloads yet; copy the `skills/job-me` folder instead.
+[job-me](skills/job-me/SKILL.md) checks public company job boards for roles that fit your search. It keeps one list with a status for each role and builds a board you can filter. It's set up for L&D, training, instructional design, and customer education titles. Your matches stay on your machine.
+
+It's a folder, not a download, so it isn't in the table above. To use it:
+
+1. Copy the `skills/job-me` folder from this repo into your skills folder (see below).
+2. Edit `config.json` for your job titles, exclusions, and pay floor. Edit `companies.csv` for the company job boards you want to watch.
+3. Ask Claude to run a job scan.
 
 ## Add a skill to Claude
 
-1. Download the skill's ZIP from the table above.
-2. In Claude, open **Settings → Capabilities → Skills** and upload the ZIP.
+1. Click **Download** in the table above. You get a compressed folder (a `.zip` file). Don't unzip it.
+2. In Claude, open **Settings → Capabilities → Skills** and upload that file.
 3. Open the skill's `SKILL.md` and fill in **Customize before you use it**: your company, program name, tools, and learners.
 4. Swap in your own examples where the skill asks.
 5. Try it on real work and watch the first run. Check what it flags against your own judgment, then adjust the instructions.
