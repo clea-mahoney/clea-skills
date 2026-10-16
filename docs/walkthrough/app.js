@@ -1,7 +1,7 @@
 const DEFAULTS = {
-  title: 'CLEA skills: what changed, and why',
-  intro: '<p>Two of my customer education skills, before and after. Each stop shows what didn\'t work the first time and what I changed. Two stops let you make the call yourself.</p>',
-  source: 'From the Skilljar by Gainsight webinar with Christie DeCarolis, October 15, 2026.',
+  title: 'A peek into Clea\'s brain',
+  intro: '<p>Clea is a learning experience designer. She built a bunch of Claude skills for her customer education work and taught herself Claude Code along the way.</p><p>Then she got laid off. Now she\'s vibe coding for fun and giving back to the L&amp;D community, like at the Learning Rejects Conference.</p><p>Here\'s some of what\'s been rattling around in her head: two of her skills, what didn\'t work the first time, and what she changed. Two stops let you make the call yourself.</p>',
+  source: 'Vibe coded in Mighty Studio with Claude Code, October 2026.',
 
   checkersHeading: 'Lesson-eval: two versions of the checker',
   beforeTitle: 'September: 15 checks, 9 fails',
@@ -76,7 +76,7 @@ const DEFAULTS = {
     { side: 'after', kind: 'new', phrase: 'Next up', note: 'New Next up section replaces the upbeat ending.' }
   ],
 
-  courseHeading: 'Course-dev: getting lessons into Skilljar',
+  courseHeading: 'Course-dev: from copy and paste to hands-off',
   months: [
     { month: 'July', label: 'By hand', title: 'Copy, paste, and check by hand', body: '<p>Lessons drafted in Notion, turned into HTML, and pasted into Skilljar one at a time. Each lesson checked against its draft by hand.</p>', autoSteps: 'Draft in Notion\nTurn into HTML', handSteps: 'Paste each lesson\nCheck against the draft', note: '' },
     { month: 'August', label: 'The API', title: 'The API, for one person', body: '<p>The Skilljar API relabeled 32 of 33 old courses in one run. It worked, but only from code, so only one person on the team could use it.</p>', autoSteps: '', handSteps: '', note: 'Everyone else still copied, pasted, and checked by hand. Two ways of working, and they drifted apart.' },
@@ -92,8 +92,8 @@ const DEFAULTS = {
     { problem: 'Skilljar rewrites a lesson\'s HTML when it saves, so checks flagged differences no reader would see.', fix: 'Checks compare the lesson content only.' }
   ],
 
-  finishHeading: 'That\'s the walkthrough',
-  finishBody: '<p>Lesson-eval: better drafting instructions let the grader shrink from 15 checks to 4. Course-dev: a person steps in only for what the MCP can\'t handle.</p><p>Both skills are free to copy and adapt to your own team.</p>',
+  finishHeading: 'Thanks for poking around',
+  finishBody: '<p>Lesson-eval got better when the drafting instructions did, and the grader shrank from 15 checks to 4. Course-dev now needs a person only for what the MCP can\'t handle.</p><p>Both skills are free to copy and adapt. If you\'re at Learning Rejects, come say hi.</p>',
   linkLabel: 'Get the skills on GitHub',
   linkUrl: 'https://github.com/clea-mahoney/clea-skills',
 
@@ -174,7 +174,7 @@ function show(i, focusHeading) {
 function renderStart() {
   bindText('title'); bindHTML('intro'); bindText('source');
   $('secEval').textContent = `Checks a lesson draft before it goes to review. It went from ${S.checks.length} checks to 4.`;
-  $('secCourse').textContent = `Builds the course in Skilljar and checks it against the drafts. ${S.months.length ? S.months[0].month + ' to ' + S.months[S.months.length - 1].month : ''}.`;
+  $('secCourse').textContent = `Builds the course in the LMS and checks it against the drafts. ${S.months.length ? S.months[0].month + ' to ' + S.months[S.months.length - 1].month : ''}.`;
   $('startBtn').textContent = S.startLabel;
   $('startBtn').onclick = () => show(1, true);
   document.querySelectorAll('[data-jump]').forEach(b => { b.onclick = () => show(STOPS.findIndex(s => s.id === b.dataset.jump), true); });
