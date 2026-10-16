@@ -7,6 +7,14 @@
         { "type": "text-input", "formKey": "source", "label": "Source line" },
         {
             "type": "panel",
+            "headerTitle": "Cover image",
+            "formElements": [
+                { "type": "text-input", "formKey": "coverImage", "label": "Image URL", "helperText": "16:9, at least 1600px wide. Learners click it to start. When set, the title is read by screen readers but hidden on screen, since the image shows it." },
+                { "type": "text-input", "formKey": "coverAlt", "label": "Alt text" }
+            ]
+        },
+        {
+            "type": "panel",
             "headerTitle": "Two checkers",
             "expandable": true,
             "collapsed": true,

@@ -2,6 +2,8 @@ const DEFAULTS = {
   title: 'A peek into Clea\'s brain',
   intro: '<p>Clea is a learning experience designer. She built a bunch of Claude skills for her customer education work and taught herself Claude Code along the way.</p><p>Then she got laid off. Now she\'s vibe coding for fun and giving back to the L&amp;D community, like at the Learning Rejects Conference.</p><p>Here\'s some of what\'s been rattling around in her head: two of her skills, what didn\'t work the first time, and what she changed. Two stops let you make the call yourself.</p>',
   source: 'Vibe coded in Mighty Studio with Claude Code, October 2026.',
+  coverImage: 'https://clea-mahoney.github.io/clea-skills/walkthrough/cover.png',
+  coverAlt: 'Start the walkthrough: Clea peeking over a card from the sort game.',
 
   checkersHeading: 'Lesson-eval: two versions of the checker',
   beforeTitle: 'September: 15 checks, 9 fails',
@@ -173,6 +175,14 @@ function show(i, focusHeading) {
 /* ---------- start ---------- */
 function renderStart() {
   bindText('title'); bindHTML('intro'); bindText('source');
+  const hero = $('hero'), img = $('heroImg'), url = str(S.coverImage);
+  hero.hidden = !url;
+  $('p-start').querySelector('h2').classList.toggle('sr', !!url);
+  if (url) {
+    img.src = url; img.alt = str(S.coverAlt) || str(S.startLabel);
+    img.onerror = () => { hero.hidden = true; $('p-start').querySelector('h2').classList.remove('sr'); };
+    hero.onclick = () => show(1, true);
+  }
   $('secEval').textContent = `Checks a lesson draft before it goes to review. It went from ${S.checks.length} checks to 4.`;
   $('secCourse').textContent = `Builds the course in the LMS and checks it against the drafts. ${S.months.length ? S.months[0].month + ' to ' + S.months[S.months.length - 1].month : ''}.`;
   $('startBtn').textContent = S.startLabel;
