@@ -1,0 +1,217 @@
+{
+    "version": 1,
+    "name": "CLEA skills walkthrough",
+    "formElements": [
+        { "type": "text-input", "formKey": "title", "label": "Title" },
+        { "type": "richtext-input", "formKey": "intro", "label": "Intro", "inputMinHeight": "90px" },
+        { "type": "text-input", "formKey": "source", "label": "Source line" },
+        {
+            "type": "panel",
+            "headerTitle": "Two checkers",
+            "expandable": true,
+            "collapsed": true,
+            "formElements": [
+                { "type": "text-input", "formKey": "checkersHeading", "label": "Heading" },
+                { "type": "text-input", "formKey": "beforeTitle", "label": "Old checker title" },
+                { "type": "text-input", "formKey": "beforeMeta", "label": "Old checker summary" },
+                {
+                    "type": "collection-manager",
+                    "formKey": "checks",
+                    "itemSingularLabel": "Check",
+                    "itemPluralLabel": "Checks",
+                    "itemTitleProperty": "name",
+                    "itemSubtitleProperty": "result",
+                    "itemEditorFormElements": [
+                        { "type": "text-input", "formKey": "name", "label": "Check" },
+                        {
+                            "type": "selector-input",
+                            "formKey": "result",
+                            "label": "Result",
+                            "options": [
+                                { "label": "Pass", "value": "pass" },
+                                { "label": "Fail", "value": "fail" }
+                            ]
+                        },
+                        { "type": "textarea-input", "formKey": "finding", "label": "What it found", "rows": 3 }
+                    ]
+                },
+                { "type": "textarea-input", "formKey": "loopText", "label": "Grading loop", "rows": 2 },
+                { "type": "text-input", "formKey": "afterTitle", "label": "New checker title" },
+                { "type": "textarea-input", "formKey": "afterMeta", "label": "New checker summary", "rows": 2 },
+                { "type": "textarea-input", "formKey": "afterTeaser", "label": "New checker teaser", "rows": 2 },
+                { "type": "text-input", "formKey": "checkersLesson", "label": "Takeaway" }
+            ]
+        },
+        {
+            "type": "panel",
+            "headerTitle": "Sort game",
+            "expandable": true,
+            "collapsed": true,
+            "formElements": [
+                { "type": "text-input", "formKey": "sortHeading", "label": "Heading" },
+                { "type": "textarea-input", "formKey": "sortIntro", "label": "Instructions", "rows": 3 },
+                {
+                    "type": "collection-manager",
+                    "formKey": "flags",
+                    "itemSingularLabel": "Finding",
+                    "itemPluralLabel": "Findings",
+                    "itemTitleProperty": "text",
+                    "itemSubtitleProperty": "answer",
+                    "itemEditorFormElements": [
+                        { "type": "text-input", "formKey": "text", "label": "Finding" },
+                        {
+                            "type": "selector-input",
+                            "formKey": "answer",
+                            "label": "Belongs in",
+                            "options": [
+                                { "label": "Fix", "value": "fix" },
+                                { "label": "Take a look", "value": "look" }
+                            ]
+                        },
+                        { "type": "textarea-input", "formKey": "why", "label": "Why", "rows": 2 }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "panel",
+            "headerTitle": "The rewrite",
+            "expandable": true,
+            "collapsed": true,
+            "formElements": [
+                { "type": "text-input", "formKey": "rewriteHeading", "label": "Heading" },
+                { "type": "text-input", "formKey": "beforeVerdict", "label": "Before verdict" },
+                { "type": "richtext-input", "formKey": "beforeDoc", "label": "Before draft", "inputMinHeight": "240px" },
+                { "type": "text-input", "formKey": "afterVerdict", "label": "After verdict" },
+                { "type": "richtext-input", "formKey": "afterDoc", "label": "After draft", "inputMinHeight": "240px" },
+                {
+                    "type": "collection-manager",
+                    "formKey": "annotations",
+                    "itemSingularLabel": "Note",
+                    "itemPluralLabel": "Notes",
+                    "itemTitleProperty": "phrase",
+                    "itemSubtitleProperty": "kind",
+                    "itemEditorFormElements": [
+                        {
+                            "type": "selector-input",
+                            "formKey": "side",
+                            "label": "Draft",
+                            "options": [
+                                { "label": "Before", "value": "before" },
+                                { "label": "After", "value": "after" }
+                            ]
+                        },
+                        {
+                            "type": "selector-input",
+                            "formKey": "kind",
+                            "label": "Type",
+                            "options": [
+                                { "label": "Fix", "value": "fix" },
+                                { "label": "Take a look", "value": "look" },
+                                { "label": "Learner would get stuck", "value": "learn" },
+                                { "label": "New or rewritten", "value": "new" }
+                            ]
+                        },
+                        {
+                            "type": "textarea-input",
+                            "formKey": "phrase",
+                            "label": "Highlighted text",
+                            "rows": 2,
+                            "helperText": "Copy it exactly from the draft, within one paragraph and with no bold inside."
+                        },
+                        { "type": "textarea-input", "formKey": "note", "label": "Note", "rows": 2 }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "panel",
+            "headerTitle": "Course-dev timeline",
+            "expandable": true,
+            "collapsed": true,
+            "formElements": [
+                { "type": "text-input", "formKey": "courseHeading", "label": "Heading" },
+                {
+                    "type": "collection-manager",
+                    "formKey": "months",
+                    "itemSingularLabel": "Month",
+                    "itemPluralLabel": "Months",
+                    "itemTitleProperty": "month",
+                    "itemSubtitleProperty": "label",
+                    "itemEditorFormElements": [
+                        { "type": "text-input", "formKey": "month", "label": "Month" },
+                        { "type": "text-input", "formKey": "label", "label": "Short label" },
+                        { "type": "text-input", "formKey": "title", "label": "Title" },
+                        { "type": "richtext-input", "formKey": "body", "label": "Body" },
+                        {
+                            "type": "panel",
+                            "headerTitle": "Steps",
+                            "formElements": [
+                                { "type": "textarea-input", "formKey": "autoSteps", "label": "Automated", "rows": 3, "helperText": "One step per line. Shown first." },
+                                { "type": "textarea-input", "formKey": "handSteps", "label": "By hand", "rows": 3, "helperText": "One step per line. Shown after the automated steps." }
+                            ]
+                        },
+                        { "type": "textarea-input", "formKey": "note", "label": "Note", "rows": 2 }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "panel",
+            "headerTitle": "Match game",
+            "expandable": true,
+            "collapsed": true,
+            "formElements": [
+                { "type": "text-input", "formKey": "matchHeading", "label": "Heading" },
+                { "type": "textarea-input", "formKey": "matchIntro", "label": "Instructions", "rows": 2 },
+                {
+                    "type": "collection-manager",
+                    "formKey": "problems",
+                    "itemSingularLabel": "Problem",
+                    "itemPluralLabel": "Problems",
+                    "itemTitleProperty": "problem",
+                    "maxItems": 5,
+                    "itemEditorFormElements": [
+                        { "type": "textarea-input", "formKey": "problem", "label": "Problem", "rows": 2 },
+                        { "type": "textarea-input", "formKey": "fix", "label": "Fix", "rows": 2 }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "panel",
+            "headerTitle": "Finish",
+            "expandable": true,
+            "collapsed": true,
+            "formElements": [
+                { "type": "text-input", "formKey": "finishHeading", "label": "Heading" },
+                { "type": "richtext-input", "formKey": "finishBody", "label": "Body" },
+                { "type": "text-input", "formKey": "linkLabel", "label": "Link text" },
+                { "type": "text-input", "formKey": "linkUrl", "label": "Link URL", "placeholder": "https://…" }
+            ]
+        },
+        {
+            "type": "panel",
+            "headerTitle": "Labels",
+            "expandable": true,
+            "collapsed": true,
+            "formElements": [
+                { "type": "text-input", "formKey": "stopStart", "label": "Stop 1 name" },
+                { "type": "text-input", "formKey": "stopCheckers", "label": "Stop 2 name" },
+                { "type": "text-input", "formKey": "stopSort", "label": "Stop 3 name" },
+                { "type": "text-input", "formKey": "stopRewrite", "label": "Stop 4 name" },
+                { "type": "text-input", "formKey": "stopCourse", "label": "Stop 5 name" },
+                { "type": "text-input", "formKey": "stopMatch", "label": "Stop 6 name" },
+                { "type": "text-input", "formKey": "stopFinish", "label": "Stop 7 name" },
+                { "type": "text-input", "formKey": "startLabel", "label": "Start button" },
+                { "type": "text-input", "formKey": "nextLabel", "label": "Next button" },
+                { "type": "text-input", "formKey": "backLabel", "label": "Back button" },
+                { "type": "text-input", "formKey": "fixLabel", "label": "Fix" },
+                { "type": "text-input", "formKey": "lookLabel", "label": "Take a look" },
+                { "type": "text-input", "formKey": "rightLabel", "label": "Right answer" },
+                { "type": "text-input", "formKey": "wrongLabel", "label": "Wrong answer" },
+                { "type": "text-input", "formKey": "againLabel", "label": "Play again button" }
+            ]
+        }
+    ]
+}
