@@ -13,16 +13,7 @@ Some skills were built and used on a real customer education team, then rewritte
 | [call-evidence](skills/call-evidence/SKILL.md) | Turns customer call transcripts into ranked themes, ordered by what education can act on rather than by volume. Can run weekly on a schedule. | New themes, ties, themes put on Hold, and anything that may be a product bug | [Download](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/call-evidence.zip) |
 | [course-dev](skills/course-dev/SKILL.md) | Drafts lessons from an approved outline, runs lesson-eval, builds the course in your LMS through its MCP connector, and checks the LMS against the drafts | Approving each draft, choosing the reviewer, and when the course goes live | [Download](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/course-dev.zip) |
 | [lesson-eval](skills/lesson-eval/SKILL.md) | Checks a lesson draft in one pass and lists only what needs fixing: a clear point, specific media placeholders, a forward-pointing ending, and writing that sounds like a person | Only Fix items block. Take a look items are your call. | [Download](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/lesson-eval.zip) |
-
-## job-me (job search)
-
-[job-me](skills/job-me/SKILL.md) checks public company job boards for roles that fit your search. It keeps one list with a status for each role and builds a board you can filter. It's set up for L&D, training, instructional design, and customer education titles. Your matches stay on your machine.
-
-It's a folder, not a download, so it isn't in the table above. To use it:
-
-1. Copy the `skills/job-me` folder from this repo into your skills folder (see below).
-2. Edit `config.json` for your job titles, exclusions, and pay floor. Edit `companies.csv` for the company job boards you want to watch.
-3. Ask Claude to run a job scan.
+| [job-me](skills/job-me/SKILL.md) | Checks public company job boards for roles that fit your search, keeps one list with a status per role, and builds a filterable board. Set up for L&D, training, instructional design, and customer education titles. Your matches stay on your machine. | Which roles to apply to and which to skip | [Download](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/job-me.zip) |
 
 ## Add a skill to Claude
 
@@ -32,29 +23,12 @@ It's a folder, not a download, so it isn't in the table above. To use it:
 4. Swap in your own examples where the skill asks.
 5. Try it on real work and watch the first run. Check what it flags against your own judgment, then adjust the instructions.
 
-### Claude Code or Codex
-
-Copy the skill folders from `skills/` into `~/.claude/skills/` (Claude Code) or `~/.agents/skills/` (Codex):
-
-```bash
-git clone https://github.com/clea-mahoney/clea-skills.git
-```
-
-```bash
-cp -r clea-skills/skills/* ~/.claude/skills/
-```
-
-Then describe the task, or run `/call-evidence`, `/course-dev`, or `/lesson-eval`.
-
-### ChatGPT, Gemini, Copilot, or another AI
-
-The skills are plain Markdown. Create a custom GPT, Gem, or project, paste the skill's `SKILL.md` into its instructions, and add the files in its `references/` folder (and `evals.md` for lesson-eval) as knowledge files.
-
 ## Make it yours
 
 - **call-evidence:** start with a few real transcripts from your own calls. Check the speaker counts and exclusions against what you know before you trust the ranking, and edit the exclusion rules to match who counts as a customer for you.
 - **course-dev:** replace `references/skilljar-notes.md` with your own LMS's quirks. Without an MCP connector, it hands you HTML to paste in.
 - **lesson-eval:** replace the pairs in `references/voice-examples.md` with before and after sentences from your own lessons. They teach it your voice better than any rule list.
+- **job-me:** edit `config.json` for your job titles, exclusions, and pay floor. Edit `companies.csv` for the company job boards you want to watch.
 
 ## Try the examples
 
