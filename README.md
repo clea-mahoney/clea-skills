@@ -1,8 +1,8 @@
 # CLEA skills: Customer Learning Experience Agents
 
-AI skills for customer education (mostly), by Clea Mahoney. Each skill does one job and leaves the judgment calls to a person. Adapt them to your own company, audience, and tools.
+AI skills for customer education (mostly) and job search, by Clea Mahoney. Each skill does one job and leaves the judgment calls to a person. Adapt them to your own company, audience, and tools.
 
-Some skills were built and used on a real customer education team, then rewritten for sharing. No company, customer, or employee data is included. Some were shared in a Skilljar by Gainsight webinar *"Wait, How Did You Get AI to Do That?: AI Workflows for Customer Education"* (October 15, 2026), co-presented with [Christie DeCarolis](https://christiedecarolis.com/aiworkflows.html).
+Some skills were built and used on a real customer education team, then rewritten for sharing. No company, customer, or employee data is included.
 
 **[Click through the webinar walkthrough](https://clea-mahoney.github.io/clea-skills/)** to see how lesson-eval and course-dev changed over time.
 
@@ -22,7 +22,7 @@ The skills follow the order you work in:
 | [course-dev](skills/course-dev/SKILL.md) | Drafts lessons from an approved outline, runs lesson-eval, builds the course in your LMS through its MCP connector, and checks the LMS against the drafts | Approving each draft, choosing the reviewer, and when the course goes live | [course-dev.zip](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/course-dev.zip) |
 | [lesson-eval](skills/lesson-eval/SKILL.md) | Checks a lesson draft in one pass and lists only what needs fixing: a clear point, specific media placeholders, a forward-pointing ending, and writing that sounds like a person | Only Fix items block. Take a look items are your call. | [lesson-eval.zip](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/lesson-eval.zip) |
 
-## Also: job-me (job search)
+## job-me (job search)
 
 [job-me](skills/job-me/SKILL.md) scans public company job boards for roles that match your search, keeps one list with a status per role, and builds a filterable apply board. It ships set up for L&D, training, instructional design, and customer education titles. Change the terms, exclusions, and boards in `config.json` and `companies.csv`. Your own matches stay on your machine. The skill is not in the ZIP downloads yet; copy the `skills/job-me` folder instead.
 
@@ -77,6 +77,10 @@ The skills are plain Markdown. Create a custom GPT, Gem, or project, paste the s
 - Keep skills focused. Hand off between them instead of building one huge prompt.
 - When a skill keeps growing, look for where the mistake starts before you add another check.
 - Watch the first run yourself before you put a skill on a schedule.
+
+## Where they were shared
+
+Some of the customer education skills were shared in the Skilljar by Gainsight webinar *"Wait, How Did You Get AI to Do That?: AI Workflows for Customer Education"* (October 15, 2026), co-presented with [Christie DeCarolis](https://christiedecarolis.com/aiworkflows.html).
 
 ## License
 
