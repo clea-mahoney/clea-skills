@@ -1,18 +1,18 @@
 # CLEA skills: Customer Learning Experience Agents
 
-Three AI skills for customer education teams, by Clea Mahoney. Each one does one job and leaves the judgment calls to a person. Use them as they are, or adapt them to your own company, learners, and tools.
+AI skills for customer education (mostly), by Clea Mahoney. Each skill does one job and leaves the judgment calls to a person. Adapt them to your own company, audience, and tools.
 
-They were built and used on a real customer education team, then rewritten for sharing. No company, customer, or employee data is included. I shared them in the Skilljar by Gainsight webinar *"Wait, How Did You Get AI to Do That?: AI Workflows for Customer Education"* (October 15, 2026), co-presented with [Christie DeCarolis](https://christiedecarolis.com/aiworkflows.html).
+Some skills were built and used on a real customer education team, then rewritten for sharing. No company, customer, or employee data is included. Some were shared in a Skilljar by Gainsight webinar *"Wait, How Did You Get AI to Do That?: AI Workflows for Customer Education"* (October 15, 2026), co-presented with [Christie DeCarolis](https://christiedecarolis.com/aiworkflows.html).
 
-**[Click through the walkthrough](https://clea-mahoney.github.io/clea-skills/)** to see how lesson-eval and course-dev changed over time.
+**[Click through the webinar walkthrough](https://clea-mahoney.github.io/clea-skills/)** to see how lesson-eval and course-dev changed over time.
 
 ## How they fit together
 
 The skills follow the order you work in:
 
-1. **call-evidence** reads customer calls and tells you what customers are stuck on, so you know what to build.
-2. **course-dev** turns an approved outline into drafted lessons and builds the course in your LMS. It runs lesson-eval on every draft.
-3. **lesson-eval** checks a lesson draft before a person reviews it. It also works on its own, on a draft from any source.
+1. **call-evidence** reads customer call transcripts and tells you what customers are stuck on, so you know what to build.
+2. **course-dev** turns an approved outline into drafted lessons and builds the course in Skilljar LMS. It runs lesson-eval on every draft.
+3. **lesson-eval** checks a lesson draft for audience relevance and AI slop before a person reviews it. It also works on its own, on a draft from any source.
 
 ## The skills
 
