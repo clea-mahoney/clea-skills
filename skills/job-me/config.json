@@ -109,5 +109,7 @@
       "learning operations",
       "academy"
     ]
-  }
+  },
+  "location_exclude": [],
+  "_location_exclude_note": "City or state words to drop even when a posting says remote, e.g. 'new york', ', ny', 'san francisco'. Matching is substring on the posting's location text."
 }

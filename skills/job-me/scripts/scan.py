@@ -147,6 +147,8 @@ def keep(j):
         return False
     raw = j.get("location") or ""
     loc = " " + raw.lower()
+    if any(c in loc for c in CFG.get("location_exclude", [])):
+        return False
     near = any(h in loc for h in CFG["hybrid_locations"])
     remote = CFG["remote_ok"] and (j.get("remote") or "remote" in loc)
     if not (remote or near):
