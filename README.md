@@ -4,6 +4,8 @@ AI skills for customer education (mostly) and job search, by Clea Mahoney. Each 
 
 Some skills were built and used on a real customer education team, then rewritten for sharing. No company, customer, or employee data is included.
 
+[![A peek into Clea's brain: click to start the interactive walkthrough](docs/walkthrough/cover.png)](https://clea-mahoney.github.io/clea-skills/walkthrough/)
+
 **[Click through the webinar walkthrough](https://clea-mahoney.github.io/clea-skills/)** to see how lesson-eval and course-dev changed over time, or **[try the interactive version](https://clea-mahoney.github.io/clea-skills/walkthrough/)** to sort the findings and match the fixes yourself.
 
 ## The skills
