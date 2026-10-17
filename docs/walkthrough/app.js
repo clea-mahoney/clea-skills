@@ -111,7 +111,7 @@ const DEFAULTS = {
     { problem: 'A lesson built as one block of HTML can\'t have a video added later.', fix: 'Every lesson is now built in sections, and any section can hold a video.' },
     { problem: 'Skilljar rewrites a lesson\'s HTML when it saves, so the checks flagged differences no reader would see.', fix: 'The checks compare only the lesson text.' }
   ],
-  finishHeading: 'Thanks for trying it',
+  finishHeading: 'Thanks for taking a peek',
   finishBody: '<p>Both skills are free to copy and change. Lesson-eval works on any lesson draft.</p><p>If you\'re at Learning Rejects, come say hi.</p>',
   linkLabel: 'Get the skills on GitHub',
   linkUrl: 'https://github.com/clea-mahoney/clea-skills',
