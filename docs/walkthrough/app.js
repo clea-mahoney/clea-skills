@@ -7,27 +7,27 @@ const DEFAULTS = {
   coverImageMobile: 'https://clea-mahoney.github.io/clea-skills/walkthrough/cover-mobile.png',
 
   draftHeading: 'Read the draft',
-  draftIntro: 'Here\'s a lesson draft from September, about a made-up product called Flowstack. Both versions of the checker graded it. Read it like a reviewer would, and tap any sentence that bugs you to see if a check caught it.',
+  draftIntro: 'Clea built lesson-eval, a Claude skill that checks a lesson draft before a person reviews it. In September it ran 15 checks. Here\'s a draft it graded, about a made-up product called Flowstack. Read it like a reviewer would, and tap any sentence that bugs you to see what lesson-eval said about it.',
   draftHits: [
-    { phrase: 'Add An Approval Step Before Risky Actions', check: '10' },
-    { phrase: 'In this course, you\'ll learn', check: '3' },
-    { phrase: 'This course is for Flowstack admins', check: '3' },
-    { phrase: 'Let\'s dive in.', check: '7' },
-    { phrase: 'isn\'t a delay, it\'s a safety net', check: '11' },
-    { phrase: '—', check: '7' },
-    { phrase: 'One bad run.', check: '11' },
-    { phrase: 'Hundreds of disabled accounts.', check: '11' },
-    { phrase: 'No undo.', check: '11' },
-    { phrase: 'It\'s important to note', check: '7' },
-    { phrase: 'leverage', check: '14' },
-    { phrase: 'pick the appropriate group', check: '6' },
-    { phrase: '[Screenshot: add screenshot here]', check: '8' },
-    { phrase: 'Now that you\'ve added the step', check: '7' },
-    { phrase: 'isn\'t optional, it\'s how you know', check: '11' },
-    { phrase: 'Utilize', check: '14' },
-    { phrase: 'With these steps, you\'re ready', check: '9' }
+    { phrase: 'Add An Approval Step Before Risky Actions', check: '10', note: 'The heading is in title case.' },
+    { phrase: 'In this course, you\'ll learn', check: '3', note: 'It opens by announcing the course instead of putting the learner in a situation.' },
+    { phrase: 'This course is for Flowstack admins', check: '3', note: 'It tells learners who the course is for, which they already know.' },
+    { phrase: 'Let\'s dive in.', check: '7', note: 'Filler. It announces what\'s next instead of saying it.' },
+    { phrase: 'isn\'t a delay, it\'s a safety net', check: '11', note: 'Contrast for effect: "isn\'t X, it\'s Y."' },
+    { phrase: '—', check: '7', note: 'An em dash.' },
+    { phrase: 'One bad run.', check: '11', note: 'Dramatic fragments: "One bad run. Hundreds of disabled accounts. No undo."' },
+    { phrase: 'Hundreds of disabled accounts.', check: '11', note: 'Dramatic fragments: "One bad run. Hundreds of disabled accounts. No undo."' },
+    { phrase: 'No undo.', check: '11', note: 'Dramatic fragments: "One bad run. Hundreds of disabled accounts. No undo."' },
+    { phrase: 'It\'s important to note', check: '7', note: 'Filler. It announces a point instead of making it.' },
+    { phrase: 'leverage', check: '14', note: 'Inflated words like "leverage" and "seamless."' },
+    { phrase: 'pick the appropriate group', check: '6', note: 'It assumes the learner already knows which group is appropriate.' },
+    { phrase: '[Screenshot: add screenshot here]', check: '8', note: 'The placeholder doesn\'t say what to capture, and it sits at the end of the section instead of at its step.' },
+    { phrase: 'Now that you\'ve added the step', check: '7', note: 'Filler. It announces the next section.' },
+    { phrase: 'isn\'t optional, it\'s how you know', check: '11', note: 'Contrast for effect: "isn\'t X, it\'s Y."' },
+    { phrase: 'Utilize', check: '14', note: 'An inflated word. "Use" says the same thing.' },
+    { phrase: 'With these steps, you\'re ready', check: '9', note: 'A generic upbeat ending, and there\'s no Next up section.' }
   ],
-  draftRevealLabel: 'Show what the checker caught',
+  draftRevealLabel: 'Show everything lesson-eval flagged',
 
   checkersHeading: 'Lesson-eval: two versions of the checker',
   beforeTitle: 'September: 15 checks, 9 fails',
@@ -61,7 +61,7 @@ const DEFAULTS = {
     { text: 'Screenshot placeholder is vague and in the wrong spot', answer: 'fix', why: 'It doesn\'t say what to capture, and it sits at the end of the section instead of at the step it supports.' },
     { text: 'Opens by repeating the course overview', answer: 'fix', why: 'It restates the course overview and who the course is for, so the lesson starts on something the learner already read.' },
     { text: 'An em dash', answer: 'look', why: 'A style call. Worth changing, but it doesn\'t stop a learner.' },
-    { text: 'Reads like AI: contrast, signposting, inflated words', answer: 'look', why: 'Worth a rewrite, and the writer decides how far to take it.' },
+    { text: 'Reads like AI: filler, contrast for effect, inflated words', answer: 'look', why: 'Worth a rewrite, and the writer decides how far to take it.' },
     { text: 'A title-case heading', answer: 'look', why: 'A style call that takes seconds to fix. It doesn\'t block publishing.' },
     { text: 'Missing the "Next up" section at the end', answer: 'look', why: 'The lesson still works without it, so it\'s flagged for the writer to decide.' }
   ],
@@ -75,18 +75,18 @@ const DEFAULTS = {
   annotations: [
     { side: 'before', kind: 'look', phrase: 'Add An Approval Step Before Risky Actions', note: 'Title-case heading.' },
     { side: 'before', kind: 'fix', phrase: 'In this course, you\'ll learn what approval steps are, why they matter, and how to add them to your workflows. This course is for Flowstack admins who build workflows.', note: 'Restates the course overview and who the course is for.' },
-    { side: 'before', kind: 'look', phrase: 'Let\'s dive in.', note: 'Signposting (1 of 3).' },
+    { side: 'before', kind: 'look', phrase: 'Let\'s dive in.', note: 'Filler that announces what\'s next (1 of 3).' },
     { side: 'before', kind: 'look', phrase: 'An approval step isn\'t a delay, it\'s a safety net.', note: 'Contrast for effect (1 of 3).' },
     { side: 'before', kind: 'look', phrase: '—', note: 'Em dash.' },
     { side: 'before', kind: 'look', phrase: 'No undo.', note: 'Clipped negation, contrast for effect (2 of 3).' },
     { side: 'before', kind: 'learn', phrase: 'It\'s important to note that approval steps leverage Flowstack\'s seamless notification engine, ensuring the right person always sees the request.', note: 'Attention drops here. This sentence explains product plumbing, and I can\'t act on it.' },
-    { side: 'before', kind: 'look', phrase: 'It\'s important to note', note: 'Signposting (2 of 3).' },
+    { side: 'before', kind: 'look', phrase: 'It\'s important to note', note: 'Filler that announces a point instead of making it (2 of 3).' },
     { side: 'before', kind: 'look', phrase: 'leverage', note: 'Inflated word.' },
     { side: 'before', kind: 'look', phrase: 'seamless', note: 'Inflated word.' },
     { side: 'before', kind: 'learn', phrase: 'pick the appropriate group', note: 'First place I\'d get stuck. What makes a group appropriate? Do I have to create one?' },
     { side: 'before', kind: 'learn', phrase: 'within the time limit', note: 'Where do I set the time limit, and what\'s the default?' },
     { side: 'before', kind: 'fix', phrase: '[Screenshot: add screenshot here]', note: 'Doesn\'t say what to capture, and sits at the end of the section instead of at the step it supports.' },
-    { side: 'before', kind: 'look', phrase: 'Now that you\'ve added the step, it\'s time to test it.', note: 'Signposting (3 of 3).' },
+    { side: 'before', kind: 'look', phrase: 'Now that you\'ve added the step, it\'s time to test it.', note: 'Filler that announces the next section (3 of 3).' },
     { side: 'before', kind: 'look', phrase: 'Testing isn\'t optional, it\'s how you know the approval works.', note: 'Contrast for effect (3 of 3).' },
     { side: 'before', kind: 'learn', phrase: 'Utilize a test user to run the workflow.', note: 'Is the test user the target or the person running it? I don\'t want to disable a real account.' },
     { side: 'before', kind: 'look', phrase: 'Utilize', note: 'Inflated word.' },
@@ -231,7 +231,9 @@ function renderDraft() {
   const sents = [...doc.querySelectorAll('.s')];
   sents.forEach(b => {
     const t = b.textContent;
-    const nums = [...new Set(S.draftHits.filter(h => str(h.phrase) && t.includes(str(h.phrase))).map(h => parseInt(h.check, 10)).filter(n => S.checks[n - 1]))].sort((a, c) => a - c);
+    const hits = S.draftHits.filter(h => str(h.phrase) && t.includes(str(h.phrase)) && S.checks[parseInt(h.check, 10) - 1]);
+    const nums = [...new Set(hits.map(h => parseInt(h.check, 10)))].sort((a, c) => a - c);
+    const said = [...new Set(hits.map(h => `${str(h.note) || str(S.checks[parseInt(h.check, 10) - 1].name)} (Check ${parseInt(h.check, 10)})`))];
     b.dataset.checks = nums.join(',');
     b.classList.toggle('caught', nums.length > 0);
     b.dataset.learn = learn.some(ph => ph && t.includes(ph)) ? '1' : '';
@@ -241,12 +243,11 @@ function renderDraft() {
       if (on) {
         note.innerHTML = '';
         if (nums.length) {
-          note.append(el('strong', null, nums.length > 1 ? `Caught by checks ${nums.join(' and ')}. ` : `Caught by check ${nums[0]}. `),
-            document.createTextNode(nums.map(n => str(S.checks[n - 1].name)).join('. ') + '.'));
+          note.append(el('strong', null, 'Lesson-eval flagged this. '), document.createTextNode(said.join(' ')));
         } else if (b.dataset.learn) {
-          note.append(el('strong', null, `None of the ${S.checks.length} checks caught this. `), document.createTextNode('Today\'s learner pass does. It reads the draft as a first-time learner and flags where they\'d get stuck.'));
+          note.append(el('strong', null, 'Lesson-eval missed this in September. '), document.createTextNode('A first-time learner would get stuck here. Today\'s version catches it with an optional read in the learner\'s voice.'));
         } else {
-          note.append(el('strong', null, 'No check flagged this one. '), document.createTextNode('Good eye, or a matter of taste.'));
+          note.append(el('strong', null, 'Lesson-eval didn\'t flag this. '), document.createTextNode('Good eye, or a matter of taste.'));
         }
         const blk = b.parentElement;
         if (blk.tagName === 'LI') blk.appendChild(note); else blk.after(note);
@@ -259,14 +260,14 @@ function renderDraft() {
   function drawTally() {
     const mine = sents.filter(b => b.getAttribute('aria-pressed') === 'true');
     tally.textContent = mine.length
-      ? `You flagged ${mine.length}. The checker caught ${mine.filter(b => b.classList.contains('caught')).length} of them.`
+      ? `You flagged ${mine.length}. Lesson-eval flagged ${mine.filter(b => b.classList.contains('caught')).length} of them too.`
       : 'Nothing flagged yet.';
   }
   rv.textContent = S.draftRevealLabel; rv.setAttribute('aria-pressed', 'false');
   rv.onclick = () => {
     const on = !doc.classList.contains('reveal');
     doc.classList.toggle('reveal', on); rv.setAttribute('aria-pressed', String(on));
-    if (on) shout(`The checker flagged ${sents.filter(b => b.classList.contains('caught')).length} of ${sents.length} sentences. They're underlined in red.`);
+    if (on) shout(`Lesson-eval flagged ${sents.filter(b => b.classList.contains('caught')).length} of ${sents.length} sentences. They're underlined in red.`);
   };
   drawTally();
 }
@@ -281,12 +282,12 @@ function renderCheckers() {
     const b = el('button', 'chk ' + (fail ? 'fail' : 'pass'));
     b.type = 'button'; b.setAttribute('aria-pressed', 'false');
     b.innerHTML = `<span aria-hidden="true">${fail ? '✕' : '✓'}${i + 1}</span>`;
-    b.setAttribute('aria-label', `Check ${i + 1}: ${c.name}. ${fail ? 'Fail' : 'Pass'}`);
+    b.setAttribute('aria-label', `Check ${i + 1} ${fail ? 'failed' : 'passed'}: ${c.name}`);
     b.onclick = () => {
       grid.querySelectorAll('.chk').forEach(x => x.setAttribute('aria-pressed', 'false'));
       b.setAttribute('aria-pressed', 'true');
       detail.innerHTML = '';
-      detail.append(el('div', 'res ' + (fail ? 'fail' : ''), `Check ${i + 1}: ${fail ? 'Fail' : 'Pass'}`), el('h4', null, str(c.name)), el('p', null, fail ? str(c.finding) : 'Passed on this draft.'));
+      detail.append(el('div', 'res ' + (fail ? 'fail' : ''), `Check ${i + 1} ${fail ? 'failed' : 'passed'}`), el('h4', null, 'The rule: ' + str(c.name)), el('p', null, fail ? 'What it found: ' + str(c.finding) : 'This draft follows it.'));
     };
     grid.appendChild(b);
   });
