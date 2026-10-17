@@ -25,7 +25,8 @@ const DEFAULTS = {
     { phrase: 'Now that you\'ve added the step', check: '7', note: 'Filler. It announces the next section.' },
     { phrase: 'isn\'t optional, it\'s how you know', check: '11', note: 'Contrast for effect: "isn\'t X, it\'s Y."' },
     { phrase: 'Utilize', check: '14', note: 'An inflated word. "Use" says the same thing.' },
-    { phrase: 'With these steps, you\'re ready', check: '9', note: 'A generic upbeat ending, and there\'s no Next up section.' }
+    { phrase: 'With these steps, you\'re ready', check: '9', note: 'A generic upbeat ending, and there\'s no Next up section.' },
+    { phrase: 'Why approval steps matter', check: '', note: 'Clea hates "Why X matters" headings.' }
   ],
   draftRevealLabel: 'Show everything lesson-eval flagged',
 
@@ -237,6 +238,7 @@ function renderDraft() {
     b.dataset.checks = nums.join(',');
     b.classList.toggle('caught', nums.length > 0);
     b.dataset.learn = learn.some(ph => ph && t.includes(ph)) ? '1' : '';
+    const clea = S.draftHits.filter(h => str(h.phrase) && !str(h.check) && t.includes(str(h.phrase))).map(h => str(h.note));
     b.onclick = () => {
       const on = b.getAttribute('aria-pressed') !== 'true';
       b.setAttribute('aria-pressed', String(on));
@@ -244,6 +246,8 @@ function renderDraft() {
         note.innerHTML = '';
         if (nums.length) {
           note.append(el('strong', null, 'Lesson-eval flagged this. '), document.createTextNode(said.join(' ')));
+        } else if (clea.length) {
+          note.append(el('strong', null, 'Lesson-eval didn\'t flag this, but Clea would. '), document.createTextNode(clea.join(' ')));
         } else if (b.dataset.learn) {
           note.append(el('strong', null, 'Lesson-eval missed this in September. '), document.createTextNode('A first-time learner would get stuck here. Today\'s version catches it with an optional read in the learner\'s voice.'));
         } else {

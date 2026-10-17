@@ -31,7 +31,7 @@
                     "itemSubtitleProperty": "check",
                     "itemEditorFormElements": [
                         { "type": "text-input", "formKey": "phrase", "label": "Words in the draft", "helperText": "Any sentence containing these words counts as caught. The draft itself is the Before draft in The rewrite panel." },
-                        { "type": "text-input", "formKey": "check", "label": "Check number", "helperText": "From the September list, 1 to 15." },
+                        { "type": "text-input", "formKey": "check", "label": "Check number", "helperText": "From the September list, 1 to 15. Leave blank for a note from Clea that lesson-eval didn't catch." },
                         { "type": "textarea-input", "formKey": "note", "label": "What it said", "rows": 2, "helperText": "The problem, in plain words." }
                     ]
                 },
