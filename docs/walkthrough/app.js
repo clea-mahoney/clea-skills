@@ -48,7 +48,7 @@ const DEFAULTS = {
   loopText: 'After the writer fixed all 9, lesson-eval checked the whole draft again. That repeated until all 15 passed.',
   afterTitle: 'Today: 4 checks, run once',
   afterMeta: 'It sorts each finding into Fix or Take a look, and skips anything a person already approved, like an em dash they chose to keep.',
-  afterTeaser: 'On the same draft it found 6 problems. On the next stop, you sort them.',
+  afterTeaser: 'On the same draft it found 6 problems. Next, you sort them.',
   checkersLesson: 'Claude drafts each lesson from a set of instructions. When the writing rules moved into those instructions, the drafts came out cleaner, so lesson-eval needed fewer checks.',
   sortHeading: 'Fix or take a look?',
   sortIntro: 'These are the 6 problems today\'s lesson-eval found in the draft. Put each one where lesson-eval did. Fix means it has to change before the lesson goes live. Take a look means the writer decides.',
@@ -191,8 +191,8 @@ function show(i, focusHeading) {
   const l = tab.offsetLeft - strip.offsetLeft;
   if (l < strip.scrollLeft || l + tab.offsetWidth > strip.scrollLeft + strip.clientWidth) strip.scrollLeft = l - 12;
   $('meterFill').style.width = (visited.size / STOPS.length * 100) + '%';
-  $('meterText').textContent = `${visited.size} of ${STOPS.length} stops explored`;
-  $('count').textContent = `Stop ${cur + 1} of ${STOPS.length}`;
+  $('meterText').textContent = `${visited.size} of ${STOPS.length} sections viewed`;
+  $('count').textContent = `Section ${cur + 1} of ${STOPS.length}`;
   $('back').disabled = cur === 0;
   $('next').disabled = cur === STOPS.length - 1;
   if (focusHeading) { const h = $('p-' + STOPS[cur].id).querySelector('h2'); if (h) h.focus({ preventScroll: true }); }
@@ -548,7 +548,7 @@ function finish() {
   const tally = $('tally'); tally.innerHTML = '';
   if (scores.sort) tally.append(el('div', null, `Sorted ${scores.sort.right} of ${scores.sort.total}`));
   if (scores.match) tally.append(el('div', null, `Matched ${scores.match.right} of ${scores.match.total} first try`));
-  tally.append(el('div', null, `${visited.size} of ${STOPS.length} stops explored`));
+  tally.append(el('div', null, `${visited.size} of ${STOPS.length} sections viewed`));
   if (!reduced) {
     const c = $('confetti'); c.innerHTML = '';
     const cols = ['#3CC9A4', '#F7B8A0', '#0A5A48', '#82352A', '#E2F6EF'];
@@ -579,7 +579,7 @@ function init(state) {
 if (sdk && sdk.onSdkReady) {
   sdk.onSdkReady(async () => {
     if (sdk.registerTracking) sdk.registerTracking({
-      completion: { description: 'Completes when the learner reaches the last stop' },
+      completion: { description: 'Completes when the learner reaches the last section' },
       tracking: { description: 'Records each sort and match answer' }
     });
     let state = {};
