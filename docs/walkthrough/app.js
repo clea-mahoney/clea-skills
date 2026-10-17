@@ -1,38 +1,36 @@
 const DEFAULTS = {
   title: 'A peek into Clea\'s brain',
-  intro: '<p>Clea is a learning experience designer. She built a bunch of Claude skills for her customer education work and taught herself Claude Code along the way.</p><p>Then she got laid off. Now she\'s vibe coding for fun and giving back to the L&amp;D community, like at the Learning Rejects Conference.</p><p>Here\'s some of what\'s been rattling around in her head: two of her skills, what didn\'t work the first time, and what she changed. Three stops let you try it yourself.</p>',
+  intro: '<p>Clea is a learning experience designer. At her last job she built Claude skills for customer education and taught herself Claude Code.</p><p>She was recently laid off. Since then she\'s been building things for fun and sharing them with the L&amp;D community, including at the Learning Rejects Conference.</p><p>This walkthrough covers two of her skills: what didn\'t work at first, and what she changed. Along the way you\'ll mark up a real lesson draft, sort what lesson-eval found, and match problems to their fixes.</p>',
   source: 'Vibe coded in Mighty Studio with Claude Code, October 2026.',
   coverImage: 'https://clea-mahoney.github.io/clea-skills/walkthrough/cover.png',
   coverAlt: 'Start the walkthrough: Clea peeking over a card from the sort game.',
   coverImageMobile: 'https://clea-mahoney.github.io/clea-skills/walkthrough/cover-mobile.png',
-
   draftHeading: 'Read the draft',
-  draftIntro: 'Clea built lesson-eval, a Claude skill that checks a lesson draft before a person reviews it. In September it ran 15 checks. Here\'s a draft it graded, about a made-up product called Flowstack. Read it like a reviewer would, and tap any sentence that bugs you to see what lesson-eval said about it.',
+  draftIntro: 'Lesson-eval is a Claude skill Clea built to check a lesson draft before a person reviews it. In September it ran 15 checks. This is a draft it checked, for a made-up product called Flowstack. Tap any sentence you\'d change to see what lesson-eval said about it.',
   draftHits: [
     { phrase: 'Add An Approval Step Before Risky Actions', check: '10', note: 'The heading is in title case.' },
-    { phrase: 'In this course, you\'ll learn', check: '3', note: 'It opens by announcing the course instead of putting the learner in a situation.' },
-    { phrase: 'This course is for Flowstack admins', check: '3', note: 'It tells learners who the course is for, which they already know.' },
-    { phrase: 'Let\'s dive in.', check: '7', note: 'Filler. It announces what\'s next instead of saying it.' },
-    { phrase: 'isn\'t a delay, it\'s a safety net', check: '11', note: 'Contrast for effect: "isn\'t X, it\'s Y."' },
+    { phrase: 'In this course, you\'ll learn', check: '3', note: 'It starts by describing the course. A lesson should start with a situation the learner recognizes.' },
+    { phrase: 'This course is for Flowstack admins', check: '3', note: 'The learner already knows who the course is for.' },
+    { phrase: 'Let\'s dive in.', check: '7', note: 'Filler. Nothing is lost if you cut it.' },
+    { phrase: 'isn\'t a delay, it\'s a safety net', check: '11', note: '"Isn\'t X, it\'s Y" phrasing. Say what an approval step does.' },
     { phrase: '—', check: '7', note: 'An em dash.' },
-    { phrase: 'One bad run.', check: '11', note: 'Dramatic fragments: "One bad run. Hundreds of disabled accounts. No undo."' },
-    { phrase: 'Hundreds of disabled accounts.', check: '11', note: 'Dramatic fragments: "One bad run. Hundreds of disabled accounts. No undo."' },
-    { phrase: 'No undo.', check: '11', note: 'Dramatic fragments: "One bad run. Hundreds of disabled accounts. No undo."' },
-    { phrase: 'It\'s important to note', check: '7', note: 'Filler. It announces a point instead of making it.' },
-    { phrase: 'leverage', check: '14', note: 'Inflated words like "leverage" and "seamless."' },
-    { phrase: 'pick the appropriate group', check: '6', note: 'It assumes the learner already knows which group is appropriate.' },
-    { phrase: '[Screenshot: add screenshot here]', check: '8', note: 'The placeholder doesn\'t say what to capture, and it sits at the end of the section instead of at its step.' },
-    { phrase: 'Now that you\'ve added the step', check: '7', note: 'Filler. It announces the next section.' },
-    { phrase: 'isn\'t optional, it\'s how you know', check: '11', note: 'Contrast for effect: "isn\'t X, it\'s Y."' },
-    { phrase: 'Utilize', check: '14', note: 'An inflated word. "Use" says the same thing.' },
-    { phrase: 'With these steps, you\'re ready', check: '9', note: 'A generic upbeat ending, and there\'s no Next up section.' },
-    { phrase: 'Why approval steps matter', check: '', note: 'Clea hates "Why X matters" headings.' }
+    { phrase: 'One bad run.', check: '11', note: 'Short dramatic fragments. One plain sentence says it better.' },
+    { phrase: 'Hundreds of disabled accounts.', check: '11', note: 'Short dramatic fragments. One plain sentence says it better.' },
+    { phrase: 'No undo.', check: '11', note: 'Short dramatic fragments. One plain sentence says it better.' },
+    { phrase: 'It\'s important to note', check: '7', note: 'Filler. A sentence that needs a label to be important isn\'t.' },
+    { phrase: 'leverage', check: '14', note: 'Inflated words: "leverage" and "seamless."' },
+    { phrase: 'pick the appropriate group', check: '6', note: 'Which group is appropriate? The learner can\'t tell.' },
+    { phrase: '[Screenshot: add screenshot here]', check: '8', note: 'The placeholder doesn\'t say what to capture, and it\'s at the end of the section instead of at its step.' },
+    { phrase: 'Now that you\'ve added the step', check: '7', note: 'Filler. The heading already says what\'s next.' },
+    { phrase: 'isn\'t optional, it\'s how you know', check: '11', note: '"Isn\'t X, it\'s Y" phrasing again.' },
+    { phrase: 'Utilize', check: '14', note: '"Utilize" means "use."' },
+    { phrase: 'With these steps, you\'re ready', check: '9', note: 'An upbeat ending that asks for nothing, and no Next up section.' },
+    { phrase: 'Why approval steps matter', check: '', note: 'She hates "Why X matters" headings.' }
   ],
   draftRevealLabel: 'Show everything lesson-eval flagged',
-
-  checkersHeading: 'Lesson-eval: two versions of the checker',
-  beforeTitle: 'September: 15 checks, 9 fails',
-  beforeMeta: 'Every check is pass or fail, run on the draft you just read.',
+  checkersHeading: 'Lesson-eval in September and today',
+  beforeTitle: 'September: 15 checks, 9 failed',
+  beforeMeta: 'Each check passed or failed on the draft you just read. Pick one to see what it found.',
   checks: [
     { name: 'Job behavior is nameable in one sentence', result: 'pass', finding: '' },
     { name: 'One lesson, one job behavior', result: 'pass', finding: '' },
@@ -50,85 +48,91 @@ const DEFAULTS = {
     { name: 'Plain words, real doers, no borrowed authority', result: 'fail', finding: 'Inflated and promotional language: "leverage," "seamless," "Utilize," and the trailing ", ensuring the right person always sees the request."' },
     { name: 'Voice match against the examples', result: 'fail', finding: 'Two of the three longest paragraphs ("Why approval steps matter" and the closing of "Test it") would need rewriting to sit beside the "Better" examples.' }
   ],
-  loopText: 'Every fail got fixed, then the whole draft was graded again, until all 15 passed.',
+  loopText: 'After the writer fixed all 9, lesson-eval checked the whole draft again. That repeated until all 15 passed.',
   afterTitle: 'Today: 4 checks, run once',
-  afterMeta: 'It sorts what it finds into two groups. Fix means it has to change before the lesson goes live. Take a look means the writer decides. It also skips anything a person already signed off on, like an em dash they chose to keep.',
-  afterTeaser: 'On the same draft, it found six things. On the next stop, sort them the way it did.',
-  checkersLesson: 'Claude drafts each lesson from a set of instructions. Once the writing rules moved into those instructions, the checker had less to catch.',
-
-  sortHeading: 'Your turn: Fix, or take a look?',
-  sortIntro: 'Today\'s checker puts each finding in one of two groups. Fix means it has to change before the lesson goes live. Take a look means the writer decides.',
+  afterMeta: 'It sorts each finding into Fix or Take a look, and skips anything a person already approved, like an em dash they chose to keep.',
+  afterTeaser: 'On the same draft it found 6 problems. On the next stop, you sort them.',
+  checkersLesson: 'Claude drafts each lesson from a set of instructions. When the writing rules moved into those instructions, the drafts came out cleaner, so lesson-eval needed fewer checks.',
+  sortHeading: 'Fix or take a look?',
+  sortIntro: 'These are the 6 problems today\'s lesson-eval found in the draft. Put each one where lesson-eval did. Fix means it has to change before the lesson goes live. Take a look means the writer decides.',
   flags: [
-    { text: 'Screenshot placeholder is vague and in the wrong spot', answer: 'fix', why: 'It doesn\'t say what to capture, and it sits at the end of the section instead of at the step it supports.' },
-    { text: 'Opens by repeating the course overview', answer: 'fix', why: 'It restates the course overview and who the course is for, so the lesson starts on something the learner already read.' },
-    { text: 'An em dash', answer: 'look', why: 'A style call. Worth changing, but it doesn\'t stop a learner.' },
-    { text: 'Reads like AI: filler, contrast for effect, inflated words', answer: 'look', why: 'Worth a rewrite, and the writer decides how far to take it.' },
-    { text: 'A title-case heading', answer: 'look', why: 'A style call that takes seconds to fix. It doesn\'t block publishing.' },
-    { text: 'Missing the "Next up" section at the end', answer: 'look', why: 'The lesson still works without it, so it\'s flagged for the writer to decide.' }
+    { text: 'Screenshot placeholder is vague and in the wrong spot', answer: 'fix', why: 'Whoever makes the screenshot won\'t know what to capture, and it sits at the end of the section instead of at its step.' },
+    { text: 'Opens by repeating the course overview', answer: 'fix', why: 'The learner already read the course overview. Repeating it delays the lesson.' },
+    { text: 'An em dash', answer: 'look', why: 'A style choice. It doesn\'t stop a learner.' },
+    { text: 'Reads like AI: filler, "isn\'t X, it\'s Y," inflated words', answer: 'look', why: 'Worth rewriting, but the lesson still works. The writer decides how much to change.' },
+    { text: 'A title-case heading', answer: 'look', why: 'A style choice that takes seconds to fix.' },
+    { text: 'No "Next up" section at the end', answer: 'look', why: 'The lesson works without it, so the writer decides.' }
   ],
-
-  rewriteHeading: 'Lesson-eval: the same lesson, after the fixes',
-  rewriteIntro: 'The September draft sits next to the rewrite. Highlights show what today\'s checker flagged, what changed, and where a first-time learner would get stuck. Those learner notes come from the learner pass, an optional second read in the learner\'s voice. Step through the notes, or tap any highlight.',
-  beforeVerdict: '2 to fix, 5 to look at, 5 learner notes',
-  afterVerdict: 'Re-run: nothing to fix',
+  rewriteHeading: 'The rewrite',
+  rewriteIntro: 'The September draft and the rewrite, side by side. Highlights mark what lesson-eval flagged, what changed, and where a new learner would get stuck. Those learner notes come from an optional pass that reads the draft as a new learner, so they\'re written as "I." Step through the notes or tap a highlight.',
+  beforeVerdict: '2 to fix, 4 to look at, 5 learner notes',
+  afterVerdict: 'Checked again: nothing to fix',
   beforeDoc: '<h1>Add An Approval Step Before Risky Actions</h1><p>In this course, you\'ll learn what approval steps are, why they matter, and how to add them to your workflows. This course is for Flowstack admins who build workflows.</p><p>Let\'s dive in.</p><h2>Why approval steps matter</h2><p>An approval step isn\'t a delay, it\'s a safety net. Workflows run fast — which is great until one runs on the wrong data. One bad run. Hundreds of disabled accounts. No undo.</p><p>It\'s important to note that approval steps leverage Flowstack\'s seamless notification engine, ensuring the right person always sees the request.</p><h2>Add the step</h2><ol><li>Open the workflow in the builder.</li><li>Click the <strong>+</strong> between the trigger and the action you want to protect.</li><li>Choose <strong>Approval</strong> from the step list.</li><li>In <strong>Approvers</strong>, pick the appropriate group.</li><li>In <strong>Timeout</strong>, choose what happens if nobody responds within the time limit: <strong>Cancel run</strong> or <strong>Continue anyway</strong>.</li></ol><p>For anything destructive, pick <strong>Cancel run</strong>. A workflow that continues anyway after a timeout is the same as having no approval step.</p><p>[Screenshot: add screenshot here]</p><h2>Test it</h2><p>Now that you\'ve added the step, it\'s time to test it. Testing isn\'t optional, it\'s how you know the approval works.</p><p>Utilize a test user to run the workflow. The approver gets a notification in Slack and email. Click <strong>Approve</strong> and confirm the action ran. Then run it again and let it time out to confirm the run cancels.</p><p>With these steps, you\'re ready to take your automation safety to the next level.</p>',
   afterDoc: '<h1>Add an approval step before risky actions</h1><p>Some workflows do things you can\'t easily undo, like disabling user accounts. If one of those runs on the wrong data, it can lock out hundreds of people before anyone notices. An approval step makes Flowstack wait for a person to say yes before the risky action runs.</p><h2>Add the step</h2><ol><li>Open the workflow in the builder.</li><li>Click the <strong>+</strong> between the trigger and the action you want to protect.</li><li>Choose <strong>Approval</strong> from the step list.</li><li>In <strong>Approvers</strong>, pick a group that has someone available whenever this workflow runs, such as your on-call group. Anyone in the group can approve. If the group doesn\'t exist yet, create it first. [Screenshot: the Approval step\'s settings panel, with Approvers set to the on-call group]</li><li>In <strong>Timeout</strong>, set how long Flowstack waits for an answer. Then choose what happens if nobody responds in time: <strong>Cancel run</strong> or <strong>Continue anyway</strong>. [Screenshot: the Timeout setting with a 1-hour limit and Cancel run selected]</li></ol><p>For anything destructive, pick <strong>Cancel run</strong>. A workflow that continues anyway after a timeout is the same as having no approval step.</p><p>When the workflow reaches this step, everyone in the approver group gets the request in Slack and email.</p><h2>Test it</h2><p>Run the workflow once each way before you turn it on. Point it at a test user account, so the action only touches an account nobody depends on. To keep the timeout test short, set <strong>Timeout</strong> to a few minutes while you test.</p><ol><li>Run the workflow against the test user. Check that the approval request arrives in Slack and email.</li><li>Click <strong>Approve</strong>, then open the workflow\'s run history and confirm the action ran.</li><li>Run it again and don\'t respond. After the timeout passes, check run history to confirm the run was canceled and the test user wasn\'t changed.</li><li>Set <strong>Timeout</strong> back to the limit you want in production.</li></ol><h2>Next up</h2><p>Before you move on, add an approval step to the workflow in your account that would do the most damage if it ran on the wrong data. The next lesson builds on it.</p><p><em>Flowstack is fictional, so two product details in the rewrite are invented: the Timeout duration field and run history.</em></p>',
   annotations: [
     { side: 'before', kind: 'look', phrase: 'Add An Approval Step Before Risky Actions', note: 'Title-case heading.' },
-    { side: 'before', kind: 'fix', phrase: 'In this course, you\'ll learn what approval steps are, why they matter, and how to add them to your workflows. This course is for Flowstack admins who build workflows.', note: 'Restates the course overview and who the course is for.' },
-    { side: 'before', kind: 'look', phrase: 'Let\'s dive in.', note: 'Filler that announces what\'s next (1 of 3).' },
-    { side: 'before', kind: 'look', phrase: 'An approval step isn\'t a delay, it\'s a safety net.', note: 'Contrast for effect (1 of 3).' },
+    { side: 'before', kind: 'fix', phrase: 'In this course, you\'ll learn what approval steps are, why they matter, and how to add them to your workflows. This course is for Flowstack admins who build workflows.', note: 'Repeats the course overview and who the course is for.' },
+    { side: 'before', kind: 'look', phrase: 'Let\'s dive in.', note: 'Filler (1 of 3).' },
+    { side: 'before', kind: 'look', phrase: 'An approval step isn\'t a delay, it\'s a safety net.', note: '"Isn\'t X, it\'s Y" phrasing (1 of 3).' },
     { side: 'before', kind: 'look', phrase: '—', note: 'Em dash.' },
-    { side: 'before', kind: 'look', phrase: 'No undo.', note: 'Clipped negation, contrast for effect (2 of 3).' },
-    { side: 'before', kind: 'learn', phrase: 'It\'s important to note that approval steps leverage Flowstack\'s seamless notification engine, ensuring the right person always sees the request.', note: 'Attention drops here. This sentence explains product plumbing, and I can\'t act on it.' },
-    { side: 'before', kind: 'look', phrase: 'It\'s important to note', note: 'Filler that announces a point instead of making it (2 of 3).' },
+    { side: 'before', kind: 'look', phrase: 'No undo.', note: 'A tacked-on "no X" (2 of 3).' },
+    { side: 'before', kind: 'learn', phrase: 'It\'s important to note that approval steps leverage Flowstack\'s seamless notification engine, ensuring the right person always sees the request.', note: 'I stop reading here. This is how the product works, and there\'s nothing for me to do.' },
+    { side: 'before', kind: 'look', phrase: 'It\'s important to note', note: 'Filler (2 of 3).' },
     { side: 'before', kind: 'look', phrase: 'leverage', note: 'Inflated word.' },
     { side: 'before', kind: 'look', phrase: 'seamless', note: 'Inflated word.' },
-    { side: 'before', kind: 'learn', phrase: 'pick the appropriate group', note: 'First place I\'d get stuck. What makes a group appropriate? Do I have to create one?' },
-    { side: 'before', kind: 'learn', phrase: 'within the time limit', note: 'Where do I set the time limit, and what\'s the default?' },
-    { side: 'before', kind: 'fix', phrase: '[Screenshot: add screenshot here]', note: 'Doesn\'t say what to capture, and sits at the end of the section instead of at the step it supports.' },
-    { side: 'before', kind: 'look', phrase: 'Now that you\'ve added the step, it\'s time to test it.', note: 'Filler that announces the next section (3 of 3).' },
-    { side: 'before', kind: 'look', phrase: 'Testing isn\'t optional, it\'s how you know the approval works.', note: 'Contrast for effect (3 of 3).' },
-    { side: 'before', kind: 'learn', phrase: 'Utilize a test user to run the workflow.', note: 'Is the test user the target or the person running it? I don\'t want to disable a real account.' },
-    { side: 'before', kind: 'look', phrase: 'Utilize', note: 'Inflated word.' },
+    { side: 'before', kind: 'learn', phrase: 'pick the appropriate group', note: 'I\'d get stuck here. Which group is appropriate? Do I have to make one?' },
+    { side: 'before', kind: 'learn', phrase: 'within the time limit', note: 'Where do I set the time limit? What\'s the default?' },
+    { side: 'before', kind: 'fix', phrase: '[Screenshot: add screenshot here]', note: 'Doesn\'t say what to capture, and it\'s at the end of the section instead of at its step.' },
+    { side: 'before', kind: 'look', phrase: 'Now that you\'ve added the step, it\'s time to test it.', note: 'Filler (3 of 3).' },
+    { side: 'before', kind: 'look', phrase: 'Testing isn\'t optional, it\'s how you know the approval works.', note: '"Isn\'t X, it\'s Y" phrasing (3 of 3).' },
+    { side: 'before', kind: 'learn', phrase: 'Utilize a test user to run the workflow.', note: 'Is the test user the account the workflow changes, or the person running it? I don\'t want to disable a real account.' },
+    { side: 'before', kind: 'look', phrase: 'Utilize', note: '"Utilize" means "use."' },
     { side: 'before', kind: 'learn', phrase: 'confirm the action ran', note: 'Where do I check that? Run history, or the test user\'s account?' },
-    { side: 'before', kind: 'look', phrase: 'With these steps, you\'re ready to take your automation safety to the next level.', note: 'Generic upbeat ending, and no Next up section.' },
-    { side: 'after', kind: 'new', phrase: 'Some workflows do things you can\'t easily undo, like disabling user accounts. If one of those runs on the wrong data, it can lock out hundreds of people before anyone notices. An approval step makes Flowstack wait for a person to say yes before the risky action runs.', note: 'New opener: the situation first, then the action. Replaces the course-overview lines.' },
-    { side: 'after', kind: 'new', phrase: 'pick a group that has someone available whenever this workflow runs, such as your on-call group. Anyone in the group can approve. If the group doesn\'t exist yet, create it first.', note: 'Answers the learner\'s first stuck point: which group, and what if it doesn\'t exist.' },
-    { side: 'after', kind: 'new', phrase: '[Screenshot: the Approval step\'s settings panel, with Approvers set to the on-call group]', note: 'Specific placeholder, placed at the step it supports.' },
+    { side: 'before', kind: 'look', phrase: 'With these steps, you\'re ready to take your automation safety to the next level.', note: 'An upbeat ending that asks for nothing, and no Next up section.' },
+    { side: 'after', kind: 'new', phrase: 'Some workflows do things you can\'t easily undo, like disabling user accounts. If one of those runs on the wrong data, it can lock out hundreds of people before anyone notices. An approval step makes Flowstack wait for a person to say yes before the risky action runs.', note: 'New opening: a situation the learner recognizes, then what to do. Replaces the course overview lines.' },
+    { side: 'after', kind: 'new', phrase: 'pick a group that has someone available whenever this workflow runs, such as your on-call group. Anyone in the group can approve. If the group doesn\'t exist yet, create it first.', note: 'Says which group, and what to do if it doesn\'t exist yet.' },
+    { side: 'after', kind: 'new', phrase: '[Screenshot: the Approval step\'s settings panel, with Approvers set to the on-call group]', note: 'A specific placeholder, at the step it supports.' },
     { side: 'after', kind: 'new', phrase: 'set how long Flowstack waits for an answer.', note: 'Says where the time limit is set.' },
-    { side: 'after', kind: 'new', phrase: '[Screenshot: the Timeout setting with a 1-hour limit and Cancel run selected]', note: 'Specific placeholder, placed at the step it supports.' },
-    { side: 'after', kind: 'new', phrase: 'When the workflow reaches this step, everyone in the approver group gets the request in Slack and email.', note: 'The Slack and email detail, moved out of the notification-engine sentence.' },
-    { side: 'after', kind: 'new', phrase: 'Run the workflow once each way before you turn it on. Point it at a test user account, so the action only touches an account nobody depends on.', note: 'Names who the test user is and how to keep the timeout test short.' },
+    { side: 'after', kind: 'new', phrase: '[Screenshot: the Timeout setting with a 1-hour limit and Cancel run selected]', note: 'A specific placeholder, at the step it supports.' },
+    { side: 'after', kind: 'new', phrase: 'When the workflow reaches this step, everyone in the approver group gets the request in Slack and email.', note: 'The Slack and email detail, moved out of the "notification engine" sentence.' },
+    { side: 'after', kind: 'new', phrase: 'Run the workflow once each way before you turn it on. Point it at a test user account, so the action only touches an account nobody depends on.', note: 'Says which account the test user is, and how to keep the timeout test short.' },
     { side: 'after', kind: 'new', phrase: 'open the workflow\'s run history and confirm the action ran', note: 'Says where to check.' },
-    { side: 'after', kind: 'new', phrase: 'Next up', note: 'New Next up section replaces the upbeat ending.' }
+    { side: 'after', kind: 'new', phrase: 'Next up', note: 'New Next up section.' }
   ],
-
-  courseHeading: 'Course-dev: from copy and paste to hands-off',
+  courseHeading: 'Course-dev, July to October',
   months: [
-    { month: 'July', label: 'By hand', title: 'Copy, paste, and check by hand', body: '<p>Lessons drafted in Notion, turned into HTML, and pasted into Skilljar one at a time. Each lesson checked against its draft by hand.</p>', autoSteps: 'Draft in Notion\nTurn into HTML', handSteps: 'Paste each lesson\nCheck against the draft', note: '' },
-    { month: 'August', label: 'The API', title: 'The API, for one person', body: '<p>The Skilljar API relabeled 32 of 33 old courses in one run. It worked, but only from code, so only one person on the team could use it.</p>', autoSteps: '', handSteps: '', note: 'Everyone else still copied, pasted, and checked by hand. Two ways of working, and they drifted apart.' },
-    { month: 'September', label: 'The MCP', title: 'The MCP, for the whole team', body: '<p>The Skilljar MCP is a connector that lets Claude work in Skilljar directly. It works in any Claude app, so everyone could build and check courses the same way.</p>', autoSteps: '', handSteps: '', note: 'The first full course built through it surfaced three problems. You\'ll match them to their fixes on the next stop.' },
-    { month: 'October', label: 'Where it landed', title: 'Where it landed', body: '<p>Claude builds every lesson through the MCP and checks it against the draft. A person still picks the reviewer, fills in the few settings the MCP can\'t reach, like lesson length, and decides when the course goes live.</p>', autoSteps: 'Draft in Notion\nBuild in Skilljar\nKeep hidden for review\nCheck against the draft', handSteps: '', note: '' }
+    { month: 'July', label: 'By hand', title: 'Copy, paste, and check', body: '<p>Clea\'s team drafted lessons in Notion, turned them into HTML, and pasted each one into Skilljar. Then someone checked every lesson against its draft by hand.</p>', autoSteps: 'Draft in Notion\nTurn into HTML', handSteps: 'Paste each lesson\nCheck against the draft', note: '' },
+    { month: 'August', label: 'The API', title: 'The Skilljar API', body: '<p>Clea used the Skilljar API to relabel 32 of 33 old courses in one run. The API only works from code, though, and she was the only one on the team using it.</p>', autoSteps: '', handSteps: '', note: 'Everyone else kept copying and pasting, so the team had two ways of building courses.' },
+    { month: 'September', label: 'The MCP', title: 'The Skilljar MCP', body: '<p>The Skilljar MCP is a connector that lets Claude work in Skilljar directly. It works in any Claude app, so the whole team could build and check courses the same way.</p>', autoSteps: '', handSteps: '', note: '' },
+    { month: 'October', label: 'Today', title: 'Claude builds and checks every lesson', body: '<p>A person still picks the reviewer, fills in the few settings the MCP can\'t reach, like lesson length, and decides when the course goes live.</p>', autoSteps: 'Draft in Notion\nBuild in Skilljar\nKeep hidden for review\nCheck against the draft', handSteps: '', note: '' }
   ],
-
-  matchHeading: 'Your turn: match each problem to its fix',
-  matchIntro: 'The first full course built through the MCP surfaced three problems. Pick the fix for each one.',
+  matchHeading: 'Match each problem to its fix',
+  matchIntro: 'The first course built with the MCP had three problems. Pick the fix for each one.',
   problems: [
-    { problem: 'Changes reported as saved sometimes weren\'t.', fix: 'Every change is checked after it\'s made.' },
+    { problem: 'Changes reported as saved sometimes weren\'t saved.', fix: 'Claude checks every change after making it.' },
     { problem: 'A lesson built as one block of HTML can\'t have a video added later.', fix: 'Every lesson is now built in sections, and any section can hold a video.' },
-    { problem: 'Skilljar rewrites a lesson\'s HTML when it saves, so checks flagged differences no reader would see.', fix: 'Checks compare the lesson content only.' }
+    { problem: 'Skilljar rewrites a lesson\'s HTML when it saves, so the checks flagged differences no reader would see.', fix: 'The checks compare only the lesson text.' }
   ],
-
-  finishHeading: 'Thanks for poking around',
-  finishBody: '<p>Both skills are free to copy and adapt. Lesson-eval works on any lesson draft, from any source.</p><p>If you\'re at Learning Rejects, come say hi.</p>',
+  finishHeading: 'Thanks for trying it',
+  finishBody: '<p>Both skills are free to copy and change. Lesson-eval works on any lesson draft.</p><p>If you\'re at Learning Rejects, come say hi.</p>',
   linkLabel: 'Get the skills on GitHub',
   linkUrl: 'https://github.com/clea-mahoney/clea-skills',
-
-  stopStart: 'Start', stopDraft: 'Read the draft', stopCheckers: 'Two checkers', stopSort: 'Sort it', stopRewrite: 'The rewrite',
-  stopCourse: 'Course-dev', stopMatch: 'Match it', stopFinish: 'Finish',
-  startLabel: 'Start the walkthrough', nextLabel: 'Next →', backLabel: '← Back',
-  fixLabel: 'Fix', lookLabel: 'Take a look', rightLabel: 'Right.', wrongLabel: 'Not quite.', againLabel: 'Play again'
+  stopStart: 'Start',
+  stopDraft: 'Read the draft',
+  stopCheckers: 'Two versions',
+  stopSort: 'Sort it',
+  stopRewrite: 'The rewrite',
+  stopCourse: 'Course-dev',
+  stopMatch: 'Match it',
+  stopFinish: 'Finish',
+  startLabel: 'Start the walkthrough',
+  nextLabel: 'Next →',
+  backLabel: '← Back',
+  fixLabel: 'Fix',
+  lookLabel: 'Take a look',
+  rightLabel: 'Right.',
+  wrongLabel: 'Not quite.',
+  againLabel: 'Play again'
 };
 
 const KIND = { fix: 'Fix', look: 'Take a look', learn: 'Learner would get stuck', new: 'New or rewritten' };
@@ -210,8 +214,8 @@ function renderStart() {
     img.onerror = () => { hero.hidden = true; $('p-start').querySelector('h2').classList.remove('sr'); };
     hero.onclick = () => show(1, true);
   }
-  $('secEval').textContent = `Checks a lesson draft before it goes to review. It went from ${S.checks.length} checks to 4.`;
-  $('secCourse').textContent = `Builds the course in the LMS and checks it against the drafts. ${S.months.length ? S.months[0].month + ' to ' + S.months[S.months.length - 1].month : ''}.`;
+  $('secEval').textContent = `Checks a lesson draft before a person reviews it. It went from ${S.checks.length} checks to 4.`;
+  $('secCourse').textContent = `Builds a course in the LMS and checks each lesson against its draft. ${S.months.length ? S.months[0].month + ' to ' + S.months[S.months.length - 1].month : ''}.`;
   $('startBtn').textContent = S.startLabel;
   $('startBtn').onclick = () => show(1, true);
   document.querySelectorAll('[data-jump]').forEach(b => { b.onclick = () => show(STOPS.findIndex(s => s.id === b.dataset.jump), true); });
@@ -249,9 +253,9 @@ function renderDraft() {
         } else if (clea.length) {
           note.append(el('strong', null, 'Lesson-eval didn\'t flag this, but Clea would. '), document.createTextNode(clea.join(' ')));
         } else if (b.dataset.learn) {
-          note.append(el('strong', null, 'Lesson-eval missed this in September. '), document.createTextNode('A first-time learner would get stuck here. Today\'s version catches it with an optional read in the learner\'s voice.'));
+          note.append(el('strong', null, 'Lesson-eval missed this in September. '), document.createTextNode('A new learner would get stuck here. Lesson-eval now has an optional pass that reads the draft as a new learner.'));
         } else {
-          note.append(el('strong', null, 'Lesson-eval didn\'t flag this. '), document.createTextNode('Good eye, or a matter of taste.'));
+          note.append(el('strong', null, 'Lesson-eval didn\'t flag this.'));
         }
         const blk = b.parentElement;
         if (blk.tagName === 'LI') blk.appendChild(note); else blk.after(note);
@@ -264,8 +268,8 @@ function renderDraft() {
   function drawTally() {
     const mine = sents.filter(b => b.getAttribute('aria-pressed') === 'true');
     tally.textContent = mine.length
-      ? `You flagged ${mine.length}. Lesson-eval flagged ${mine.filter(b => b.classList.contains('caught')).length} of them too.`
-      : 'Nothing flagged yet.';
+      ? `You picked ${mine.length}. Lesson-eval flagged ${mine.filter(b => b.classList.contains('caught')).length} of them.`
+      : 'Nothing picked yet.';
   }
   rv.textContent = S.draftRevealLabel; rv.setAttribute('aria-pressed', 'false');
   rv.onclick = () => {
@@ -310,7 +314,7 @@ function drawCard(feedbackNode) {
   const deck = $('deck'); deck.innerHTML = '';
   const n = S.flags.length;
   if (sortState.i >= n) {
-    const sc = el('p', 'score', `You sorted ${sortState.right} of ${n} the way the checker did.`);
+    const sc = el('p', 'score', `You matched lesson-eval on ${sortState.right} of ${n}.`);
     scores.sort = { right: sortState.right, total: n };
     const again = el('button', 'btn', S.againLabel); again.type = 'button';
     again.onclick = () => { renderSort(); $('deck').querySelector('.choice').focus(); };
@@ -423,7 +427,7 @@ function drawNote() {
   $('prevNote').disabled = off; $('nextNote').disabled = off;
   if (off) { box.append(el('span', 'n', 'Turn on a highlight type to step through its notes.')); return; }
   if (noteIdx < 0) {
-    box.append(el('span', 'n', `${marks.length} notes. Press Next note to step through them, or click any highlight.`));
+    box.append(el('span', 'n', `${marks.length} notes. Press Next note, or tap a highlight.`));
     return;
   }
   const m = marks[noteIdx], k = m.dataset.kind, side = m.closest('#doc-after') ? 'After' : 'Before';
