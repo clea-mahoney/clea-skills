@@ -9,14 +9,11 @@ const DEFAULTS = {
   draftIntro: 'Lesson-eval is a Claude skill Clea built to check a lesson draft before a person reviews it. In September it ran 15 checks. This is a draft it checked, for a made-up product called Flowstack. Tap any sentence you\'d change to see what lesson-eval said about it.',
   draftHits: [
     { phrase: 'Add An Approval Step Before Risky Actions', check: '10', note: 'The heading is in title case.' },
-    { phrase: 'In this course, you\'ll learn', check: '3', note: 'It starts by describing the course. A lesson should start with a situation the learner recognizes.' },
-    { phrase: 'This course is for Flowstack admins', check: '3', note: 'The learner already knows who the course is for.' },
+    { phrase: 'In this course, you\'ll learn what approval steps are, why they matter, and how to add them to your workflows. This course is for Flowstack admins who build workflows.', check: '3', note: 'It repeats the course overview and who the course is for. A lesson should start with a situation the learner recognizes.' },
     { phrase: 'Let\'s dive in.', check: '7', note: 'Filler. Nothing is lost if you cut it.' },
     { phrase: 'isn\'t a delay, it\'s a safety net', check: '11', note: '"Isn\'t X, it\'s Y" phrasing. Say what an approval step does.' },
     { phrase: '—', check: '7', note: 'An em dash.' },
-    { phrase: 'One bad run.', check: '11', note: 'Short dramatic fragments. One plain sentence says it better.' },
-    { phrase: 'Hundreds of disabled accounts.', check: '11', note: 'Short dramatic fragments. One plain sentence says it better.' },
-    { phrase: 'No undo.', check: '11', note: 'Short dramatic fragments. One plain sentence says it better.' },
+    { phrase: 'One bad run. Hundreds of disabled accounts. No undo.', check: '11', note: 'Short dramatic fragments. One plain sentence says it better.' },
     { phrase: 'It\'s important to note', check: '7', note: 'Filler. A sentence that needs a label to be important isn\'t.' },
     { phrase: 'leverage', check: '14', note: 'Inflated words: "leverage" and "seamless."' },
     { phrase: 'pick the appropriate group', check: '6', note: 'Which group is appropriate? The learner can\'t tell.' },
@@ -230,7 +227,19 @@ function renderDraft() {
   note.setAttribute('aria-live', 'polite');
   doc.innerHTML = str(S.beforeDoc); doc.classList.remove('reveal');
   doc.querySelectorAll('h1,h2,p,li').forEach(b => {
-    b.innerHTML = b.innerHTML.split(/(?<=[.!?\]])\s+(?=[A-Z\[]|<strong>)/).map(t => `<span class="s" role="button" tabindex="0" aria-pressed="false">${t}</span>`).join(' ');
+    // One tap target per sentence, except a flagged phrase that spans sentences stays one target.
+    const parts = b.innerHTML.split(/(?<=[.!?\]])\s+(?=[A-Z\[]|<strong>)/), plain = parts.map(p => p.replace(/<[^>]+>/g, ''));
+    const units = [];
+    for (let i = 0; i < parts.length; i++) {
+      let j = i;
+      S.draftHits.forEach(h => {
+        const ph = str(h.phrase);
+        if (!ph.startsWith(plain[i]) || ph.length <= plain[i].length) return;
+        for (let k = i + 1; k < parts.length; k++) if (plain.slice(i, k + 1).join(' ').includes(ph)) { j = Math.max(j, k); break; }
+      });
+      units.push(parts.slice(i, j + 1).join(' ')); i = j;
+    }
+    b.innerHTML = units.map(t => `<span class="s" role="button" tabindex="0" aria-pressed="false">${t}</span>`).join(' ');
   });
   const learn = S.annotations.filter(a => a.side !== 'after' && a.kind === 'learn').map(a => str(a.phrase));
   const sents = [...doc.querySelectorAll('.s')];
@@ -249,13 +258,13 @@ function renderDraft() {
       if (on) {
         note.innerHTML = '';
         if (nums.length) {
-          note.append(el('strong', null, 'Lesson-eval flagged this. '), document.createTextNode(said.join(' ')));
+          note.append(el('strong', null, 'Flag: '), document.createTextNode(said.join(' ')));
         } else if (clea.length) {
-          note.append(el('strong', null, 'Lesson-eval didn\'t flag this, but Clea would. '), document.createTextNode(clea.join(' ')));
+          note.append(el('strong', null, 'Clea\'s flag: '), document.createTextNode(clea.join(' ')));
         } else if (b.dataset.learn) {
-          note.append(el('strong', null, 'Lesson-eval missed this in September. '), document.createTextNode('A new learner would get stuck here. Lesson-eval now has an optional pass that reads the draft as a new learner.'));
+          note.append(el('strong', null, 'Missed in September: '), document.createTextNode('A new learner would get stuck here. Lesson-eval now has an optional pass that reads the draft as a new learner.'));
         } else {
-          note.append(el('strong', null, 'Lesson-eval didn\'t flag this.'));
+          note.append(el('strong', null, 'No flag.'));
         }
         const blk = b.parentElement;
         if (blk.tagName === 'LI') blk.appendChild(note); else blk.after(note);
@@ -275,7 +284,7 @@ function renderDraft() {
   rv.onclick = () => {
     const on = !doc.classList.contains('reveal');
     doc.classList.toggle('reveal', on); rv.setAttribute('aria-pressed', String(on));
-    if (on) shout(`Lesson-eval flagged ${sents.filter(b => b.classList.contains('caught')).length} of ${sents.length} sentences. They're underlined in red.`);
+    if (on) shout(`Lesson-eval flagged ${sents.filter(b => b.classList.contains('caught')).length} of ${sents.length} passages. They're underlined in red.`);
   };
   drawTally();
 }
