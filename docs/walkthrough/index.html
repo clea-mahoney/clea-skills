@@ -30,8 +30,8 @@ h2,h3,h4,strong,b{font-weight:600}
 
 /* stop strip */
 .strip{display:flex;flex-direction:column;gap:10px}
-.tabs{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 6px;scrollbar-width:thin}
-.tab{flex:0 0 auto;display:flex;align-items:center;gap:8px;min-height:44px;padding:6px 14px 6px 8px;border-radius:999px;border:2px solid var(--line);background:var(--surface);cursor:pointer;font-size:15px;font-weight:600;color:var(--muted);transition:border-color .15s,background .15s,transform .15s}
+.tabs{position:relative;display:flex;gap:6px;overflow-x:auto;padding:4px 2px 6px;scrollbar-width:thin}
+.tab{position:relative;flex:0 0 auto;display:flex;align-items:center;gap:8px;min-height:44px;padding:6px 14px 6px 8px;border-radius:999px;border:2px solid var(--line);background:var(--surface);cursor:pointer;font-size:15px;font-weight:600;color:var(--muted);transition:border-color .15s,background .15s,transform .15s}
 .tab:hover{border-color:var(--blue)}
 .tab .num{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--wash);color:var(--muted);font-size:14px;transition:background .2s,color .2s}
 .tab.visited .num{background:var(--blue-soft);color:var(--blue-ink)}
@@ -104,6 +104,8 @@ h2,h3,h4,strong,b{font-weight:600}
 .detail .res.fail{color:var(--coral-ink)}
 .detail h4{font-size:18px;margin:2px 0 4px}
 .loop{border:2px dashed var(--coral);border-radius:12px;padding:12px 16px;color:var(--coral-ink);font-weight:600}
+.story p+p{margin-top:8px}
+.checklist{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:6px}
 .teaser{border-radius:12px;background:var(--blue-soft);color:var(--blue-ink);padding:14px 16px;font-weight:600}
 .big{font-size:44px;font-weight:600;line-height:1}
 .shrink{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
@@ -128,7 +130,7 @@ h2,h3,h4,strong,b{font-weight:600}
 .bucket.look{background:var(--slate-soft)}
 .bucket h3{font-size:19px;margin-bottom:8px}
 .bucket.fix h3{color:var(--coral-ink)} .bucket.look h3{color:var(--slate-ink)}
-.bucket ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.bucket ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
 .bucket li{background:var(--surface);border-radius:10px;padding:8px 12px;font-size:16px;animation:drop .3s ease;display:flex;gap:8px}
 .bucket li .mk{font-weight:600;flex:0 0 auto}
 .bucket li.ok .mk{color:var(--sage-ink)} .bucket li.no .mk{color:var(--coral-ink)}
@@ -272,22 +274,21 @@ h2,h3,h4,strong,b{font-weight:600}
   <!-- 3 checkers -->
   <section class="panel" role="tabpanel" id="p-checkers" aria-labelledby="t-checkers" hidden>
     <h2 tabindex="-1" data-form-key="checkersHeading"></h2>
+    <div class="lead story" data-form-key="checkersStory"></div>
     <div class="two">
       <div class="card">
         <h3 data-form-key="beforeTitle"></h3>
         <p class="meta" data-form-key="beforeMeta"></p>
-        <div class="grid" id="grid" role="group" aria-label="Checks. Pick one to see what it found."></div>
+        <div class="grid" id="grid" role="group" aria-label="September checks. Pick one to see what it found."></div>
         <div class="detail" id="detail" aria-live="polite"><p class="meta" id="detailHint">No check picked yet.</p></div>
-        <div class="loop"><span aria-hidden="true">↻ </span><span data-form-key="loopText"></span></div>
       </div>
       <div class="card">
         <h3 data-form-key="afterTitle"></h3>
+        <ol class="checklist" id="afterChecks"></ol>
         <p class="meta" data-form-key="afterMeta"></p>
-        <div class="shrink" aria-hidden="true"><span class="big" id="nOld"></span><span class="arrow">→</span><span class="big" style="color:var(--blue-ink)">4</span><span class="meta">checks</span></div>
-        <p class="teaser" data-form-key="afterTeaser"></p>
       </div>
     </div>
-    <p class="take" data-form-key="checkersLesson"></p>
+    <p class="teaser" data-form-key="afterTeaser"></p>
   </section>
 
   <!-- 3 sort -->
@@ -361,6 +362,6 @@ h2,h3,h4,strong,b{font-weight:600}
   <div class="sr" aria-live="assertive" id="shout"></div>
 </div>
 
-<script src="app.js?v=2026-10-16l"></script>
+<script src="app.js?v=2026-10-16m"></script>
 </body>
 </html>

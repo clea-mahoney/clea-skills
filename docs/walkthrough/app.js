@@ -26,8 +26,9 @@ const DEFAULTS = {
   ],
   draftRevealLabel: 'Show everything lesson-eval flagged',
   checkersHeading: 'Lesson-eval in September and today',
+  checkersStory: '<p>In September, lesson-eval had 15 checks and graded each draft in a loop. The writer fixed what failed, then lesson-eval checked the whole draft again, until everything passed.</p><p>Then Clea moved the writing rules into the instructions Claude drafts from, so drafts came out cleaner. Today lesson-eval runs once, with 4 checks.</p>',
   beforeTitle: 'September: 15 checks, 9 failed',
-  beforeMeta: 'Each check passed or failed on the draft you just read. Pick one to see what it found.',
+  beforeMeta: 'Tap a check to see what it found in the draft you just read.',
   checks: [
     { name: 'Job behavior is nameable in one sentence', result: 'pass', finding: '' },
     { name: 'One lesson, one job behavior', result: 'pass', finding: '' },
@@ -45,11 +46,10 @@ const DEFAULTS = {
     { name: 'Plain words, real doers, no borrowed authority', result: 'fail', finding: 'Inflated and promotional language: "leverage," "seamless," "Utilize," and the trailing ", ensuring the right person always sees the request."' },
     { name: 'Voice match against the examples', result: 'fail', finding: 'Two of the three longest paragraphs ("Why approval steps matter" and the closing of "Test it") would need rewriting to sit beside the "Better" examples.' }
   ],
-  loopText: 'After the writer fixed all 9, lesson-eval checked the whole draft again. That repeated until all 15 passed.',
-  afterTitle: 'Today: 4 checks, run once',
-  afterMeta: 'It sorts each finding into <strong>Fix</strong> or <strong>Take a look</strong>, and skips anything a person already approved, like an em dash they chose to keep.',
+  afterTitle: 'Today: 4 checks',
+  afterChecks: 'A clear point\nSpecific screenshot and video notes, at the step they support\nAn ending that points to what\'s next\nWriting that sounds like a person teaching',
+  afterMeta: 'Each finding gets a label, <strong>Fix</strong> or <strong>Take a look</strong>, and it skips anything a person already approved, like an em dash they chose to keep.',
   afterTeaser: 'On the same draft it found 6 problems. Next, you guess how it labeled them.',
-  checkersLesson: 'Claude drafts each lesson from a set of instructions. When the writing rules moved into those instructions, the drafts came out cleaner, so lesson-eval needed fewer checks.',
   sortHeading: 'Fix or take a look?',
   sortIntro: 'Today\'s version of lesson-eval found 6 problems in the same draft and gave each one a label. Pick the label you think it gave. <strong>Fix</strong> means it has to change before the lesson goes live. <strong>Take a look</strong> means the writer decides.',
   flags: [
@@ -291,8 +291,8 @@ function renderDraft() {
 
 /* ---------- checkers ---------- */
 function renderCheckers() {
-  ['checkersHeading', 'beforeTitle', 'beforeMeta', 'loopText', 'afterTitle', 'afterTeaser', 'checkersLesson'].forEach(bindText); bindHTML('afterMeta');
-  $('nOld').textContent = S.checks.length;
+  ['checkersHeading', 'beforeTitle', 'beforeMeta', 'afterTitle', 'afterTeaser'].forEach(bindText); bindHTML('checkersStory'); bindHTML('afterMeta');
+  const ac = $('afterChecks'); ac.innerHTML = ''; lines(S.afterChecks).forEach(t => ac.appendChild(el('li', null, t)));
   const grid = $('grid'), detail = $('detail'); grid.innerHTML = '';
   S.checks.forEach((c, i) => {
     const fail = c.result === 'fail';
@@ -356,7 +356,7 @@ function answerSort(k, btn) {
   const right = f.answer === 'fix' ? S.fixLabel : S.lookLabel;
   const fb = el('div', 'feedback');
   const head = el('strong', ok ? 'ok' : 'no', ok ? S.rightLabel + ' ' : S.wrongLabel + ' ');
-  fb.append(head, document.createTextNode(`${ok ? '' : 'It\'s ' + right + '. '}${str(f.why)}`));
+  fb.append(head, document.createTextNode(`"${str(f.text)}" is ${right}. ${str(f.why)}`));
   if (!ok) btn.classList.add('shake');
   sortState.i++; sortState.t0 = performance.now();
   setTimeout(() => {

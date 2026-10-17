@@ -45,6 +45,7 @@
             "collapsed": true,
             "formElements": [
                 { "type": "text-input", "formKey": "checkersHeading", "label": "Heading" },
+                { "type": "richtext-input", "formKey": "checkersStory", "label": "The story", "inputMinHeight": "90px" },
                 { "type": "text-input", "formKey": "beforeTitle", "label": "Old checker title" },
                 { "type": "text-input", "formKey": "beforeMeta", "label": "Old checker summary" },
                 {
@@ -68,11 +69,10 @@
                         { "type": "textarea-input", "formKey": "finding", "label": "What it found", "rows": 3 }
                     ]
                 },
-                { "type": "textarea-input", "formKey": "loopText", "label": "Grading loop", "rows": 2 },
                 { "type": "text-input", "formKey": "afterTitle", "label": "New checker title" },
+                { "type": "textarea-input", "formKey": "afterChecks", "label": "New checks", "rows": 4, "helperText": "One per line." },
                 { "type": "richtext-input", "formKey": "afterMeta", "label": "New checker summary", "inputMinHeight": "70px" },
-                { "type": "textarea-input", "formKey": "afterTeaser", "label": "New checker teaser", "rows": 2 },
-                { "type": "text-input", "formKey": "checkersLesson", "label": "Takeaway" }
+                { "type": "textarea-input", "formKey": "afterTeaser", "label": "New checker teaser", "rows": 2 }
             ]
         },
         {
