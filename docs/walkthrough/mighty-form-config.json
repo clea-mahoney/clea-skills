@@ -183,7 +183,8 @@
                             "headerTitle": "Steps",
                             "formElements": [
                                 { "type": "textarea-input", "formKey": "autoSteps", "label": "Automated", "rows": 3, "helperText": "One step per line. Shown first." },
-                                { "type": "textarea-input", "formKey": "handSteps", "label": "By hand", "rows": 3, "helperText": "One step per line. Shown after the automated steps." }
+                                { "type": "textarea-input", "formKey": "handSteps", "label": "By hand", "rows": 3, "helperText": "One step per line. Shown after the automated steps." },
+                        { "type": "textarea-input", "formKey": "steps", "label": "Steps in order", "rows": 6, "helperText": "One per line, starting with 🤖 (AI), ✋ (manual), or 👀 (checked by eye). Replaces the two step lists above." }
                             ]
                         },
                         { "type": "textarea-input", "formKey": "note", "label": "Note", "rows": 2 }

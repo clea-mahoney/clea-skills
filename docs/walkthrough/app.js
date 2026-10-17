@@ -102,7 +102,7 @@ const DEFAULTS = {
     { month: 'July', label: 'Mostly manual', title: 'Copy, paste, and check', body: '<p>Claude drafted lessons in Notion and turned them into HTML. Then someone pasted each one into Skilljar and compared it to its draft by eye.</p>', autoSteps: 'Draft in Notion\nTurn into HTML', handSteps: 'Paste each lesson\n👀 Check against the draft', note: '' },
     { month: 'August', label: 'The API', title: 'The Skilljar API', body: '<p>Clea used Claude Code and the Skilljar API to automate lesson updates. The API only works from code, though, and she was the only one on the team using it.</p>', autoSteps: '', handSteps: '', note: 'Everyone else kept copying and pasting, so the team had two ways of building courses.' },
     { month: 'September', label: 'The MCP', title: 'The Skilljar MCP', body: '<p>The Skilljar MCP is a connector that lets Claude work in Skilljar directly. It works in any Claude app, so the whole team could build and check courses the same way.</p>', autoSteps: '', handSteps: '', note: '' },
-    { month: 'October', label: 'Today', title: 'Claude builds and checks every lesson', body: '<p>A person still picks the reviewer, fills in the few settings the MCP can\'t reach, like how long a lesson takes, and decides when the course goes live.</p>', autoSteps: 'Draft in Notion\nBuild in Skilljar\nHide the course until it\'s reviewed\nCheck against the draft', handSteps: 'Pick the reviewer\nDecide when it goes live', note: '' }
+    { month: 'October', label: 'Today', title: 'Claude builds, people review and publish', body: '<p>Claude builds and checks the course while it\'s hidden from learners. Then people review it and publish it.</p>', steps: '🤖 Draft each lesson in Notion\n🤖 Build the course in Skilljar, hidden from learners\n🤖 Check each lesson against its draft\n✋ Add the settings Claude can\'t reach, like how long a lesson takes\n👀 A reviewer reads the course\n✋ Publish it so learners can see it', note: '' }
   ],
   matchHeading: 'Match each problem to its fix',
   matchIntro: 'The first course built with the MCP had three problems. Pick the fix for each one.',
@@ -486,7 +486,10 @@ function drawMonth(i) {
   // A step can start with its own emoji (like 👀) to override the default icon.
   const ICON = { auto: '\u{1F916}', hand: '\u270B' }, NAME = { '\u{1F916}': 'Done by AI', '\u270B': 'Done manually', '\u{1F440}': 'Checked by eye' };
   const parse = k => t => { const x = t.match(/^(\p{Extended_Pictographic}\uFE0F?)\s+(.+)$/u); return x ? [k, x[2], x[1].replace('\uFE0F', '')] : [k, t, ICON[k]]; };
-  const auto = lines(m.autoSteps).map(parse('auto')), hand = lines(m.handSteps).map(parse('hand')), all = [...auto, ...hand];
+  // steps: one per line, in order, each starting with 🤖, ✋, or 👀. Older months use autoSteps and handSteps instead.
+  const all = str(m.steps) ? lines(m.steps).map(parse('hand')).map(x => [x[2] === ICON.auto ? 'auto' : 'hand', x[1], x[2]])
+    : [...lines(m.autoSteps).map(parse('auto')), ...lines(m.handSteps).map(parse('hand'))];
+  const hand = all.filter(x => x[0] === 'hand');
   if (all.length) {
     const legend = el('p', 'legend');
     [...new Set(all.map(a => a[2]))].forEach(ic => { const sp = el('span', null, `${ic} ${NAME[ic] || ''}`); legend.appendChild(sp); });
