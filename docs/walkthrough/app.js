@@ -73,7 +73,7 @@ const DEFAULTS = {
     { side: 'before', kind: 'look', phrase: 'An approval step isn\'t a delay, it\'s a safety net.', note: 'Contrast for effect (1 of 3).' },
     { side: 'before', kind: 'look', phrase: '—', note: 'Em dash.' },
     { side: 'before', kind: 'look', phrase: 'No undo.', note: 'Contrast for effect (2 of 3).' },
-    { side: 'before', kind: 'learn', phrase: 'It\'s important to note that approval steps leverage Flowstack\'s seamless notification engine, ensuring the right person always sees the request.', note: 'I stop reading here. This is how the product works, and there\'s nothing for me to do.' },
+    { side: 'before', kind: 'learn', phrase: 'It\'s important to note that approval steps leverage Flowstack\'s seamless notification engine, ensuring the right person always sees the request.', note: 'I\'d stop reading here. It sounds like marketing and doesn\'t tell me anything I need.' },
     { side: 'before', kind: 'look', phrase: 'It\'s important to note', note: 'Filler (2 of 3).' },
     { side: 'before', kind: 'look', phrase: 'leverage', note: 'Inflated word.' },
     { side: 'before', kind: 'look', phrase: 'seamless', note: 'Inflated word.' },
