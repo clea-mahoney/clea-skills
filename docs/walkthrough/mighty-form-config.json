@@ -15,6 +15,29 @@
         },
         {
             "type": "panel",
+            "headerTitle": "Read the draft",
+            "expandable": true,
+            "collapsed": true,
+            "formElements": [
+                { "type": "text-input", "formKey": "draftHeading", "label": "Heading" },
+                { "type": "textarea-input", "formKey": "draftIntro", "label": "Instructions", "rows": 3 },
+                {
+                    "type": "collection-manager",
+                    "formKey": "draftHits",
+                    "itemSingularLabel": "Catch",
+                    "itemPluralLabel": "What the old checker caught",
+                    "itemTitleProperty": "phrase",
+                    "itemSubtitleProperty": "check",
+                    "itemEditorFormElements": [
+                        { "type": "text-input", "formKey": "phrase", "label": "Words in the draft", "helperText": "Any sentence containing these words counts as caught. The draft itself is the Before draft in The rewrite panel." },
+                        { "type": "text-input", "formKey": "check", "label": "Check number", "helperText": "From the old checker's list, 1 to 15." }
+                    ]
+                },
+                { "type": "text-input", "formKey": "draftRevealLabel", "label": "Reveal button" }
+            ]
+        },
+        {
+            "type": "panel",
             "headerTitle": "Two checkers",
             "expandable": true,
             "collapsed": true,
@@ -205,12 +228,13 @@
             "collapsed": true,
             "formElements": [
                 { "type": "text-input", "formKey": "stopStart", "label": "Stop 1 name" },
-                { "type": "text-input", "formKey": "stopCheckers", "label": "Stop 2 name" },
-                { "type": "text-input", "formKey": "stopSort", "label": "Stop 3 name" },
-                { "type": "text-input", "formKey": "stopRewrite", "label": "Stop 4 name" },
-                { "type": "text-input", "formKey": "stopCourse", "label": "Stop 5 name" },
-                { "type": "text-input", "formKey": "stopMatch", "label": "Stop 6 name" },
-                { "type": "text-input", "formKey": "stopFinish", "label": "Stop 7 name" },
+                { "type": "text-input", "formKey": "stopDraft", "label": "Stop 2 name" },
+                { "type": "text-input", "formKey": "stopCheckers", "label": "Stop 3 name" },
+                { "type": "text-input", "formKey": "stopSort", "label": "Stop 4 name" },
+                { "type": "text-input", "formKey": "stopRewrite", "label": "Stop 5 name" },
+                { "type": "text-input", "formKey": "stopCourse", "label": "Stop 6 name" },
+                { "type": "text-input", "formKey": "stopMatch", "label": "Stop 7 name" },
+                { "type": "text-input", "formKey": "stopFinish", "label": "Stop 8 name" },
                 { "type": "text-input", "formKey": "startLabel", "label": "Start button" },
                 { "type": "text-input", "formKey": "nextLabel", "label": "Next button" },
                 { "type": "text-input", "formKey": "backLabel", "label": "Back button" },

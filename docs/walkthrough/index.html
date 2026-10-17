@@ -78,6 +78,17 @@ h2,h3,h4,strong,b{font-weight:600}
 .navrow .count{color:var(--muted);font-size:15px}
 .navrow .btns{display:flex;gap:8px;margin-left:auto}
 
+/* read the draft */
+.read.flat{height:auto;overflow:visible;padding:22px 26px 26px}
+.s{display:inline;background:none;border:0;margin:0;padding:0 1px;font:inherit;color:inherit;text-align:inherit;line-height:inherit;letter-spacing:inherit;cursor:pointer;border-radius:4px;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background .15s}
+.s:hover{background:var(--wash);text-decoration:underline dotted var(--muted);text-underline-offset:3px}
+.s[aria-pressed="true"]{background:var(--apricot);color:var(--ink)}
+.reveal .s.caught{text-decoration:underline solid var(--coral-ink);text-decoration-thickness:2px;text-underline-offset:4px}
+.tapnote{display:block;margin:6px 0 14px;padding:10px 14px;border-radius:12px;background:var(--ink);color:#fff;font-size:15px;line-height:1.45;animation:rise .25s ease}
+.draftbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.draftbar .meta{font-weight:600}
+.btn[aria-pressed="true"]{background:var(--coral-soft);border-color:var(--coral);color:var(--coral-ink)}
+
 /* checkers */
 .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
 .two .card{display:flex;flex-direction:column;gap:10px}
@@ -242,13 +253,21 @@ h2,h3,h4,strong,b{font-weight:600}
     <div class="intro" data-form-key="intro"></div>
     <p class="source" data-form-key="source"></p>
     <div class="secs">
-      <button type="button" class="sec" data-jump="checkers"><strong>Lesson-eval</strong><span id="secEval"></span><span class="go">Start here →</span></button>
+      <button type="button" class="sec" data-jump="draft"><strong>Lesson-eval</strong><span id="secEval"></span><span class="go">Start here →</span></button>
       <button type="button" class="sec" data-jump="course"><strong>Course-dev</strong><span id="secCourse"></span><span class="go">Jump to course-dev →</span></button>
     </div>
     <div><button type="button" class="btn primary" id="startBtn"></button></div>
   </section>
 
-  <!-- 2 checkers -->
+  <!-- 2 read the draft -->
+  <section class="panel" role="tabpanel" id="p-draft" aria-labelledby="t-draft" hidden>
+    <h2 tabindex="-1" data-form-key="draftHeading"></h2>
+    <p class="lead" data-form-key="draftIntro"></p>
+    <article class="doc"><div class="read flat" id="draftDoc" aria-label="September lesson draft"></div></article>
+    <div class="draftbar"><p class="meta" id="draftTally" aria-live="polite"></p><button type="button" class="btn" id="draftReveal"></button></div>
+  </section>
+
+  <!-- 3 checkers -->
   <section class="panel" role="tabpanel" id="p-checkers" aria-labelledby="t-checkers" hidden>
     <h2 tabindex="-1" data-form-key="checkersHeading"></h2>
     <div class="two">
@@ -339,6 +358,6 @@ h2,h3,h4,strong,b{font-weight:600}
   <div class="sr" aria-live="assertive" id="shout"></div>
 </div>
 
-<script src="app.js?v=2026-10-16b"></script>
+<script src="app.js?v=2026-10-16c"></script>
 </body>
 </html>

@@ -1,13 +1,36 @@
 const DEFAULTS = {
   title: 'A peek into Clea\'s brain',
-  intro: '<p>Clea is a learning experience designer. She built a bunch of Claude skills for her customer education work and taught herself Claude Code along the way.</p><p>Then she got laid off. Now she\'s vibe coding for fun and giving back to the L&amp;D community, like at the Learning Rejects Conference.</p><p>Here\'s some of what\'s been rattling around in her head: two of her skills, what didn\'t work the first time, and what she changed. Two stops let you make the call yourself.</p>',
+  intro: '<p>Clea is a learning experience designer. She built a bunch of Claude skills for her customer education work and taught herself Claude Code along the way.</p><p>Then she got laid off. Now she\'s vibe coding for fun and giving back to the L&amp;D community, like at the Learning Rejects Conference.</p><p>Here\'s some of what\'s been rattling around in her head: two of her skills, what didn\'t work the first time, and what she changed. Three stops let you try it yourself.</p>',
   source: 'Vibe coded in Mighty Studio with Claude Code, October 2026.',
   coverImage: 'https://clea-mahoney.github.io/clea-skills/walkthrough/cover.png',
   coverAlt: 'Start the walkthrough: Clea peeking over a card from the sort game.',
 
+  draftHeading: 'Read the draft',
+  draftIntro: 'Here\'s a lesson draft from September, about a made-up product called Flowstack. Both versions of the checker graded it. Read it like a reviewer would, and tap any sentence that bugs you to see if a check caught it.',
+  draftHits: [
+    { phrase: 'Add An Approval Step Before Risky Actions', check: '10' },
+    { phrase: 'In this course, you\'ll learn', check: '3' },
+    { phrase: 'This course is for Flowstack admins', check: '3' },
+    { phrase: 'Let\'s dive in.', check: '7' },
+    { phrase: 'isn\'t a delay, it\'s a safety net', check: '11' },
+    { phrase: '—', check: '7' },
+    { phrase: 'One bad run.', check: '11' },
+    { phrase: 'Hundreds of disabled accounts.', check: '11' },
+    { phrase: 'No undo.', check: '11' },
+    { phrase: 'It\'s important to note', check: '7' },
+    { phrase: 'leverage', check: '14' },
+    { phrase: 'pick the appropriate group', check: '6' },
+    { phrase: '[Screenshot: add screenshot here]', check: '8' },
+    { phrase: 'Now that you\'ve added the step', check: '7' },
+    { phrase: 'isn\'t optional, it\'s how you know', check: '11' },
+    { phrase: 'Utilize', check: '14' },
+    { phrase: 'With these steps, you\'re ready', check: '9' }
+  ],
+  draftRevealLabel: 'Show what the checker caught',
+
   checkersHeading: 'Lesson-eval: two versions of the checker',
   beforeTitle: 'September: 15 checks, 9 fails',
-  beforeMeta: 'Every check is pass or fail.',
+  beforeMeta: 'Every check is pass or fail, run on the draft you just read.',
   checks: [
     { name: 'Job behavior is nameable in one sentence', result: 'pass', finding: '' },
     { name: 'One lesson, one job behavior', result: 'pass', finding: '' },
@@ -27,12 +50,12 @@ const DEFAULTS = {
   ],
   loopText: 'Fix all 9, then a fresh grader in a new chat grades it again. Repeat until everything passes.',
   afterTitle: 'Today: 4 checks, one pass',
-  afterMeta: 'Only Fix items block publishing. Skips anything an SME wrote or approved.',
+  afterMeta: 'It sorts what it finds into two groups. Fix means it has to change before the lesson goes live. Take a look means the writer decides. It also skips anything a person already signed off on, like an em dash they chose to keep.',
   afterTeaser: 'On the same draft, it found six things. On the next stop, sort them the way it did.',
   checkersLesson: 'Better drafting instructions let the grader shrink.',
 
   sortHeading: 'Your turn: Fix, or take a look?',
-  sortIntro: 'Today\'s checker puts each finding in one of two groups. Fix items block publishing. Take a look items are the writer\'s call.',
+  sortIntro: 'Today\'s checker puts each finding in one of two groups. Fix means it has to change before the lesson goes live. Take a look means the writer decides.',
   flags: [
     { text: 'Screenshot placeholder is vague and in the wrong spot', answer: 'fix', why: 'It doesn\'t say what to capture, and it sits at the end of the section instead of at the step it supports.' },
     { text: 'Opens by repeating the course overview', answer: 'fix', why: 'It restates the course overview and who the course is for, so the lesson starts on something the learner already read.' },
@@ -99,7 +122,7 @@ const DEFAULTS = {
   linkLabel: 'Get the skills on GitHub',
   linkUrl: 'https://github.com/clea-mahoney/clea-skills',
 
-  stopStart: 'Start', stopCheckers: 'Two checkers', stopSort: 'Sort it', stopRewrite: 'The rewrite',
+  stopStart: 'Start', stopDraft: 'Read the draft', stopCheckers: 'Two checkers', stopSort: 'Sort it', stopRewrite: 'The rewrite',
   stopCourse: 'Course-dev', stopMatch: 'Match it', stopFinish: 'Finish',
   startLabel: 'Start the walkthrough', nextLabel: 'Next →', backLabel: '← Back',
   fixLabel: 'Fix', lookLabel: 'Take a look', rightLabel: 'Right.', wrongLabel: 'Not quite.', againLabel: 'Play again'
@@ -122,7 +145,7 @@ function track(data) {
 
 /* ---------- stops ---------- */
 const STOPS = [
-  { id: 'start', key: 'stopStart' }, { id: 'checkers', key: 'stopCheckers' }, { id: 'sort', key: 'stopSort', game: true },
+  { id: 'start', key: 'stopStart' }, { id: 'draft', key: 'stopDraft', game: true }, { id: 'checkers', key: 'stopCheckers' }, { id: 'sort', key: 'stopSort', game: true },
   { id: 'rewrite', key: 'stopRewrite' }, { id: 'course', key: 'stopCourse' }, { id: 'match', key: 'stopMatch', game: true },
   { id: 'finish', key: 'stopFinish' }
 ];
@@ -191,6 +214,59 @@ function renderStart() {
 }
 function bindText(k) { document.querySelectorAll(`[data-form-key="${k}"]`).forEach(e => { e.textContent = str(S[k]); }); }
 function bindHTML(k) { document.querySelectorAll(`[data-form-key="${k}"]`).forEach(e => { e.innerHTML = str(S[k]); }); }
+
+/* ---------- read the draft ---------- */
+function renderDraft() {
+  bindText('draftHeading'); bindText('draftIntro');
+  const doc = $('draftDoc'), note = el('div', 'tapnote'), tally = $('draftTally'), rv = $('draftReveal');
+  note.setAttribute('aria-live', 'polite');
+  doc.innerHTML = str(S.beforeDoc); doc.classList.remove('reveal');
+  doc.querySelectorAll('h1,h2,p,li').forEach(b => {
+    b.innerHTML = b.innerHTML.split(/(?<=[.!?\]])\s+(?=[A-Z\[]|<strong>)/).map(t => `<span class="s" role="button" tabindex="0" aria-pressed="false">${t}</span>`).join(' ');
+  });
+  const learn = S.annotations.filter(a => a.side !== 'after' && a.kind === 'learn').map(a => str(a.phrase));
+  const sents = [...doc.querySelectorAll('.s')];
+  sents.forEach(b => {
+    const t = b.textContent;
+    const nums = [...new Set(S.draftHits.filter(h => str(h.phrase) && t.includes(str(h.phrase))).map(h => parseInt(h.check, 10)).filter(n => S.checks[n - 1]))].sort((a, c) => a - c);
+    b.dataset.checks = nums.join(',');
+    b.classList.toggle('caught', nums.length > 0);
+    b.dataset.learn = learn.some(ph => ph && t.includes(ph)) ? '1' : '';
+    b.onclick = () => {
+      const on = b.getAttribute('aria-pressed') !== 'true';
+      b.setAttribute('aria-pressed', String(on));
+      if (on) {
+        note.innerHTML = '';
+        if (nums.length) {
+          note.append(el('strong', null, nums.length > 1 ? `Caught by checks ${nums.join(' and ')}. ` : `Caught by check ${nums[0]}. `),
+            document.createTextNode(nums.map(n => str(S.checks[n - 1].name)).join('. ') + '.'));
+        } else if (b.dataset.learn) {
+          note.append(el('strong', null, `None of the ${S.checks.length} checks caught this. `), document.createTextNode('Today\'s checker does: it flags spots where a learner would get stuck.'));
+        } else {
+          note.append(el('strong', null, 'No check flagged this one. '), document.createTextNode('Good eye, or a matter of taste.'));
+        }
+        const blk = b.parentElement;
+        if (blk.tagName === 'LI') blk.appendChild(note); else blk.after(note);
+        note.dataset.for = String(sents.indexOf(b));
+      } else if (note.dataset.for === String(sents.indexOf(b))) note.remove();
+      drawTally();
+    };
+    b.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); b.onclick(); } };
+  });
+  function drawTally() {
+    const mine = sents.filter(b => b.getAttribute('aria-pressed') === 'true');
+    tally.textContent = mine.length
+      ? `You flagged ${mine.length}. The checker caught ${mine.filter(b => b.classList.contains('caught')).length} of them.`
+      : 'Nothing flagged yet.';
+  }
+  rv.textContent = S.draftRevealLabel; rv.setAttribute('aria-pressed', 'false');
+  rv.onclick = () => {
+    const on = !doc.classList.contains('reveal');
+    doc.classList.toggle('reveal', on); rv.setAttribute('aria-pressed', String(on));
+    if (on) shout(`The checker flagged ${sents.filter(b => b.classList.contains('caught')).length} of ${sents.length} sentences. They're underlined in red.`);
+  };
+  drawTally();
+}
 
 /* ---------- checkers ---------- */
 function renderCheckers() {
@@ -471,8 +547,8 @@ function renderFinish() {
 /* ---------- boot ---------- */
 function init(state) {
   S = Object.assign({}, DEFAULTS, state || {});
-  ['checks', 'flags', 'annotations', 'months', 'problems'].forEach(k => { if (!Array.isArray(S[k])) S[k] = []; });
-  buildTabs(); renderStart(); renderCheckers(); renderSort(); renderRewrite(); renderCourse(); renderMatch(); renderFinish();
+  ['checks', 'draftHits', 'flags', 'annotations', 'months', 'problems'].forEach(k => { if (!Array.isArray(S[k])) S[k] = []; });
+  buildTabs(); renderStart(); renderDraft(); renderCheckers(); renderSort(); renderRewrite(); renderCourse(); renderMatch(); renderFinish();
   $('back').textContent = S.backLabel; $('next').textContent = S.nextLabel;
   $('back').onclick = () => show(cur - 1, true);
   $('next').onclick = () => show(cur + 1, true);
