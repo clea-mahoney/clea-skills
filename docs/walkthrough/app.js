@@ -48,8 +48,8 @@ const DEFAULTS = {
   ],
   afterTitle: 'Today: 4 checks',
   afterChecks: 'A clear point\nSpecific screenshot and video notes, at the step they support\nAn ending that points to what\'s next\nWriting that sounds like a person teaching',
-  afterMeta: 'Each finding gets a label, <strong>Fix</strong> or <strong>Take a look</strong>, and it skips anything a person already approved, like an em dash they chose to keep.',
-  afterTeaser: 'On the same draft it found 6 problems. Next, you guess how it labeled them.',
+  afterMeta: 'Lesson-eval labels each problem it finds <strong>Fix</strong> or <strong>Take a look</strong>. It skips anything a person already approved, like an em dash they chose to keep.',
+  afterTeaser: 'Today\'s version found 6 problems in the September draft. Next, guess how it labeled each one.',
   sortHeading: 'Fix or take a look?',
   sortIntro: 'For each problem today\'s lesson-eval found, pick the label you think it gave. <strong>Fix</strong> means it has to change before the lesson goes live. <strong>Take a look</strong> means the writer decides.',
   flags: [
@@ -339,7 +339,7 @@ function drawCard(feedbackNode) {
     return;
   }
   const f = S.flags[sortState.order[sortState.i]];
-  const card = el('div', 'flag'); card.append(el('span', 'of', `Finding ${sortState.i + 1} of ${n}`), document.createTextNode(str(f.text)));
+  const card = el('div', 'flag'); card.append(el('span', 'of', `Problem ${sortState.i + 1} of ${n}`), document.createTextNode(str(f.text)));
   const ch = el('div', 'choices'); ch.setAttribute('role', 'group'); ch.setAttribute('aria-label', 'Where does it go?');
   ['fix', 'look'].forEach(k => {
     const b = el('button', 'choice ' + k, k === 'fix' ? S.fixLabel : S.lookLabel); b.type = 'button';
