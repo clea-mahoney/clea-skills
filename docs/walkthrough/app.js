@@ -532,7 +532,7 @@ function renderMatch() {
         if (ok) {
           b.classList.add('right'); opts.querySelectorAll('.opt').forEach(x => { x.disabled = true; });
           b.setAttribute('aria-label', f.text + ', correct');
-          fb.textContent = S.rightLabel + (tries === 1 ? ' First try.' : '');
+          fb.textContent = S.rightLabel;
           fb.style.color = 'var(--sage-ink)'; card.classList.add('done');
           if (tries === 1) matchState.firstTry++;
           matchState.done++;
@@ -541,7 +541,7 @@ function renderMatch() {
             result: tries === 1 ? 'correct' : 'incorrect', latency: `PT${Math.round((performance.now() - t0) / 1000)}S` });
           if (matchState.done === S.problems.length) {
             scores.match = { right: matchState.firstTry, total: S.problems.length };
-            const s = el('p', 'score', `You matched ${matchState.firstTry} of ${S.problems.length} on the first try.`);
+            const s = el('p', 'score', `All ${S.problems.length} matched.`);
             probs.appendChild(s); shout(s.textContent);
           } else {
             const nextOpen = probs.querySelector('.prob:not(.done) .opt:not(:disabled)'); if (nextOpen) setTimeout(() => nextOpen.focus(), 600);
@@ -564,7 +564,6 @@ function renderMatch() {
 function finish() {
   const tally = $('tally'); tally.innerHTML = '';
   if (scores.sort) tally.append(el('div', null, `Sorted ${scores.sort.right} of ${scores.sort.total}`));
-  if (scores.match) tally.append(el('div', null, `Matched ${scores.match.right} of ${scores.match.total} first try`));
   tally.append(el('div', null, `${visited.size} of ${STOPS.length} sections viewed`));
   if (!reduced) {
     const c = $('confetti'); c.innerHTML = '';
