@@ -53,12 +53,12 @@ const DEFAULTS = {
   sortHeading: 'Fix or take a look?',
   sortIntro: 'For each problem today\'s lesson-eval found, pick the label you think it gave. <strong>Fix</strong> means it has to change before the lesson goes live. <strong>Take a look</strong> means the writer decides.',
   flags: [
-    { text: 'Screenshot placeholder is vague and in the wrong spot', answer: 'fix', why: 'Whoever makes the screenshot won\'t know what to capture, and it sits at the end of the section instead of at its step.' },
-    { text: 'Opens by repeating the course overview', answer: 'fix', why: 'The learner already read the course overview. Repeating it delays the lesson.' },
-    { text: 'An em dash', answer: 'look', why: 'A style choice. It doesn\'t stop a learner.' },
-    { text: 'Reads like AI: filler, "isn\'t X, it\'s Y," inflated words', answer: 'look', why: 'Worth rewriting, but the lesson still works. The writer decides how much to change.' },
-    { text: 'A title-case heading', answer: 'look', why: 'A style choice that takes seconds to fix.' },
-    { text: 'No "Next up" section at the end', answer: 'look', why: 'The lesson works without it, so the writer decides.' }
+    { text: 'Screenshot placeholder is vague and in the wrong spot', answer: 'fix', why: 'No one would know what to capture.' },
+    { text: 'Opens by repeating the course overview', answer: 'fix', why: 'It delays the lesson.' },
+    { text: 'An em dash', answer: 'look', why: 'A style choice.' },
+    { text: 'Reads like AI: filler, "isn\'t X, it\'s Y," inflated words', answer: 'look', why: 'The lesson still works.' },
+    { text: 'A title-case heading', answer: 'look', why: 'A quick style fix.' },
+    { text: 'No "Next up" section at the end', answer: 'look', why: 'The lesson works without it.' }
   ],
   rewriteHeading: 'The rewrite',
   rewriteIntro: 'The September draft and the rewrite, side by side. Highlights mark what lesson-eval flagged, what changed, and where a new learner would get stuck. Those learner notes come from an optional pass that reads the draft as a new learner, so they\'re written as "I." Step through the notes or tap a highlight.',
@@ -325,7 +325,7 @@ function renderSort() {
   $('bFix').innerHTML = ''; $('bLook').innerHTML = '';
   drawCard();
 }
-function drawCard(feedbackNode) {
+function drawCard() {
   const deck = $('deck'); deck.innerHTML = '';
   const n = S.flags.length;
   if (sortState.i >= n) {
@@ -333,21 +333,24 @@ function drawCard(feedbackNode) {
     scores.sort = { right: sortState.right, total: n };
     const again = el('button', 'btn', S.againLabel); again.type = 'button';
     again.onclick = () => { renderSort(); $('deck').querySelector('.choice').focus(); };
-    if (feedbackNode) deck.append(feedbackNode);
     deck.append(sc, again);
     shout(sc.textContent);
     return;
   }
   const f = S.flags[sortState.order[sortState.i]];
-  const card = el('div', 'flag'); card.append(el('span', 'of', `Problem ${sortState.i + 1} of ${n}`), document.createTextNode(str(f.text)));
-  const ch = el('div', 'choices'); ch.setAttribute('role', 'group'); ch.setAttribute('aria-label', 'Where does it go?');
+  const ch = el('div', 'choices'); ch.setAttribute('role', 'group'); ch.setAttribute('aria-label', 'Pick a label');
   ['fix', 'look'].forEach(k => {
     const b = el('button', 'choice ' + k, k === 'fix' ? S.fixLabel : S.lookLabel); b.type = 'button';
     b.onclick = () => answerSort(k, b);
     ch.appendChild(b);
   });
-  const fb = feedbackNode || el('div', 'feedback'); fb.setAttribute('aria-live', 'polite');
-  deck.append(card, ch, fb);
+  const fb = el('div', 'feedback'); fb.id = 'sortFb'; fb.setAttribute('aria-live', 'polite');
+  deck.append(sortCard(f), ch, fb);
+}
+function sortCard(f) {
+  const card = el('div', 'flag');
+  card.append(el('span', 'of', `Problem ${sortState.i + 1} of ${S.flags.length}`), document.createTextNode(str(f.text)));
+  return card;
 }
 function answerSort(k, btn) {
   const f = S.flags[sortState.order[sortState.i]];
@@ -356,20 +359,20 @@ function answerSort(k, btn) {
   track({ interactionId: 'sort-' + (sortState.order[sortState.i] + 1), type: 'choice', description: 'Fix or take a look: ' + str(f.text),
     choices: [{ id: 'fix', description: S.fixLabel }, { id: 'look', description: S.lookLabel }], correctResponse: [f.answer], response: [k],
     result: ok ? 'correct' : 'incorrect', latency: `PT${Math.round((performance.now() - sortState.t0) / 1000)}S` });
-  const li = el('li', ok ? 'ok' : 'no'); const mk = el('span', 'mk', ok ? '✓' : '✕'); mk.setAttribute('aria-hidden', 'true');
+  const li = el('li', ok ? 'ok' : 'no'); const mk = el('span', 'mk', ok ? '\u2713' : '\u2715'); mk.setAttribute('aria-hidden', 'true');
   li.append(mk, el('span', null, str(f.text)));
   $(f.answer === 'fix' ? 'bFix' : 'bLook').appendChild(li);
+  // Keep the answered card on screen with its feedback, then move on when the learner is ready.
+  const deck = $('deck'); deck.innerHTML = '';
+  const fb = el('div', 'feedback'); fb.setAttribute('aria-live', 'polite');
   const right = f.answer === 'fix' ? S.fixLabel : S.lookLabel;
-  const fb = el('div', 'feedback');
-  const head = el('strong', ok ? 'ok' : 'no', ok ? S.rightLabel + ' ' : S.wrongLabel + ' ');
-  fb.append(head, document.createTextNode(`"${str(f.text)}" is ${right}. ${str(f.why)}`));
-  if (!ok) btn.classList.add('shake');
+  fb.append(el('strong', ok ? 'ok' : 'no', (ok ? S.rightLabel : S.wrongLabel) + ' '), document.createTextNode(`${right}: ${str(f.why)}`));
+  const last = sortState.i + 1 >= S.flags.length;
+  const next = el('button', 'btn primary', last ? 'See your score' : 'Next problem'); next.type = 'button';
+  next.onclick = () => { drawCard(); const first = $('deck').querySelector('.choice') || $('deck').querySelector('.btn'); if (first) first.focus(); };
+  deck.append(sortCard(f), fb, next);
   sortState.i++; sortState.t0 = performance.now();
-  setTimeout(() => {
-    drawCard(fb);
-    const first = $('deck').querySelector('.choice') || $('deck').querySelector('.btn');
-    if (first) first.focus();
-  }, ok || reduced ? 0 : 380);
+  next.focus();
 }
 
 /* ---------- rewrite ---------- */
