@@ -48,10 +48,10 @@ const DEFAULTS = {
   loopText: 'After the writer fixed all 9, lesson-eval checked the whole draft again. That repeated until all 15 passed.',
   afterTitle: 'Today: 4 checks, run once',
   afterMeta: 'It sorts each finding into <strong>Fix</strong> or <strong>Take a look</strong>, and skips anything a person already approved, like an em dash they chose to keep.',
-  afterTeaser: 'On the same draft it found 6 problems. Next, you sort them.',
+  afterTeaser: 'On the same draft it found 6 problems. Next, you guess how it labeled them.',
   checkersLesson: 'Claude drafts each lesson from a set of instructions. When the writing rules moved into those instructions, the drafts came out cleaner, so lesson-eval needed fewer checks.',
   sortHeading: 'Fix or take a look?',
-  sortIntro: 'These are the 6 problems today\'s lesson-eval found in the draft. Put each one where lesson-eval did. <strong>Fix</strong> means it has to change before the lesson goes live. <strong>Take a look</strong> means the writer decides.',
+  sortIntro: 'Today\'s version of lesson-eval found 6 problems in the same draft and gave each one a label. Pick the label you think it gave. <strong>Fix</strong> means it has to change before the lesson goes live. <strong>Take a look</strong> means the writer decides.',
   flags: [
     { text: 'Screenshot placeholder is vague and in the wrong spot', answer: 'fix', why: 'Whoever makes the screenshot won\'t know what to capture, and it sits at the end of the section instead of at its step.' },
     { text: 'Opens by repeating the course overview', answer: 'fix', why: 'The learner already read the course overview. Repeating it delays the lesson.' },
@@ -323,7 +323,7 @@ function drawCard(feedbackNode) {
   const deck = $('deck'); deck.innerHTML = '';
   const n = S.flags.length;
   if (sortState.i >= n) {
-    const sc = el('p', 'score', `You matched lesson-eval on ${sortState.right} of ${n}.`);
+    const sc = el('p', 'score', `You picked the same label on ${sortState.right} of ${n}.`);
     scores.sort = { right: sortState.right, total: n };
     const again = el('button', 'btn', S.againLabel); again.type = 'button';
     again.onclick = () => { renderSort(); $('deck').querySelector('.choice').focus(); };
