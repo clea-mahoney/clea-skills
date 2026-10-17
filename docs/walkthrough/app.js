@@ -1,10 +1,10 @@
 const DEFAULTS = {
   title: 'A peek into Clea\'s brain',
-  intro: '<p>Clea is a learning experience designer. At her last job she built Claude skills for customer education and taught herself Claude Code.</p><p>She was recently laid off. Since then she\'s been building things for fun and sharing them with the L&amp;D community, including at the Learning Rejects Conference.</p><p>This walkthrough covers two of her skills: what didn\'t work at first, and what she changed. Along the way you\'ll mark up a real lesson draft, sort what lesson-eval found, and match problems to their fixes.</p>',
+  intro: '<p>Clea is a learning experience designer. At her last job she built Claude skills for customer education and taught herself Claude Code.</p><p>She was recently laid off. Since then she\'s been building things for fun and sharing them with the L&amp;D community, including at the Learning Rejects Conference.</p><p>This walkthrough covers two of her skills: what didn\'t work at first, and what she changed. Along the way you\'ll mark up a sample lesson draft, sort what lesson-eval found, and match problems to their fixes.</p>',
   source: 'Vibe coded in Mighty Studio with Claude Code, October 2026.',
-  coverImage: 'https://clea-mahoney.github.io/clea-skills/walkthrough/cover.png',
+  coverImage: 'https://clea-mahoney.github.io/clea-skills/walkthrough/cover.png?v=2',
   coverAlt: 'Start the walkthrough: Clea peeking over a card from the sort game.',
-  coverImageMobile: 'https://clea-mahoney.github.io/clea-skills/walkthrough/cover-mobile.png',
+  coverImageMobile: 'https://clea-mahoney.github.io/clea-skills/walkthrough/cover-mobile.png?v=2',
   draftHeading: 'Read the draft',
   draftIntro: 'Lesson-eval is a Claude skill Clea built to check a lesson draft before a person reviews it. In September it ran 15 checks. This is a draft it checked, for a made-up product called Flowstack. Tap any sentence you\'d change to see what lesson-eval said about it.',
   draftHits: [
@@ -14,7 +14,7 @@ const DEFAULTS = {
     { phrase: 'isn\'t a delay, it\'s a safety net', check: '11', note: '"Isn\'t X, it\'s Y" phrasing. Say what an approval step does.' },
     { phrase: '—', check: '7', note: 'An em dash.' },
     { phrase: 'One bad run. Hundreds of disabled accounts. No undo.', check: '11', note: 'Short dramatic fragments. One plain sentence says it better.' },
-    { phrase: 'It\'s important to note', check: '7', note: 'Filler. A sentence that needs a label to be important isn\'t.' },
+    { phrase: 'It\'s important to note', check: '7', note: 'Filler. If it\'s important, the sentence can just say it.' },
     { phrase: 'leverage', check: '14', note: 'Inflated words: "leverage" and "seamless."' },
     { phrase: 'pick the appropriate group', check: '6', note: 'Which group is appropriate? The learner can\'t tell.' },
     { phrase: '[Screenshot: add screenshot here]', check: '8', note: 'The placeholder doesn\'t say what to capture, and it\'s at the end of the section instead of at its step.' },
@@ -26,32 +26,32 @@ const DEFAULTS = {
   ],
   draftRevealLabel: 'Show everything lesson-eval flagged',
   checkersHeading: 'Lesson-eval in September and today',
-  checkersStory: '<p>In September, lesson-eval had 15 checks and graded each draft in a loop. The writer fixed what failed, then lesson-eval checked the whole draft again, until everything passed.</p><p>Then Clea moved the writing rules into the instructions Claude drafts from, so drafts came out cleaner. Today lesson-eval runs once, with 4 checks.</p>',
+  checkersStory: '<p>Claude writes each lesson draft from a set of instructions. In September, lesson-eval had 15 checks and graded each draft in a loop. The writer fixed what failed, then lesson-eval checked the whole draft again, until everything passed.</p><p>Then Clea moved the writing rules into those instructions, so drafts came out cleaner. Today lesson-eval runs once, with 4 checks.</p>',
   beforeTitle: 'September: 15 checks, 9 failed',
   beforeMeta: 'Tap a check to see what it found in the draft you just read.',
   checks: [
-    { name: 'Job behavior is nameable in one sentence', result: 'pass', finding: '' },
-    { name: 'One lesson, one job behavior', result: 'pass', finding: '' },
-    { name: 'The hook earns attention before asking for it', result: 'fail', finding: 'The first two sentences announce the course ("In this course, you\'ll learn...") instead of placing the learner in a situation.' },
-    { name: 'Context, then concept, then application', result: 'pass', finding: '' },
-    { name: 'At least one judgment moment; audience fit', result: 'pass', finding: '' },
-    { name: 'Every step is followable without inference', result: 'fail', finding: '"pick the appropriate group" requires the learner to already know which group is appropriate.' },
-    { name: 'No em dashes, filler, or meta-commentary', result: 'fail', finding: 'Em dash in "Workflows run fast — which is great..."; signposting in "Let\'s dive in," "It\'s important to note," and "Now that you\'ve added the step."' },
-    { name: 'Media placeholders are specific and placed correctly', result: 'fail', finding: '"[Screenshot: add screenshot here]" isn\'t executable and sits at the end of the section instead of at the step it supports.' },
-    { name: 'Ends with a specific "Next up"', result: 'fail', finding: 'No "Next up" or "Next steps" section; the lesson ends on a generic line.' },
-    { name: 'Sentence case headings, Oxford commas', result: 'fail', finding: 'The H1 "Add An Approval Step Before Risky Actions" is title case.' },
-    { name: 'No decorative contrast or staccato drama', result: 'fail', finding: 'Cluster of contrast ("isn\'t a delay, it\'s a safety net," "isn\'t optional, it\'s how you know") and staccato drama ("One bad run. Hundreds of disabled accounts. No undo.").' },
-    { name: 'No undefined jargon carried as a key term', result: 'pass', finding: '' },
-    { name: 'No instructional-design language aimed at the learner', result: 'pass', finding: '' },
-    { name: 'Plain words, real doers, no borrowed authority', result: 'fail', finding: 'Inflated and promotional language: "leverage," "seamless," "Utilize," and the trailing ", ensuring the right person always sees the request."' },
-    { name: 'Voice match against the examples', result: 'fail', finding: 'Two of the three longest paragraphs ("Why approval steps matter" and the closing of "Test it") would need rewriting to sit beside the "Better" examples.' }
+    { name: 'You can say in one sentence what the learner will do', result: 'pass', finding: '' },
+    { name: 'The lesson teaches one task', result: 'pass', finding: '' },
+    { name: 'The opening starts with a situation the learner recognizes', result: 'fail', finding: 'The first two sentences describe the course ("In this course, you\'ll learn...") instead of starting with a situation.' },
+    { name: 'It explains why, then what, then how', result: 'pass', finding: '' },
+    { name: 'The learner makes at least one decision, and the lesson fits its audience', result: 'pass', finding: '' },
+    { name: 'Every step can be followed without guessing', result: 'fail', finding: '"Pick the appropriate group" assumes the learner knows which group that is.' },
+    { name: 'No em dashes or filler', result: 'fail', finding: 'An em dash in "Workflows run fast — which is great...", and filler in "Let\'s dive in," "It\'s important to note," and "Now that you\'ve added the step."' },
+    { name: 'Screenshot notes say what to capture and sit at the right step', result: 'fail', finding: '"[Screenshot: add screenshot here]" doesn\'t say what to capture, and it sits at the end of the section instead of at its step.' },
+    { name: 'It ends with a Next up section', result: 'fail', finding: 'There\'s no Next up section. The lesson ends on a generic line.' },
+    { name: 'Headings in sentence case, with Oxford commas', result: 'fail', finding: 'The title "Add An Approval Step Before Risky Actions" is in title case.' },
+    { name: 'No contrast for effect or dramatic fragments', result: 'fail', finding: 'Contrast for effect ("isn\'t a delay, it\'s a safety net," "isn\'t optional, it\'s how you know") and dramatic fragments ("One bad run. Hundreds of disabled accounts. No undo.").' },
+    { name: 'Key terms are explained', result: 'pass', finding: '' },
+    { name: 'No teaching jargon aimed at the learner', result: 'pass', finding: '' },
+    { name: 'Plain words, and it\'s clear who does what', result: 'fail', finding: 'Inflated words ("leverage," "seamless," "utilize") and the tacked-on ", ensuring the right person always sees the request."' },
+    { name: 'It sounds like the example lessons lesson-eval compares against', result: 'fail', finding: 'Two of the longest paragraphs, under "Why approval steps matter" and at the end of "Test it," don\'t sound like the examples.' }
   ],
   afterTitle: 'Today: 4 checks',
   afterChecks: 'A clear point\nSpecific screenshot and video notes, at the step they support\nAn ending that points to what\'s next\nWriting that sounds like a person teaching',
   afterMeta: 'Each finding gets a label, <strong>Fix</strong> or <strong>Take a look</strong>, and it skips anything a person already approved, like an em dash they chose to keep.',
   afterTeaser: 'On the same draft it found 6 problems. Next, you guess how it labeled them.',
   sortHeading: 'Fix or take a look?',
-  sortIntro: 'Today\'s version of lesson-eval found 6 problems in the same draft and gave each one a label. Pick the label you think it gave. <strong>Fix</strong> means it has to change before the lesson goes live. <strong>Take a look</strong> means the writer decides.',
+  sortIntro: 'For each problem today\'s lesson-eval found, pick the label you think it gave. <strong>Fix</strong> means it has to change before the lesson goes live. <strong>Take a look</strong> means the writer decides.',
   flags: [
     { text: 'Screenshot placeholder is vague and in the wrong spot', answer: 'fix', why: 'Whoever makes the screenshot won\'t know what to capture, and it sits at the end of the section instead of at its step.' },
     { text: 'Opens by repeating the course overview', answer: 'fix', why: 'The learner already read the course overview. Repeating it delays the lesson.' },
@@ -70,9 +70,9 @@ const DEFAULTS = {
     { side: 'before', kind: 'look', phrase: 'Add An Approval Step Before Risky Actions', note: 'Title-case heading.' },
     { side: 'before', kind: 'fix', phrase: 'In this course, you\'ll learn what approval steps are, why they matter, and how to add them to your workflows. This course is for Flowstack admins who build workflows.', note: 'Repeats the course overview and who the course is for.' },
     { side: 'before', kind: 'look', phrase: 'Let\'s dive in.', note: 'Filler (1 of 3).' },
-    { side: 'before', kind: 'look', phrase: 'An approval step isn\'t a delay, it\'s a safety net.', note: '"Isn\'t X, it\'s Y" phrasing (1 of 3).' },
+    { side: 'before', kind: 'look', phrase: 'An approval step isn\'t a delay, it\'s a safety net.', note: 'Contrast for effect (1 of 3).' },
     { side: 'before', kind: 'look', phrase: '—', note: 'Em dash.' },
-    { side: 'before', kind: 'look', phrase: 'No undo.', note: 'A tacked-on "no X" (2 of 3).' },
+    { side: 'before', kind: 'look', phrase: 'No undo.', note: 'Contrast for effect (2 of 3).' },
     { side: 'before', kind: 'learn', phrase: 'It\'s important to note that approval steps leverage Flowstack\'s seamless notification engine, ensuring the right person always sees the request.', note: 'I stop reading here. This is how the product works, and there\'s nothing for me to do.' },
     { side: 'before', kind: 'look', phrase: 'It\'s important to note', note: 'Filler (2 of 3).' },
     { side: 'before', kind: 'look', phrase: 'leverage', note: 'Inflated word.' },
@@ -81,7 +81,7 @@ const DEFAULTS = {
     { side: 'before', kind: 'learn', phrase: 'within the time limit', note: 'Where do I set the time limit? What\'s the default?' },
     { side: 'before', kind: 'fix', phrase: '[Screenshot: add screenshot here]', note: 'Doesn\'t say what to capture, and it\'s at the end of the section instead of at its step.' },
     { side: 'before', kind: 'look', phrase: 'Now that you\'ve added the step, it\'s time to test it.', note: 'Filler (3 of 3).' },
-    { side: 'before', kind: 'look', phrase: 'Testing isn\'t optional, it\'s how you know the approval works.', note: '"Isn\'t X, it\'s Y" phrasing (3 of 3).' },
+    { side: 'before', kind: 'look', phrase: 'Testing isn\'t optional, it\'s how you know the approval works.', note: 'Contrast for effect (3 of 3).' },
     { side: 'before', kind: 'learn', phrase: 'Utilize a test user to run the workflow.', note: 'Is the test user the account the workflow changes, or the person running it? I don\'t want to disable a real account.' },
     { side: 'before', kind: 'look', phrase: 'Utilize', note: '"Utilize" means "use."' },
     { side: 'before', kind: 'learn', phrase: 'confirm the action ran', note: 'Where do I check that? Run history, or the test user\'s account?' },
@@ -97,11 +97,12 @@ const DEFAULTS = {
     { side: 'after', kind: 'new', phrase: 'Next up', note: 'New Next up section.' }
   ],
   courseHeading: 'Course-dev, July to October',
+  courseIntro: 'Course-dev is a Claude skill Clea built to turn lesson drafts into a course in Skilljar, the LMS her team used. Slide through the months to see how it changed.',
   months: [
     { month: 'July', label: 'By hand', title: 'Copy, paste, and check', body: '<p>Clea\'s team drafted lessons in Notion, turned them into HTML, and pasted each one into Skilljar. Then someone checked every lesson against its draft by hand.</p>', autoSteps: 'Draft in Notion\nTurn into HTML', handSteps: 'Paste each lesson\nCheck against the draft', note: '' },
-    { month: 'August', label: 'The API', title: 'The Skilljar API', body: '<p>Clea used the Skilljar API to relabel 32 of 33 old courses in one run. The API only works from code, though, and she was the only one on the team using it.</p>', autoSteps: '', handSteps: '', note: 'Everyone else kept copying and pasting, so the team had two ways of building courses.' },
+    { month: 'August', label: 'The API', title: 'The Skilljar API', body: '<p>Clea used the Skilljar API to update 32 of 33 old courses in one run. The API only works from code, though, and she was the only one on the team using it.</p>', autoSteps: '', handSteps: '', note: 'Everyone else kept copying and pasting, so the team had two ways of building courses.' },
     { month: 'September', label: 'The MCP', title: 'The Skilljar MCP', body: '<p>The Skilljar MCP is a connector that lets Claude work in Skilljar directly. It works in any Claude app, so the whole team could build and check courses the same way.</p>', autoSteps: '', handSteps: '', note: '' },
-    { month: 'October', label: 'Today', title: 'Claude builds and checks every lesson', body: '<p>A person still picks the reviewer, fills in the few settings the MCP can\'t reach, like lesson length, and decides when the course goes live.</p>', autoSteps: 'Draft in Notion\nBuild in Skilljar\nKeep hidden for review\nCheck against the draft', handSteps: '', note: '' }
+    { month: 'October', label: 'Today', title: 'Claude builds and checks every lesson', body: '<p>A person still picks the reviewer, fills in the few settings the MCP can\'t reach, like how long a lesson takes, and decides when the course goes live.</p>', autoSteps: 'Draft in Notion\nBuild in Skilljar\nHide the course until it\'s reviewed\nCheck against the draft', handSteps: 'Pick the reviewer\nDecide when it goes live', note: '' }
   ],
   matchHeading: 'Match each problem to its fix',
   matchIntro: 'The first course built with the MCP had three problems. Pick the fix for each one.',
@@ -457,7 +458,7 @@ function selectNote(i, scroll) {
 
 /* ---------- course-dev ---------- */
 function renderCourse() {
-  bindText('courseHeading');
+  bindText('courseHeading'); bindText('courseIntro');
   const range = $('monthRange'), ticks = $('ticks'), n = S.months.length;
   range.max = Math.max(0, n - 1); range.value = 0; ticks.innerHTML = '';
   S.months.forEach((m, i) => { const t = el('span', null, str(m.month)); t.onclick = () => { range.value = i; drawMonth(i); }; ticks.appendChild(t); });

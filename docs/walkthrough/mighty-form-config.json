@@ -165,6 +165,7 @@
             "collapsed": true,
             "formElements": [
                 { "type": "text-input", "formKey": "courseHeading", "label": "Heading" },
+                { "type": "textarea-input", "formKey": "courseIntro", "label": "Intro", "rows": 3 },
                 {
                     "type": "collection-manager",
                     "formKey": "months",
