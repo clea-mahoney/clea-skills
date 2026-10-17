@@ -10,6 +10,7 @@
             "headerTitle": "Cover image",
             "formElements": [
                 { "type": "text-input", "formKey": "coverImage", "label": "Image URL", "helperText": "16:9, at least 1600px wide. Learners click it to start. When set, the title is read by screen readers but hidden on screen, since the image shows it." },
+                { "type": "text-input", "formKey": "coverImageMobile", "label": "Phone image URL", "helperText": "4:5, shown on screens under 600px wide. Leave blank to use the main image." },
                 { "type": "text-input", "formKey": "coverAlt", "label": "Alt text" }
             ]
         },

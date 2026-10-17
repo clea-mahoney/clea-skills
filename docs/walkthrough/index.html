@@ -58,6 +58,8 @@ h2,h3,h4,strong,b{font-weight:600}
 .hero:hover{transform:translateY(-3px);box-shadow:0 10px 0 var(--apricot)}
 .hero img{display:block;width:100%;height:auto;aspect-ratio:16/9}
 .hero[hidden]{display:none}
+.hero picture{display:block}
+@media (max-width:600px){.hero img{aspect-ratio:4/5}}
 .intro{font-size:20px;max-width:60ch}
 .intro p+p{margin-top:8px}
 .source{color:var(--muted);font-size:16px}
@@ -248,7 +250,7 @@ h2,h3,h4,strong,b{font-weight:600}
 
   <!-- 1 start -->
   <section class="panel" role="tabpanel" id="p-start" aria-labelledby="t-start">
-    <button type="button" class="hero" id="hero" hidden><img id="heroImg" alt=""></button>
+    <button type="button" class="hero" id="hero" hidden><picture><source id="heroSrc" media="(max-width:600px)"><img id="heroImg" alt=""></picture></button>
     <h2 tabindex="-1" data-form-key="title"></h2>
     <div class="intro" data-form-key="intro"></div>
     <p class="source" data-form-key="source"></p>
@@ -359,6 +361,6 @@ h2,h3,h4,strong,b{font-weight:600}
   <div class="sr" aria-live="assertive" id="shout"></div>
 </div>
 
-<script src="app.js?v=2026-10-16d"></script>
+<script src="app.js?v=2026-10-16e"></script>
 </body>
 </html>

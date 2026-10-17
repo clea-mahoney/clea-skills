@@ -4,6 +4,7 @@ const DEFAULTS = {
   source: 'Vibe coded in Mighty Studio with Claude Code, October 2026.',
   coverImage: 'https://clea-mahoney.github.io/clea-skills/walkthrough/cover.png',
   coverAlt: 'Start the walkthrough: Clea peeking over a card from the sort game.',
+  coverImageMobile: 'https://clea-mahoney.github.io/clea-skills/walkthrough/cover-mobile.png',
 
   draftHeading: 'Read the draft',
   draftIntro: 'Here\'s a lesson draft from September, about a made-up product called Flowstack. Both versions of the checker graded it. Read it like a reviewer would, and tap any sentence that bugs you to see if a check caught it.',
@@ -203,6 +204,7 @@ function renderStart() {
   hero.hidden = !url;
   $('p-start').querySelector('h2').classList.toggle('sr', !!url);
   if (url) {
+    $('heroSrc').srcset = str(S.coverImageMobile) || url;
     img.src = url; img.alt = str(S.coverAlt) || str(S.startLabel);
     img.onerror = () => { hero.hidden = true; $('p-start').querySelector('h2').classList.remove('sr'); };
     hero.onclick = () => show(1, true);
