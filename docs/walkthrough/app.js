@@ -196,7 +196,12 @@ function show(i, focusHeading) {
   $('count').textContent = `Section ${cur + 1} of ${STOPS.length}`;
   $('back').disabled = cur === 0;
   $('next').disabled = cur === STOPS.length - 1;
-  if (focusHeading) { const h = $('p-' + STOPS[cur].id).querySelector('h2'); if (h) h.focus({ preventScroll: true }); }
+  if (focusHeading) {
+    // Moving by button: go back to the top, so the new section starts at its heading.
+    const top = $('app').getBoundingClientRect().top + window.scrollY;
+    if (window.scrollY > top) window.scrollTo({ top, behavior: 'auto' });
+    const h = $('p-' + STOPS[cur].id).querySelector('h2'); if (h) h.focus({ preventScroll: true });
+  }
   if (STOPS[cur].id === 'finish') finish();
 }
 
