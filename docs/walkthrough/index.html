@@ -193,11 +193,12 @@ h2,h3,h4,strong,b{font-weight:600}
 .ticks span.on{color:var(--blue-ink)}
 .month-card{display:flex;flex-direction:column;gap:12px;animation:rise .3s ease}
 .month-card .when{font-size:14px;font-weight:600;color:var(--blue-ink);letter-spacing:.03em;text-transform:uppercase}
-.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:6px 0}
+.flow{display:flex;flex-direction:column;align-items:flex-start;gap:4px;margin:6px 0;padding:0;list-style:none}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:15px;color:var(--muted)}
 .step{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:10px 14px;font-weight:600;animation:pop .35s ease both}
 .step.auto{background:var(--blue-soft);color:var(--blue-ink)}
 .step.hand{background:var(--coral-soft);color:var(--coral-ink)}
-.flow .arr{color:var(--muted)}
+.flow .arr{color:var(--muted);padding-left:22px;line-height:1}
 @keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
 .handmeter{display:flex;align-items:center;gap:12px;font-size:15px;color:var(--muted)}
 .handmeter .bar i{background:var(--apricot)}
@@ -363,6 +364,6 @@ h2,h3,h4,strong,b{font-weight:600}
   <div class="sr" aria-live="assertive" id="shout"></div>
 </div>
 
-<script src="app.js?v=2026-10-16r"></script>
+<script src="app.js?v=2026-10-16s"></script>
 </body>
 </html>

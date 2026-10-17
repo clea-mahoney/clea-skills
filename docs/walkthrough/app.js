@@ -99,7 +99,7 @@ const DEFAULTS = {
   courseHeading: 'Course-dev, July to October',
   courseIntro: 'Course-dev is a Claude skill Clea built to turn lesson drafts into a course in Skilljar, the LMS her team used. Slide through the months to see how it changed.',
   months: [
-    { month: 'July', label: 'By hand', title: 'Copy, paste, and check', body: '<p>Clea\'s team drafted lessons in Notion, turned them into HTML, and pasted each one into Skilljar. Then someone checked every lesson against its draft by hand.</p>', autoSteps: 'Draft in Notion\nTurn into HTML', handSteps: 'Paste each lesson\nCheck against the draft', note: '' },
+    { month: 'July', label: 'Mostly manual', title: 'Copy, paste, and check', body: '<p>Claude drafted lessons in Notion and turned them into HTML. Then someone pasted each one into Skilljar and compared it to its draft by eye.</p>', autoSteps: 'Draft in Notion\nTurn into HTML', handSteps: 'Paste each lesson\n👀 Check against the draft', note: '' },
     { month: 'August', label: 'The API', title: 'The Skilljar API', body: '<p>Clea used the Skilljar API to update 32 of 33 old courses in one run. The API only works from code, though, and she was the only one on the team using it.</p>', autoSteps: '', handSteps: '', note: 'Everyone else kept copying and pasting, so the team had two ways of building courses.' },
     { month: 'September', label: 'The MCP', title: 'The Skilljar MCP', body: '<p>The Skilljar MCP is a connector that lets Claude work in Skilljar directly. It works in any Claude app, so the whole team could build and check courses the same way.</p>', autoSteps: '', handSteps: '', note: '' },
     { month: 'October', label: 'Today', title: 'Claude builds and checks every lesson', body: '<p>A person still picks the reviewer, fills in the few settings the MCP can\'t reach, like how long a lesson takes, and decides when the course goes live.</p>', autoSteps: 'Draft in Notion\nBuild in Skilljar\nHide the course until it\'s reviewed\nCheck against the draft', handSteps: 'Pick the reviewer\nDecide when it goes live', note: '' }
@@ -483,21 +483,26 @@ function drawMonth(i) {
   const h = el('h3', null, str(m.title)); h.setAttribute('data-form-key', `months.${i}.title`);
   const body = el('div', 'lead'); body.innerHTML = str(m.body); body.setAttribute('data-form-key', `months.${i}.body`);
   card.append(when, h, body);
-  const auto = lines(m.autoSteps), hand = lines(m.handSteps), all = [...auto.map(s => ['auto', s]), ...hand.map(s => ['hand', s])];
+  // A step can start with its own emoji (like 👀) to override the default icon.
+  const ICON = { auto: '\u{1F916}', hand: '\u270B' }, NAME = { '\u{1F916}': 'Done by AI', '\u270B': 'Done manually', '\u{1F440}': 'Checked by eye' };
+  const parse = k => t => { const x = t.match(/^(\p{Extended_Pictographic}\uFE0F?)\s+(.+)$/u); return x ? [k, x[2], x[1].replace('\uFE0F', '')] : [k, t, ICON[k]]; };
+  const auto = lines(m.autoSteps).map(parse('auto')), hand = lines(m.handSteps).map(parse('hand')), all = [...auto, ...hand];
   if (all.length) {
+    const legend = el('p', 'legend');
+    [...new Set(all.map(a => a[2]))].forEach(ic => { const sp = el('span', null, `${ic} ${NAME[ic] || ''}`); legend.appendChild(sp); });
+    legend.setAttribute('aria-hidden', 'true');
     const flow = el('ol', 'flow'); flow.setAttribute('aria-label', 'Steps');
-    flow.style.listStyle = 'none';
-    all.forEach(([k, s], j) => {
+    all.forEach(([k, t, ic], j) => {
       const li = el('li', 'step ' + k); li.style.animationDelay = (j * 90) + 'ms';
-      const ic = el('span', null, k === 'auto' ? '⚙' : '✋'); ic.setAttribute('aria-hidden', 'true');
-      li.append(ic, el('span', 'sr', k === 'auto' ? 'Automated: ' : 'By hand: '), document.createTextNode(s));
+      const icon = el('span', null, ic); icon.setAttribute('aria-hidden', 'true');
+      li.append(icon, el('span', 'sr', (NAME[ic] || 'Step') + ': '), document.createTextNode(t));
       flow.appendChild(li);
-      if (j < all.length - 1) { const a = el('li', 'arr', '→'); a.setAttribute('aria-hidden', 'true'); flow.appendChild(a); }
+      if (j < all.length - 1) { const a = el('li', 'arr', '\u2193'); a.setAttribute('aria-hidden', 'true'); flow.appendChild(a); }
     });
     const meter = el('div', 'handmeter');
     const bar = el('div', 'bar'); bar.setAttribute('aria-hidden', 'true'); const fill = el('i'); bar.appendChild(fill);
-    meter.append(el('span', null, `By hand: ${hand.length} of ${all.length} steps`), bar);
-    card.append(flow, meter);
+    meter.append(el('span', null, `Done manually: ${hand.length} of ${all.length} steps`), bar);
+    card.append(legend, flow, meter);
     requestAnimationFrame(() => { fill.style.width = (hand.length / all.length * 100) + '%'; });
   }
   if (str(m.note)) { const p = el('p', 'meta', str(m.note)); p.setAttribute('data-form-key', `months.${i}.note`); card.appendChild(p); }
