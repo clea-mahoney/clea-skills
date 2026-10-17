@@ -47,11 +47,11 @@ const DEFAULTS = {
   ],
   loopText: 'After the writer fixed all 9, lesson-eval checked the whole draft again. That repeated until all 15 passed.',
   afterTitle: 'Today: 4 checks, run once',
-  afterMeta: 'It sorts each finding into Fix or Take a look, and skips anything a person already approved, like an em dash they chose to keep.',
+  afterMeta: 'It sorts each finding into <strong>Fix</strong> or <strong>Take a look</strong>, and skips anything a person already approved, like an em dash they chose to keep.',
   afterTeaser: 'On the same draft it found 6 problems. Next, you sort them.',
   checkersLesson: 'Claude drafts each lesson from a set of instructions. When the writing rules moved into those instructions, the drafts came out cleaner, so lesson-eval needed fewer checks.',
   sortHeading: 'Fix or take a look?',
-  sortIntro: 'These are the 6 problems today\'s lesson-eval found in the draft. Put each one where lesson-eval did. Fix means it has to change before the lesson goes live. Take a look means the writer decides.',
+  sortIntro: 'These are the 6 problems today\'s lesson-eval found in the draft. Put each one where lesson-eval did. <strong>Fix</strong> means it has to change before the lesson goes live. <strong>Take a look</strong> means the writer decides.',
   flags: [
     { text: 'Screenshot placeholder is vague and in the wrong spot', answer: 'fix', why: 'Whoever makes the screenshot won\'t know what to capture, and it sits at the end of the section instead of at its step.' },
     { text: 'Opens by repeating the course overview', answer: 'fix', why: 'The learner already read the course overview. Repeating it delays the lesson.' },
@@ -291,7 +291,7 @@ function renderDraft() {
 
 /* ---------- checkers ---------- */
 function renderCheckers() {
-  ['checkersHeading', 'beforeTitle', 'beforeMeta', 'loopText', 'afterTitle', 'afterMeta', 'afterTeaser', 'checkersLesson'].forEach(bindText);
+  ['checkersHeading', 'beforeTitle', 'beforeMeta', 'loopText', 'afterTitle', 'afterTeaser', 'checkersLesson'].forEach(bindText); bindHTML('afterMeta');
   $('nOld').textContent = S.checks.length;
   const grid = $('grid'), detail = $('detail'); grid.innerHTML = '';
   S.checks.forEach((c, i) => {
@@ -313,7 +313,7 @@ function renderCheckers() {
 /* ---------- sort game ---------- */
 let sortState;
 function renderSort() {
-  bindText('sortHeading'); bindText('sortIntro');
+  bindText('sortHeading'); bindHTML('sortIntro');
   $('bFixH').textContent = S.fixLabel; $('bLookH').textContent = S.lookLabel;
   sortState = { i: 0, right: 0, order: S.flags.map((_, k) => k), t0: performance.now() };
   $('bFix').innerHTML = ''; $('bLook').innerHTML = '';

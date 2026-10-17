@@ -70,7 +70,7 @@
                 },
                 { "type": "textarea-input", "formKey": "loopText", "label": "Grading loop", "rows": 2 },
                 { "type": "text-input", "formKey": "afterTitle", "label": "New checker title" },
-                { "type": "textarea-input", "formKey": "afterMeta", "label": "New checker summary", "rows": 2 },
+                { "type": "richtext-input", "formKey": "afterMeta", "label": "New checker summary", "inputMinHeight": "70px" },
                 { "type": "textarea-input", "formKey": "afterTeaser", "label": "New checker teaser", "rows": 2 },
                 { "type": "text-input", "formKey": "checkersLesson", "label": "Takeaway" }
             ]
@@ -82,7 +82,7 @@
             "collapsed": true,
             "formElements": [
                 { "type": "text-input", "formKey": "sortHeading", "label": "Heading" },
-                { "type": "textarea-input", "formKey": "sortIntro", "label": "Instructions", "rows": 3 },
+                { "type": "richtext-input", "formKey": "sortIntro", "label": "Instructions", "inputMinHeight": "90px" },
                 {
                     "type": "collection-manager",
                     "formKey": "flags",
