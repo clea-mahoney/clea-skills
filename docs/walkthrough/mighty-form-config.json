@@ -111,6 +111,7 @@
             "collapsed": true,
             "formElements": [
                 { "type": "text-input", "formKey": "rewriteHeading", "label": "Heading" },
+                { "type": "textarea-input", "formKey": "rewriteIntro", "label": "Instructions", "rows": 3 },
                 { "type": "text-input", "formKey": "beforeVerdict", "label": "Before verdict" },
                 { "type": "richtext-input", "formKey": "beforeDoc", "label": "Before draft", "inputMinHeight": "240px" },
                 { "type": "text-input", "formKey": "afterVerdict", "label": "After verdict" },

@@ -48,11 +48,11 @@ const DEFAULTS = {
     { name: 'Plain words, real doers, no borrowed authority', result: 'fail', finding: 'Inflated and promotional language: "leverage," "seamless," "Utilize," and the trailing ", ensuring the right person always sees the request."' },
     { name: 'Voice match against the examples', result: 'fail', finding: 'Two of the three longest paragraphs ("Why approval steps matter" and the closing of "Test it") would need rewriting to sit beside the "Better" examples.' }
   ],
-  loopText: 'Fix all 9, then a fresh grader in a new chat grades it again. Repeat until everything passes.',
-  afterTitle: 'Today: 4 checks, one pass',
+  loopText: 'Every fail got fixed, then the whole draft was graded again, until all 15 passed.',
+  afterTitle: 'Today: 4 checks, run once',
   afterMeta: 'It sorts what it finds into two groups. Fix means it has to change before the lesson goes live. Take a look means the writer decides. It also skips anything a person already signed off on, like an em dash they chose to keep.',
   afterTeaser: 'On the same draft, it found six things. On the next stop, sort them the way it did.',
-  checkersLesson: 'Better drafting instructions let the grader shrink.',
+  checkersLesson: 'Claude drafts each lesson from a set of instructions. Once the writing rules moved into those instructions, the checker had less to catch.',
 
   sortHeading: 'Your turn: Fix, or take a look?',
   sortIntro: 'Today\'s checker puts each finding in one of two groups. Fix means it has to change before the lesson goes live. Take a look means the writer decides.',
@@ -66,7 +66,8 @@ const DEFAULTS = {
   ],
 
   rewriteHeading: 'Lesson-eval: the same lesson, after the fixes',
-  beforeVerdict: '2 to fix, 5 to look at, 4 learner gaps',
+  rewriteIntro: 'The September draft sits next to the rewrite. Highlights show what today\'s checker flagged, what changed, and where a first-time learner would get stuck. Those learner notes come from the learner pass, an optional second read in the learner\'s voice. Step through the notes, or tap any highlight.',
+  beforeVerdict: '2 to fix, 5 to look at, 5 learner notes',
   afterVerdict: 'Re-run: nothing to fix',
   beforeDoc: '<h1>Add An Approval Step Before Risky Actions</h1><p>In this course, you\'ll learn what approval steps are, why they matter, and how to add them to your workflows. This course is for Flowstack admins who build workflows.</p><p>Let\'s dive in.</p><h2>Why approval steps matter</h2><p>An approval step isn\'t a delay, it\'s a safety net. Workflows run fast — which is great until one runs on the wrong data. One bad run. Hundreds of disabled accounts. No undo.</p><p>It\'s important to note that approval steps leverage Flowstack\'s seamless notification engine, ensuring the right person always sees the request.</p><h2>Add the step</h2><ol><li>Open the workflow in the builder.</li><li>Click the <strong>+</strong> between the trigger and the action you want to protect.</li><li>Choose <strong>Approval</strong> from the step list.</li><li>In <strong>Approvers</strong>, pick the appropriate group.</li><li>In <strong>Timeout</strong>, choose what happens if nobody responds within the time limit: <strong>Cancel run</strong> or <strong>Continue anyway</strong>.</li></ol><p>For anything destructive, pick <strong>Cancel run</strong>. A workflow that continues anyway after a timeout is the same as having no approval step.</p><p>[Screenshot: add screenshot here]</p><h2>Test it</h2><p>Now that you\'ve added the step, it\'s time to test it. Testing isn\'t optional, it\'s how you know the approval works.</p><p>Utilize a test user to run the workflow. The approver gets a notification in Slack and email. Click <strong>Approve</strong> and confirm the action ran. Then run it again and let it time out to confirm the run cancels.</p><p>With these steps, you\'re ready to take your automation safety to the next level.</p>',
   afterDoc: '<h1>Add an approval step before risky actions</h1><p>Some workflows do things you can\'t easily undo, like disabling user accounts. If one of those runs on the wrong data, it can lock out hundreds of people before anyone notices. An approval step makes Flowstack wait for a person to say yes before the risky action runs.</p><h2>Add the step</h2><ol><li>Open the workflow in the builder.</li><li>Click the <strong>+</strong> between the trigger and the action you want to protect.</li><li>Choose <strong>Approval</strong> from the step list.</li><li>In <strong>Approvers</strong>, pick a group that has someone available whenever this workflow runs, such as your on-call group. Anyone in the group can approve. If the group doesn\'t exist yet, create it first. [Screenshot: the Approval step\'s settings panel, with Approvers set to the on-call group]</li><li>In <strong>Timeout</strong>, set how long Flowstack waits for an answer. Then choose what happens if nobody responds in time: <strong>Cancel run</strong> or <strong>Continue anyway</strong>. [Screenshot: the Timeout setting with a 1-hour limit and Cancel run selected]</li></ol><p>For anything destructive, pick <strong>Cancel run</strong>. A workflow that continues anyway after a timeout is the same as having no approval step.</p><p>When the workflow reaches this step, everyone in the approver group gets the request in Slack and email.</p><h2>Test it</h2><p>Run the workflow once each way before you turn it on. Point it at a test user account, so the action only touches an account nobody depends on. To keep the timeout test short, set <strong>Timeout</strong> to a few minutes while you test.</p><ol><li>Run the workflow against the test user. Check that the approval request arrives in Slack and email.</li><li>Click <strong>Approve</strong>, then open the workflow\'s run history and confirm the action ran.</li><li>Run it again and don\'t respond. After the timeout passes, check run history to confirm the run was canceled and the test user wasn\'t changed.</li><li>Set <strong>Timeout</strong> back to the limit you want in production.</li></ol><h2>Next up</h2><p>Before you move on, add an approval step to the workflow in your account that would do the most damage if it ran on the wrong data. The next lesson builds on it.</p><p><em>Flowstack is fictional, so two product details in the rewrite are invented: the Timeout duration field and run history.</em></p>',
@@ -77,7 +78,7 @@ const DEFAULTS = {
     { side: 'before', kind: 'look', phrase: 'An approval step isn\'t a delay, it\'s a safety net.', note: 'Contrast for effect (1 of 3).' },
     { side: 'before', kind: 'look', phrase: '—', note: 'Em dash.' },
     { side: 'before', kind: 'look', phrase: 'No undo.', note: 'Clipped negation, contrast for effect (2 of 3).' },
-    { side: 'before', kind: 'learn', phrase: 'It\'s important to note that approval steps leverage Flowstack\'s seamless notification engine, ensuring the right person always sees the request.', note: 'Attention drops here. This is product plumbing, not something I do.' },
+    { side: 'before', kind: 'learn', phrase: 'It\'s important to note that approval steps leverage Flowstack\'s seamless notification engine, ensuring the right person always sees the request.', note: 'Attention drops here. This sentence explains product plumbing, and I can\'t act on it.' },
     { side: 'before', kind: 'look', phrase: 'It\'s important to note', note: 'Signposting (2 of 3).' },
     { side: 'before', kind: 'look', phrase: 'leverage', note: 'Inflated word.' },
     { side: 'before', kind: 'look', phrase: 'seamless', note: 'Inflated word.' },
@@ -105,20 +106,20 @@ const DEFAULTS = {
   months: [
     { month: 'July', label: 'By hand', title: 'Copy, paste, and check by hand', body: '<p>Lessons drafted in Notion, turned into HTML, and pasted into Skilljar one at a time. Each lesson checked against its draft by hand.</p>', autoSteps: 'Draft in Notion\nTurn into HTML', handSteps: 'Paste each lesson\nCheck against the draft', note: '' },
     { month: 'August', label: 'The API', title: 'The API, for one person', body: '<p>The Skilljar API relabeled 32 of 33 old courses in one run. It worked, but only from code, so only one person on the team could use it.</p>', autoSteps: '', handSteps: '', note: 'Everyone else still copied, pasted, and checked by hand. Two ways of working, and they drifted apart.' },
-    { month: 'September', label: 'The MCP', title: 'The MCP, for the whole team', body: '<p>The Skilljar MCP works in chat, in Cowork, and in code. Everyone could build and check courses the same way, from wherever they worked.</p>', autoSteps: '', handSteps: '', note: 'The first full course built through it surfaced three problems. You\'ll match them to their fixes on the next stop.' },
-    { month: 'October', label: 'Where it landed', title: 'Where it landed', body: '<p>Human input only for what the MCP can\'t handle, like lesson length.</p>', autoSteps: 'Draft in Notion\nBuild in Skilljar\nKeep hidden for review\nCheck against the draft', handSteps: '', note: 'A person still picks the reviewer, sets the few things the MCP can\'t, and decides when the course goes live.' }
+    { month: 'September', label: 'The MCP', title: 'The MCP, for the whole team', body: '<p>The Skilljar MCP is a connector that lets Claude work in Skilljar directly. It works in any Claude app, so everyone could build and check courses the same way.</p>', autoSteps: '', handSteps: '', note: 'The first full course built through it surfaced three problems. You\'ll match them to their fixes on the next stop.' },
+    { month: 'October', label: 'Where it landed', title: 'Where it landed', body: '<p>Claude builds every lesson through the MCP and checks it against the draft. A person still picks the reviewer, fills in the few settings the MCP can\'t reach, like lesson length, and decides when the course goes live.</p>', autoSteps: 'Draft in Notion\nBuild in Skilljar\nKeep hidden for review\nCheck against the draft', handSteps: '', note: '' }
   ],
 
   matchHeading: 'Your turn: match each problem to its fix',
   matchIntro: 'The first full course built through the MCP surfaced three problems. Pick the fix for each one.',
   problems: [
     { problem: 'Changes reported as saved sometimes weren\'t.', fix: 'Every change is checked after it\'s made.' },
-    { problem: 'HTML lessons in Skilljar can\'t add a video later.', fix: 'Every lesson is now a modular lesson.' },
+    { problem: 'A lesson built as one block of HTML can\'t have a video added later.', fix: 'Every lesson is now built in sections, and any section can hold a video.' },
     { problem: 'Skilljar rewrites a lesson\'s HTML when it saves, so checks flagged differences no reader would see.', fix: 'Checks compare the lesson content only.' }
   ],
 
   finishHeading: 'Thanks for poking around',
-  finishBody: '<p>Lesson-eval got better when the drafting instructions did, and the grader shrank from 15 checks to 4. Course-dev now needs a person only for what the MCP can\'t handle.</p><p>Both skills are free to copy and adapt. If you\'re at Learning Rejects, come say hi.</p>',
+  finishBody: '<p>Both skills are free to copy and adapt. Lesson-eval works on any lesson draft, from any source.</p><p>If you\'re at Learning Rejects, come say hi.</p>',
   linkLabel: 'Get the skills on GitHub',
   linkUrl: 'https://github.com/clea-mahoney/clea-skills',
 
@@ -241,7 +242,7 @@ function renderDraft() {
           note.append(el('strong', null, nums.length > 1 ? `Caught by checks ${nums.join(' and ')}. ` : `Caught by check ${nums[0]}. `),
             document.createTextNode(nums.map(n => str(S.checks[n - 1].name)).join('. ') + '.'));
         } else if (b.dataset.learn) {
-          note.append(el('strong', null, `None of the ${S.checks.length} checks caught this. `), document.createTextNode('Today\'s checker does: it flags spots where a learner would get stuck.'));
+          note.append(el('strong', null, `None of the ${S.checks.length} checks caught this. `), document.createTextNode('Today\'s learner pass does. It reads the draft as a first-time learner and flags where they\'d get stuck.'));
         } else {
           note.append(el('strong', null, 'No check flagged this one. '), document.createTextNode('Good eye, or a matter of taste.'));
         }
@@ -365,7 +366,7 @@ function markPhrase(root, phrase, kind, note) {
   return null;
 }
 function renderRewrite() {
-  ['rewriteHeading', 'beforeVerdict', 'afterVerdict'].forEach(bindText);
+  ['rewriteHeading', 'rewriteIntro', 'beforeVerdict', 'afterVerdict'].forEach(bindText);
   const rb = $('read-before'), ra = $('read-after');
   rb.innerHTML = str(S.beforeDoc); ra.innerHTML = str(S.afterDoc);
   const anns = S.annotations.map((a, i) => ({ ...a, i })).sort((a, b) => str(b.phrase).length - str(a.phrase).length);
