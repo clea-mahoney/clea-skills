@@ -1,0 +1,39 @@
+# Weekly customer-evidence workflow
+
+These rules describe the original workflow behind this fictional work example. They are reconstructed from the documented skill and Clea's recollection, not a verbatim copy of the former work system.
+
+## Development
+
+Clea began by processing transcripts in Notion AI and adding verified findings to a Notion database. She created a Notion agent to repeat the call-processing workflow, then carried the workflow into a Claude Code skill. The evidence and human-review rules apply across those tools.
+
+## Inputs
+
+Read the new customer-call transcripts and the existing Notion theme register. The presentation follows one week with Tuesday and Thursday calls and a Friday review.
+
+## Evidence
+
+Use verbatim transcripts for quotes, speakers, and timestamps. Automated summaries can locate a moment but cannot establish who said it.
+
+Count each distinct, full-name external customer once per theme, even when their company is unknown. Exclude internal staff and unconfirmed identities from customer counts. Flag missing information without discarding valid evidence.
+
+Preserve risky habits and deliberate caution when they reveal a teachable skill or judgment. A rough early demo by itself does not establish a skills gap.
+
+## Compare with existing research
+
+Check the existing themes before proposing another one. Identify whether the new evidence adds an example, suggests a subtheme, relates to another theme, or supports a distinct theme.
+
+Add routine, source-linked evidence to an established theme. Leave new themes, changes to the hierarchy, and uncertain matches for human review.
+
+## Decide what education can address
+
+Distinguish teachable gaps from product bugs, feature requests, work already in progress, deliberate Holds, and situations where no education applies. A larger speaker count does not make a product issue an education priority.
+
+Keep a topic on Hold when the agreed plan is to wait. Do not create education resources for a migration while the migration direction is still being worked out.
+
+Treat an uncertain cause as a question. A report of a timeout does not prove that the behavior is a defect or that a learning resource is the right response.
+
+## Friday laptop alert
+
+At the weekly run, prepare a summary of the calls, the evidence added, proposed themes and overlaps, product reports, and questions requiring a person. The laptop alert offered two options: continue in Claude Code or copy the questions and quotes to use with the skill elsewhere. Clea checked the related Notion rows before recording a decision. This sample shows two calls reviewed and four questions.
+
+For each question, preserve the supporting quote and timestamp, possible existing theme matches, and what still needs checking. Record Clea's decision without inventing an identity, product diagnosis, or curriculum outcome.

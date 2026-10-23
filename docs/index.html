@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CLEA skills walkthrough</title>
+<style>
+:root{
+  color-scheme:light;
+  --bg:#F6F2EE; --surface:#FFFFFF; --ink:#1A1A1A; --muted:#5E5A55; --line:#E2DCD5;
+  --coral:#E8604F; --coral-soft:#FDE9E5; --blue:#2563EB; --blue-soft:#E8F0FD; --taupe:#8C7E6F; --taupe-soft:#EFEAE4; --sage:#3F7D5C; --sage-soft:#E4F0E8; --slate:#4A5565; --slate-soft:#ECEEF2;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif}
+button{font-family:inherit}
+body{background:linear-gradient(135deg,#FAF8F6,#F3EDE7);color:var(--ink);font-size:19px;line-height:1.4;height:100vh;overflow:hidden;display:flex;flex-direction:column}
+header{padding:28px 64px 0;display:flex;align-items:center;gap:20px}
+h1{font-size:32px;line-height:1.15;font-weight:700}
+
+/* nav */
+.groups{position:relative;height:32px;margin:16px 64px 0}
+.grp{position:absolute;top:0;background:none;border:0;border-bottom:2px solid var(--line);padding:0 0 6px;font:inherit;font-size:17px;font-weight:600;color:var(--muted);cursor:pointer;text-align:center}
+.grp.on{color:var(--ink);border-color:var(--blue)}
+.grp:focus-visible{outline:2px solid var(--blue);outline-offset:4px;border-radius:4px}
+.timeline{position:relative;margin:6px 64px 8px}
+body.home .groups,body.home .timeline{display:none}
+/* landing */
+.land{flex:1;display:flex;flex-direction:column;gap:28px;max-width:1180px}
+.intro{font-size:23px;line-height:1.5;max-width:60ch;color:var(--ink)}
+.intro .from{display:block;font-size:19px;color:var(--muted);margin-top:10px}
+.sections{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.sec{display:flex;flex-direction:column;gap:12px;text-align:left;background:var(--surface);border:2px solid transparent;border-radius:16px;padding:32px 36px;font:inherit;color:inherit;cursor:pointer;transition:border-color .15s,transform .15s}
+.sec:hover,.sec:focus-visible{border-color:var(--blue);outline:0;transform:translateY(-2px)}
+.sec h2{font-size:30px;line-height:1.2}
+.sec p{font-size:20px;color:var(--ink);max-width:44ch}
+.stops{list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:4px;font-size:18px;color:var(--muted)}
+.stops li::before{content:'';display:inline-block;width:10px;height:10px;border-radius:50%;border:2px solid var(--blue);margin-right:10px;vertical-align:1px}
+.go{margin-top:auto;padding-top:10px;color:var(--blue);font-size:19px;font-weight:500}
+.land-foot{display:flex;align-items:center;gap:24px;flex-wrap:wrap;font-size:18px;color:var(--muted)}
+.start{background:var(--blue);color:#fff;border:0;border-radius:12px;padding:14px 24px;font:inherit;font-size:20px;font-weight:500;cursor:pointer}
+.start:hover{filter:brightness(1.08)}
+
+.track{position:absolute;left:0;right:0;top:21px;height:3px;background:var(--line);border-radius:2px}
+.fill{position:absolute;left:0;top:21px;height:3px;background:var(--blue);border-radius:2px;transition:all .35s ease}
+.nodes{position:relative;display:flex;justify-content:space-between}
+.node{background:none;border:0;outline:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;width:170px;color:var(--muted);font:inherit;-webkit-tap-highlight-color:transparent}
+.dot{width:20px;height:20px;border-radius:50%;background:var(--surface);border:3px solid var(--line);margin-top:12px;transition:all .25s}
+.node .date{font-size:18px;font-weight:500}
+.node .lbl{font-size:16px;text-align:center;line-height:1.3}
+.node.done .dot{border-color:var(--blue);background:var(--blue)}
+.node.active .dot{border-color:var(--blue);background:var(--blue);box-shadow:0 0 0 6px var(--blue-soft);transform:scale(1.15)}
+.node.active{color:var(--ink)}
+.node.active .date{font-weight:700}
+.node:focus-visible .dot{box-shadow:0 0 0 6px var(--blue-soft)}
+
+main{flex:1;min-height:0;padding:12px 64px 16px;display:flex}
+.panel{flex:1;display:none;animation:in .3s ease}
+.panel.show{display:flex;flex-direction:column}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.card{background:var(--surface);border-radius:16px;padding:36px 44px;min-height:0}
+.panel>.card{flex:0 0 auto}
+.card h2{font-size:34px;line-height:1.2;margin-bottom:14px}
+.lead{font-size:24px;max-width:56ch}
+.note{color:var(--muted);font-size:20px;margin-top:20px;max-width:56ch}
+
+/* course-dev */
+.flow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:28px 0 28px}
+.step{border-radius:12px;padding:12px 18px;font-size:20px;font-weight:500}
+.step.hand{background:var(--coral-soft);color:var(--coral)}
+.step.auto{background:var(--blue-soft);color:var(--blue)}
+.arrow{color:var(--muted);font-size:22px}
+.fixes{list-style:none;margin-top:14px}
+.fixes li{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:12px 0;font-size:20px;border-top:1px solid var(--line)}
+.fixto{color:var(--blue);font-weight:500}
+
+/* lesson-eval */
+.cols{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.cols .card{padding:28px 34px}
+.cols .card{display:flex;flex-direction:column}
+.when{font-weight:700}
+.before .when{color:var(--taupe)} .after .when{color:var(--ink)}
+.cols h2{font-size:28px;margin:8px 0 2px}
+.meta{color:var(--muted);font-size:19px}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:14px 0 12px}
+.chk{border:0;font:inherit;border-radius:10px;padding:9px 0;text-align:center;font-size:18px;font-weight:700;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.chk.pass{background:var(--surface);color:var(--muted);box-shadow:inset 0 0 0 2px var(--line)}
+.chk.fail{background:var(--coral-soft);color:var(--coral)}
+.chk:hover{transform:translateY(-1px)}
+.chk.sel{box-shadow:0 0 0 3px currentColor}
+.chk:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.detail{min-height:130px;margin-bottom:12px;padding:12px 16px;border-radius:12px;background:var(--taupe-soft)}
+.detail .hint{color:var(--muted);font-size:19px}
+.detail .res{font-size:18px;font-weight:600}
+.detail .res.fail{color:var(--coral)} .detail .res.pass{color:var(--muted)}
+.detail h4{font-size:21px;margin:4px 0 6px}
+.detail p.why{font-size:19px}
+.loop{margin-top:auto;border:2px dashed var(--coral);border-radius:12px;padding:12px 18px;color:var(--coral);font-weight:500;font-size:19px}
+.group{margin-top:12px}
+.group h3{font-size:21px;margin-bottom:8px}
+.group.fix h3{color:var(--coral)} .group.look h3{color:var(--slate)}
+.group ul{list-style:none}
+.group li{padding:9px 14px;border-radius:10px;margin-bottom:8px;font-size:19px}
+.group.fix li{background:var(--coral-soft)} .group.look li{background:var(--slate-soft)}
+.group li span{color:var(--muted);font-size:15px;display:block}
+.lesson{text-align:center;font-size:22px;font-weight:700;margin-top:10px}
+
+.key{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:18px;margin-top:-8px}
+.sw{display:inline-block;width:16px;height:16px;border-radius:5px;margin-left:8px}
+.sw:first-child{margin-left:0}
+.sw.hand{background:var(--coral-soft);box-shadow:inset 0 0 0 2px var(--coral)}
+.sw.auto{background:var(--blue-soft);box-shadow:inset 0 0 0 2px var(--blue)}
+
+/* rewrite */
+.rw{flex:1;min-height:0;display:flex;flex-direction:column;gap:16px}
+.rw-top{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.legend{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:18px;color:var(--muted)}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:8px}
+.seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px}
+.seg button{border:0;background:transparent;color:var(--muted);font-size:18px;font-weight:500;padding:8px 16px;border-radius:9px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.rw .cols{gap:28px}
+.rw .cols.single{grid-template-columns:minmax(0,820px);justify-content:center}
+.doc{display:flex;flex-direction:column;min-height:0;padding:0!important;overflow:hidden}
+.doc-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px 34px 16px;border-bottom:1px solid var(--line)}
+.verdict{font-size:18px;color:var(--muted)}
+.doc-head h3{font-size:22px}
+.read{flex:1;min-height:0;overflow:auto;padding:24px 34px 32px;font-size:19px;line-height:1.6}
+.read h1{font-size:28px;line-height:1.25;margin:0 0 16px}
+.read h2{font-size:22px;margin:28px 0 10px}
+.read p{margin:0 0 14px;max-width:62ch}
+.read ol{margin:0 0 16px;padding-left:1.4em;display:flex;flex-direction:column;gap:10px;max-width:62ch}
+.read b{font-weight:600}
+.ph{display:block;font-size:18px;color:var(--muted);border:1px dashed var(--line);border-radius:10px;padding:10px 14px;margin:10px 0 4px}
+.read .fine{font-size:17px;color:var(--muted);margin-top:24px}
+mark{background:transparent;color:inherit;border-radius:3px;position:relative;padding:0 1px;cursor:help;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+mark.fix{background:var(--coral-soft);box-shadow:inset 0 -2px 0 var(--coral)}
+mark.look{background:var(--slate-soft);box-shadow:inset 0 -2px 0 var(--slate)}
+mark.learn{background:var(--taupe-soft);box-shadow:inset 0 -2px 0 var(--taupe)}
+mark.new{background:var(--sage-soft);box-shadow:inset 0 -2px 0 var(--sage)}
+mark:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+#tip{position:fixed;z-index:10;max-width:340px;background:var(--ink);color:#fff;font-size:17px;line-height:1.4;font-weight:400;padding:12px 14px;border-radius:10px;pointer-events:none;display:none}
+
+a.repo{color:var(--blue);text-decoration:none;font-weight:500}a.repo:hover{text-decoration:underline}
+footer{display:flex;justify-content:space-between;align-items:center;padding:4px 64px 24px;color:var(--muted);font-size:17px}
+.nav button{background:var(--surface);border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:9px 16px;font:inherit;font-size:16px;cursor:pointer;margin-left:8px;font-size:18px}
+.nav button:disabled{opacity:.4;cursor:default}
+@media (max-width:900px){
+  body{font-size:17px}header,main,footer{padding-left:16px;padding-right:16px}.timeline{margin-left:16px;margin-right:16px}
+  body{height:auto;min-height:100vh;overflow:visible}main{min-height:auto}.cols,.rw,.rw .cols{flex:none}.read{overflow:visible}.doc{overflow:visible}.rw-top{flex-direction:column;align-items:flex-start}
+  .sections{grid-template-columns:1fr}.groups{display:none}
+  h1{font-size:26px}.node{width:60px}.node .lbl{display:none}.cols,.fixes li{grid-template-columns:1fr;gap:6px}.card{padding:22px}
+}
+</style>
+</head>
+<body>
+<header><h1 id="title"></h1></header>
+
+<div class="groups" id="groups" aria-label="Sections"></div>
+<div class="timeline" id="timeline" aria-label="Steps">
+  <div class="track"></div><div class="fill" id="fill"></div>
+  <div class="nodes" id="nodes"></div>
+</div>
+
+<main id="panels">
+
+<section class="panel" data-landing="1" data-title="CLEA skills: what changed, and why">
+  <div class="land">
+    <p class="intro">Two of my customer education skills, before and after. Each section shows what didn't work the first time and what I changed.
+      <span class="from">From the Skilljar by Gainsight webinar with Christie DeCarolis, October 15, 2026.</span></p>
+    <div class="sections">
+      <button type="button" class="sec" data-jump="Lesson-eval">
+        <h2>Lesson-eval</h2>
+        <p>Checks a lesson draft before it goes to review. It went from 15 checks to 4.</p>
+        <ul class="stops"><li>Two versions of the checker</li><li>The same lesson, after the fixes</li></ul>
+        <span class="go">Start here →</span>
+      </button>
+      <button type="button" class="sec" data-jump="Course-dev">
+        <h2>Course-dev</h2>
+        <p>Builds the course in Skilljar and checks it against the drafts. July to October.</p>
+        <ul class="stops"><li>July: by hand</li><li>August: the API</li><li>September: the MCP</li><li>October: where it landed</li></ul>
+        <span class="go">Jump to course-dev →</span>
+      </button>
+    </div>
+    <div class="land-foot">
+      <button type="button" class="start" id="start">Start the walkthrough</button>
+      <span>Use the arrow keys or Next. Click any step at the top to jump.</span>
+    </div>
+  </div>
+</section>
+
+
+<section class="panel" data-pill="Lesson-eval" data-title="Lesson-eval: two versions of the checker" data-date="Lesson-eval" data-label="Before and after">
+  <div class="cols">
+    <div class="card before">
+      <h2><span class="when">September:</span> 15 checks, 9 fails</h2>
+      <p class="meta">Every check is pass or fail</p>
+      <div class="grid" id="grid" aria-label="15 checks: 6 pass, 9 fail. Click a check to see what it found."></div>
+      <div class="detail" id="detail" aria-live="polite"><p class="hint">Click a check to see what it found on this draft.</p></div>
+      <div class="loop">↻ Fix all 9, then a fresh grader in a new chat grades it again. Repeat until everything passes.</div>
+    </div>
+    <div class="card after">
+      <h2><span class="when">Today:</span> 4 checks, one pass</h2>
+      <p class="meta">Only Fix items block publishing. Skips anything an SME wrote or approved.</p>
+      <div class="group fix">
+        <h3>Fix</h3>
+        <ul>
+          <li>Screenshot placeholder is vague and in the wrong spot</li>
+          <li>Opens by repeating the course overview</li>
+        </ul>
+      </div>
+      <div class="group look">
+        <h3>Take a look</h3>
+        <ul>
+          <li>Reads like AI: contrast, signposting, inflated words</li>
+          <li>Missing the &ldquo;Next up&rdquo; section at the end</li>
+          <li>An em dash</li>
+          <li>A title-case heading</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <p class="lesson">Better drafting instructions let the grader shrink.</p>
+</section>
+
+<section class="panel" data-pill="Lesson-eval" data-title="Lesson-eval: the same lesson, after the fixes" data-date="The rewrite" data-label="After the fixes">
+  <div class="rw">
+    <div class="rw-top">
+      <div class="legend">
+        <span><i style="background:var(--coral)"></i>Fix</span>
+        <span><i style="background:var(--slate)"></i>Take a look</span>
+        <span><i style="background:var(--taupe)"></i>Learner would get stuck</span>
+        <span><i style="background:var(--sage)"></i>New or rewritten</span>
+        <span>Hover a highlight to see why</span>
+      </div>
+      <div class="seg" role="group" aria-label="View">
+        <button type="button" data-view="before">Before</button>
+        <button type="button" data-view="after">After</button>
+        <button type="button" data-view="both" aria-pressed="true">Side by side</button>
+      </div>
+    </div>
+    <div class="cols" id="rwcols">
+      <article class="card doc before" id="doc-before">
+        <div class="doc-head"><h3 class="when">Before</h3><span class="verdict">2 to fix, 5 to look at, 4 learner gaps</span></div>
+        <div class="read">
+          <h1><mark class="look" tabindex="0" data-note="Take a look: title-case heading">Add An Approval Step Before Risky Actions</mark></h1>
+          <p><mark class="fix" tabindex="0" data-note="Fix: restates the course overview and who the course is for">In this course, you'll learn what approval steps are, why they matter, and how to add them to your workflows. This course is for Flowstack admins who build workflows.</mark></p>
+          <p><mark class="look" tabindex="0" data-note="Take a look: signposting (1 of 3)">Let's dive in.</mark></p>
+          <h2>Why approval steps matter</h2>
+          <p><mark class="look" tabindex="0" data-note="Take a look: contrast for effect (1 of 3)">An approval step isn't a delay, it's a safety net.</mark> Workflows run fast <mark class="look" tabindex="0" data-note="Take a look: em dash">&mdash;</mark> which is great until one runs on the wrong data. One bad run. Hundreds of disabled accounts. <mark class="look" tabindex="0" data-note="Take a look: clipped negation, contrast for effect (2 of 3)">No undo.</mark></p>
+          <p><mark class="learn" tabindex="0" data-note="Learner pass: attention drops here. This is product plumbing, not something I do."><mark class="look" tabindex="0" data-note="Take a look: signposting (2 of 3)">It's important to note</mark> that approval steps <mark class="look" tabindex="0" data-note="Take a look: inflated word">leverage</mark> Flowstack's <mark class="look" tabindex="0" data-note="Take a look: inflated word">seamless</mark> notification engine, ensuring the right person always sees the request.</mark></p>
+          <h2>Add the step</h2>
+          <ol>
+            <li>Open the workflow in the builder.</li>
+            <li>Click the <b>+</b> between the trigger and the action you want to protect.</li>
+            <li>Choose <b>Approval</b> from the step list.</li>
+            <li>In <b>Approvers</b>, <mark class="learn" tabindex="0" data-note="Learner pass: first place I'd get stuck. What makes a group appropriate? Do I have to create one?">pick the appropriate group</mark>.</li>
+            <li>In <b>Timeout</b>, choose what happens if nobody responds <mark class="learn" tabindex="0" data-note="Learner pass: where do I set the time limit, and what's the default?">within the time limit</mark>: <b>Cancel run</b> or <b>Continue anyway</b>.</li>
+          </ol>
+          <p>For anything destructive, pick <b>Cancel run</b>. A workflow that continues anyway after a timeout is the same as having no approval step.</p>
+          <p><mark class="fix" tabindex="0" data-note="Fix: doesn't say what to capture, and sits at the end of the section instead of at the step it supports"><span class="ph">[Screenshot: add screenshot here]</span></mark></p>
+          <h2>Test it</h2>
+          <p><mark class="look" tabindex="0" data-note="Take a look: signposting (3 of 3)">Now that you've added the step, it's time to test it.</mark> <mark class="look" tabindex="0" data-note="Take a look: contrast for effect (3 of 3)">Testing isn't optional, it's how you know the approval works.</mark></p>
+          <p><mark class="learn" tabindex="0" data-note="Learner pass: is the test user the target or the person running it? I don't want to disable a real account."><mark class="look" tabindex="0" data-note="Take a look: inflated word">Utilize</mark> a test user to run the workflow.</mark> The approver gets a notification in Slack and email. Click <b>Approve</b> and <mark class="learn" tabindex="0" data-note="Learner pass: where do I check that? Run history, or the test user's account?">confirm the action ran</mark>. Then run it again and let it time out to confirm the run cancels.</p>
+          <p><mark class="look" tabindex="0" data-note="Take a look: generic upbeat ending, and no Next up section">With these steps, you're ready to take your automation safety to the next level.</mark></p>
+        </div>
+      </article>
+      <article class="card doc after" id="doc-after">
+        <div class="doc-head"><h3 class="when">After</h3><span class="verdict">Re-run: nothing to fix</span></div>
+        <div class="read">
+          <h1>Add an approval step before risky actions</h1>
+          <p><mark class="new" tabindex="0" data-note="New opener: the situation first, then the action. Replaces the course-overview lines.">Some workflows do things you can't easily undo, like disabling user accounts. If one of those runs on the wrong data, it can lock out hundreds of people before anyone notices. An approval step makes Flowstack wait for a person to say yes before the risky action runs.</mark></p>
+          <h2>Add the step</h2>
+          <ol>
+            <li>Open the workflow in the builder.</li>
+            <li>Click the <b>+</b> between the trigger and the action you want to protect.</li>
+            <li>Choose <b>Approval</b> from the step list.</li>
+            <li>In <b>Approvers</b>, <mark class="new" tabindex="0" data-note="Answers the learner's first stuck point: which group, and what if it doesn't exist">pick a group that has someone available whenever this workflow runs, such as your on-call group. Anyone in the group can approve. If the group doesn't exist yet, create it first.</mark>
+              <mark class="new" tabindex="0" data-note="Specific placeholder, placed at the step it supports"><span class="ph">[Screenshot: the Approval step's settings panel, with Approvers set to the on-call group]</span></mark></li>
+            <li>In <b>Timeout</b>, <mark class="new" tabindex="0" data-note="Says where the time limit is set">set how long Flowstack waits for an answer.</mark> Then choose what happens if nobody responds in time: <b>Cancel run</b> or <b>Continue anyway</b>.
+              <mark class="new" tabindex="0" data-note="Specific placeholder, placed at the step it supports"><span class="ph">[Screenshot: the Timeout setting with a 1-hour limit and Cancel run selected]</span></mark></li>
+          </ol>
+          <p>For anything destructive, pick <b>Cancel run</b>. A workflow that continues anyway after a timeout is the same as having no approval step.</p>
+          <p><mark class="new" tabindex="0" data-note="The Slack and email detail, moved out of the notification-engine sentence">When the workflow reaches this step, everyone in the approver group gets the request in Slack and email.</mark></p>
+          <h2>Test it</h2>
+          <p><mark class="new" tabindex="0" data-note="Names who the test user is and how to keep the timeout test short">Run the workflow once each way before you turn it on. Point it at a test user account, so the action only touches an account nobody depends on. To keep the timeout test short, set <b>Timeout</b> to a few minutes while you test.</mark></p>
+          <ol>
+            <li>Run the workflow against the test user. Check that the approval request arrives in Slack and email.</li>
+            <li>Click <b>Approve</b>, then <mark class="new" tabindex="0" data-note="Says where to check">open the workflow's run history and confirm the action ran</mark>.</li>
+            <li>Run it again and don't respond. After the timeout passes, check run history to confirm the run was canceled and the test user wasn't changed.</li>
+            <li>Set <b>Timeout</b> back to the limit you want in production.</li>
+          </ol>
+          <h2><mark class="new" tabindex="0" data-note="New Next up section replaces the upbeat ending">Next up</mark></h2>
+          <p>Before you move on, add an approval step to the workflow in your account that would do the most damage if it ran on the wrong data. The next lesson builds on it.</p>
+          <p class="fine">Flowstack is fictional, so two product details in the rewrite are invented: the Timeout duration field and run history.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="panel" data-pill="Course-dev" data-title="Course-dev: getting lessons into Skilljar" data-date="July" data-label="By hand">
+  <div class="card">
+    <h2>Copy, paste, and check by hand</h2>
+    <p class="lead">Lessons drafted in Notion, turned into HTML, and pasted into Skilljar one at a time. Each lesson checked against its draft by hand.</p>
+    <div class="flow">
+      <div class="step auto">Draft in Notion</div><div class="arrow">→</div>
+      <div class="step auto">Turn into HTML</div><div class="arrow">→</div>
+      <div class="step hand">Paste each lesson</div><div class="arrow">→</div>
+      <div class="step hand">Check against the draft</div>
+    </div>
+    <p class="key"><i class="sw hand"></i>By hand <i class="sw auto"></i>Automated</p>
+  </div>
+</section>
+
+<section class="panel" data-pill="Course-dev" data-title="Course-dev: getting lessons into Skilljar" data-date="August" data-label="The API">
+  <div class="card">
+    <h2>The API, for one person</h2>
+    <p class="lead">The Skilljar API relabeled 32 of 33 old courses in one run. It worked, but only from code, so only one person on the team could use it.</p>
+    <p class="note">Everyone else still copied, pasted, and checked by hand. Two ways of working, and they drifted apart.</p>
+  </div>
+</section>
+
+<section class="panel" data-pill="Course-dev" data-title="Course-dev: getting lessons into Skilljar" data-date="September" data-label="The MCP">
+  <div class="card">
+    <h2>The MCP, for the whole team</h2>
+    <p class="lead">The Skilljar MCP works in chat, in Cowork, and in code. Everyone could build and check courses the same way, from wherever they worked.</p>
+    <p class="note">The first full course built through it surfaced three problems:</p>
+    <ul class="fixes">
+      <li><span>Changes reported as saved sometimes weren't.</span><span class="fixto">Every change is checked after it's made.</span></li>
+      <li><span>HTML lessons in Skilljar can't add a video later.</span><span class="fixto">Every lesson is now a modular lesson.</span></li>
+      <li><span>Skilljar rewrites a lesson's HTML when it saves, so checks flagged differences no reader would see.</span><span class="fixto">Checks compare the lesson content only.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="panel" data-pill="Course-dev" data-title="Course-dev: getting lessons into Skilljar" data-date="October" data-label="Where it landed">
+  <div class="card">
+    <h2>Where it landed</h2>
+    <p class="lead">Human input only for what the MCP can't handle, like lesson length.</p>
+    <div class="flow">
+      <div class="step auto">Draft in Notion</div><div class="arrow">→</div>
+      <div class="step auto">Build in Skilljar</div><div class="arrow">→</div>
+      <div class="step auto">Keep hidden for review</div><div class="arrow">→</div>
+      <div class="step auto">Check against the draft</div>
+    </div>
+    <p class="key"><i class="sw auto"></i>Automated</p>
+    <p class="note">A person still picks the reviewer, sets the few things the MCP can't, and decides when the course goes live.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span><span id="count"></span> &nbsp; <a class="repo" href="https://github.com/clea-mahoney/clea-skills">Get the skills on GitHub</a></span>
+  <span class="nav"><button id="home" aria-label="Back to overview">Overview</button><button id="prev" aria-label="Previous">← Back</button><button id="next" aria-label="Next">Next →</button></span>
+</footer>
+
+<script>
+const checks=[
+ ["Job behavior is nameable in one sentence","pass",""],
+ ["One lesson, one job behavior","pass",""],
+ ["The hook earns attention before asking for it","fail","The first two sentences announce the course (“In this course, you'll learn...”) instead of placing the learner in a situation."],
+ ["Context, then concept, then application","pass",""],
+ ["At least one judgment moment; audience fit","pass",""],
+ ["Every step is followable without inference","fail","“pick the appropriate group” requires the learner to already know which group is appropriate."],
+ ["No em dashes, filler, or meta-commentary","fail","Em dash in “Workflows run fast — which is great...”; signposting in “Let's dive in,” “It's important to note,” and “Now that you've added the step.”"],
+ ["Media placeholders are specific and placed correctly","fail","“[Screenshot: add screenshot here]” isn't executable and sits at the end of the section instead of at the step it supports."],
+ ["Ends with a specific “Next up”","fail","No “Next up” or “Next steps” section; the lesson ends on a generic line."],
+ ["Sentence case headings, Oxford commas","fail","The H1 “Add An Approval Step Before Risky Actions” is title case."],
+ ["No decorative contrast or staccato drama","fail","Cluster of contrast (“isn't a delay, it's a safety net,” “isn't optional, it's how you know”) and staccato drama (“One bad run. Hundreds of disabled accounts. No undo.”)."],
+ ["No undefined jargon carried as a key term","pass",""],
+ ["No instructional-design language aimed at the learner","pass",""],
+ ["Plain words, real doers, no borrowed authority","fail","Inflated and promotional language: “leverage,” “seamless,” “Utilize,” and the trailing “, ensuring the right person always sees the request.”"],
+ ["Voice match against the examples","fail","Two of the three longest paragraphs (“Why approval steps matter” and the closing of “Test it”) would need rewriting to sit beside the “Better” examples."]
+];
+const grid=document.getElementById('grid'),detail=document.getElementById('detail');
+checks.forEach(([name,res,why],i)=>{
+  const b=document.createElement('button');b.type='button';b.className='chk '+res;b.textContent='#'+(i+1);
+  b.setAttribute('aria-label',`Check ${i+1}: ${name}, ${res}`);
+  b.addEventListener('click',e=>{
+    e.stopPropagation();
+    grid.querySelectorAll('.chk').forEach(c=>c.classList.remove('sel'));b.classList.add('sel');
+    detail.innerHTML='';
+    const r=document.createElement('div');r.className='res '+res;r.textContent=`Check ${i+1}: ${res==='fail'?'Fail':'Pass'}`;
+    const h=document.createElement('h4');h.textContent=name;
+    const p=document.createElement('p');p.className='why';p.textContent=res==='fail'?why:'Passed on this draft.';
+    detail.append(r,h,p);
+  });
+  grid.appendChild(b);
+});
+
+// rewrite panel: view toggle and tooltips
+const rwcols=document.getElementById('rwcols'),segBtns=[...document.querySelectorAll('.seg button')];
+segBtns.forEach(b=>b.addEventListener('click',()=>{
+  const v=b.dataset.view;
+  document.getElementById('doc-before').hidden=v==='after';
+  document.getElementById('doc-after').hidden=v==='before';
+  rwcols.classList.toggle('single',v!=='both');
+  segBtns.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+}));
+const tip=document.createElement('div');tip.id='tip';document.body.appendChild(tip);
+function tipOn(m){const r=m.getBoundingClientRect();tip.textContent=m.dataset.note;tip.style.display='block';
+  const w=tip.offsetWidth,h=tip.offsetHeight;let x=Math.min(r.left,innerWidth-w-16),y=r.bottom+8;if(y+h>innerHeight-8)y=r.top-h-8;tip.style.left=Math.max(8,x)+'px';tip.style.top=y+'px'}
+document.querySelectorAll('mark[data-note]').forEach(m=>{
+  m.addEventListener('mouseover',e=>{e.stopPropagation();tipOn(m)});
+  m.addEventListener('mouseout',e=>{e.stopPropagation();tip.style.display='none'});
+  m.addEventListener('focus',()=>tipOn(m));m.addEventListener('blur',()=>tip.style.display='none');
+});
+document.querySelectorAll('.read').forEach(r=>r.addEventListener('scroll',()=>tip.style.display='none'));
+
+const panels=[...document.querySelectorAll('.panel')];
+const steps=panels.map((p,i)=>i).filter(i=>!panels[i].dataset.landing);
+const nodesEl=document.getElementById('nodes');
+steps.forEach(i=>{
+  const p=panels[i];
+  const b=document.createElement('button');b.className='node';b.type='button';
+  b.innerHTML=`<span class="dot"></span><span class="date">${p.dataset.date}</span><span class="lbl">${p.dataset.label}</span>`;
+  b.addEventListener('click',()=>{show(i);b.blur()});nodesEl.appendChild(b);
+});
+const nodes=[...nodesEl.children];
+const groupNames=[...new Set(steps.map(i=>panels[i].dataset.pill))];
+const groupsEl=document.getElementById('groups');
+const grpBtns=groupNames.map(g=>{
+  const b=document.createElement('button');b.type='button';b.className='grp';b.textContent=g;
+  b.addEventListener('click',()=>{show(firstOf(g));b.blur()});groupsEl.appendChild(b);return b;
+});
+function firstOf(g){return steps.find(i=>panels[i].dataset.pill===g)}
+function placeGroups(){
+  const base=groupsEl.getBoundingClientRect().left;
+  groupNames.forEach((g,k)=>{
+    const ns=steps.map((i,n)=>[i,n]).filter(([i])=>panels[i].dataset.pill===g).map(([,n])=>nodes[n]);
+    const l=ns[0].getBoundingClientRect(),r=ns[ns.length-1].getBoundingClientRect();
+    grpBtns[k].style.left=(l.left-base+8)+'px';grpBtns[k].style.width=(r.right-l.left-16)+'px';
+  });
+}
+let cur=0;
+function show(i){
+  cur=Math.max(0,Math.min(panels.length-1,i));
+  const p=panels[cur],home=!!p.dataset.landing;
+  const t0=document.getElementById('tip');if(t0)t0.style.display='none';
+  document.body.classList.toggle('home',home);
+  panels.forEach((q,k)=>q.classList.toggle('show',k===cur));
+  const n=steps.indexOf(cur);
+  nodes.forEach((x,k)=>{x.classList.toggle('active',k===n);x.classList.toggle('done',k<n)});
+  grpBtns.forEach((b,k)=>b.classList.toggle('on',!home&&groupNames[k]===p.dataset.pill));
+  document.getElementById('title').textContent=p.dataset.title;
+  if(!home){
+    placeGroups();
+    const a=nodes[0].querySelector('.dot').getBoundingClientRect(),b=nodes[n].querySelector('.dot').getBoundingClientRect(),t=document.getElementById('timeline').getBoundingClientRect();
+    const f=document.getElementById('fill');f.style.left=(a.left+a.width/2-t.left)+'px';f.style.width=Math.max(0,b.left-a.left)+'px';
+  }
+  document.getElementById('count').textContent=home?'':`${n+1} / ${steps.length}`;
+  document.getElementById('home').style.visibility=home?'hidden':'visible';
+  document.getElementById('prev').disabled=cur===0;document.getElementById('next').disabled=cur===panels.length-1;
+}
+document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>show(firstOf(b.dataset.jump))));
+document.getElementById('start').onclick=()=>show(steps[0]);
+document.getElementById('home').onclick=()=>show(0);
+document.getElementById('prev').onclick=()=>show(cur-1);
+document.getElementById('next').onclick=()=>show(cur+1);
+document.addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown'].includes(e.key)){e.preventDefault();show(cur+1)}
+  if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(cur-1)}
+  if(e.key==='Home')show(0); if(e.key==='End')show(panels.length-1);
+});
+window.addEventListener('resize',()=>show(cur));
+show(0);
+</script>
+</body>
+</html>

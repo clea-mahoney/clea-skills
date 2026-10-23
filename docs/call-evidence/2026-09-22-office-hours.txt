@@ -1,0 +1,55 @@
+# Flowstack office hours: Tuesday, September 22, 2026
+
+Complete fictional sample call. All names, companies, dates, and dialogue are invented for this demonstration.
+
+[00:00:00] Dana Kim (Flowstack, product): Thanks for coming. Let's start with what broke this week.
+
+[00:00:07] Dana Kim (Flowstack, product): Hi everyone. We have a short check-in today. Please say your name when you jump in so we can follow up on the right issue.
+
+[00:00:20] Ben Carter (Harborview IT): Ben here. Can I start with the connector screen?
+
+[00:00:26] Ben Carter (Harborview IT): Tenant mapping again. We have forty clients and the connector setup screen doesn't make it obvious which workspace is which.
+
+[00:00:37] Dana Kim (Flowstack, product): Is the problem finding the right workspace, or does the connection fail after you select it?
+
+[00:00:46] Ben Carter (Harborview IT): Finding it. The connection works. I am worried about choosing the wrong client when the names look similar.
+
+[00:00:56] Lena Fischer (Westbrook Managed Services): We had the same mapping issue. We ended up writing our own spreadsheet to track it.
+
+[00:01:05] Dana Kim (Flowstack, product): Thanks, Lena. I will take that setup question back to the team. Please use sample names if you share a screenshot. Marcus, you had a question about reviewing generated workflows?
+
+[00:01:20] Marcus Lee (Bluegate Networks): I've started asking the Assistant to explain each step before I run anything. Half the time the explanation shows me what it got wrong.
+
+[00:01:33] Dana Kim (Flowstack, product): What do you do when the explanation sounds reasonable?
+
+[00:01:39] Marcus Lee (Bluegate Networks): I still try it with a small test set. An explanation helps me read it, but I do not want to treat that as the test itself.
+
+[00:01:53] Tom Becker: I just trust Claude at this point. If it builds it, I ship it.
+
+[00:02:01] Dana Kim (Flowstack, product): Tom, which company are you with?
+
+[00:02:06] Tom Becker: Small shop, we're still getting set up.
+
+[00:02:11] Dana Kim (Flowstack, product): Okay, we can follow up on the company afterward. Are you testing with sample records or sending it straight into production?
+
+[00:02:22] Tom Becker: Mostly small jobs so far. I have not got a consistent test routine yet.
+
+[00:02:30] Aisha Okafor (Summitpoint Systems): Aisha here. We use a separate approval step for the risky ones.
+
+[00:02:38] Aisha Okafor (Summitpoint Systems): We put an approval step in front of anything that deletes or disables. I don't let the Assistant touch production without a person clicking approve.
+
+[00:02:51] Dana Kim (Flowstack, product): That is useful context. The approval and the test each answer a different question. Jo, you had an issue with the approval message itself?
+
+[00:03:04] Jo Alvarez (Cedarline Tech): The Slack approval message shows the time in UTC, not our time zone. Our approvers keep missing the window.
+
+[00:03:15] Dana Kim (Flowstack, product): Can you send a redacted example with the expected local time? We should check what the message is doing before we suggest a workaround.
+
+[00:03:28] Jo Alvarez (Cedarline Tech): Yes, I can send one after the call.
+
+[00:03:34] Sam: Quick one, is the connector supposed to time out after an hour?
+
+[00:03:42] Dana Kim (Flowstack, product): I need to check which connector and what was happening when it stopped. Please send that detail to the host. I only see Sam on the participant label, so please include your full name as well.
+
+[00:04:00] Sam: Okay. I will send what I have.
+
+[00:04:05] Dana Kim (Flowstack, product): Thanks, everyone. We will follow up on the setup screen, the approval message, and the timeout. That is all for today.

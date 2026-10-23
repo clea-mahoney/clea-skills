@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" data-brand="clea">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Clea Mahoney shows how she organized customer-call evidence and decided what education, product, and human review should address.">
+<meta name="robots" content="noindex, nofollow">
+<title>Customer Calls to Education Decisions | Clea Mahoney</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css?v=20261022-modal-review">
+</head>
+<body data-stage="story">
+<header>
+  <div class="masthead">
+    <span class="author">Clea Mahoney · Work example</span>
+    <fieldset class="brand"><legend>Switch presentation brand</legend><button type="button" data-brand-choice="clea" aria-pressed="true">Clea</button><button type="button" data-brand-choice="zapier" aria-pressed="false">Zapier</button></fieldset>
+  </div>
+  <h1>Customer Calls to Education Decisions</h1>
+  <nav class="presentation-nav" id="navigation" aria-label="Walkthrough steps"></nav>
+</header>
+<main>
+  <div class="notice" id="notice" role="status" aria-live="polite"></div>
+  <section id="stage" role="region"></section>
+  <div class="next-step"><button class="button" id="previous">Back</button><span class="caption" id="position"></span><button class="button primary" id="next"></button></div>
+</main>
+<footer>
+  <div class="footer-links"><button id="restart">Restart the sample week</button></div>
+  <details><summary>About this example and its sources</summary><p>Flowstack and the calls are fictional. I designed the original workflow and its evidence and review rules. I used Codex to build the browser presentation. The research view, alert, and review choices recreate how the process worked.</p><p><a href="workflow-rules.txt">Workflow rules</a> · <a href="sample-calls.txt">Sample call pack</a> · <a href="https://zapier.com/">Zapier design reference</a></p></details>
+</footer>
+<dialog class="modal" id="weekly-alert" aria-labelledby="alert-title">
+  <div class="alert-top"><p class="caption">Friday, September 25 · Weekly call insights</p><button class="modal-close" id="close-alert">Close</button></div>
+  <h2 id="alert-title">The weekly review is ready</h2>
+  <p id="alert-copy"></p>
+  <p>Questions to review</p><ol id="alert-questions"></ol><details class="alert-handoff"><summary>How the original handoff worked</summary><p>I could continue in Claude Code or copy the questions and quotes to use with the skill elsewhere. I checked the related Notion rows before recording a decision.</p></details><p id="copy-status" role="status" aria-live="polite"></p><label for="copy-fallback" class="sr-only">Questions to copy</label><textarea id="copy-fallback" readonly hidden></textarea>
+  <div class="actions"><button class="button primary" id="open-review">Review questions here</button><button class="button" id="copy-questions">Copy questions and evidence</button></div>
+</dialog>
+<dialog class="modal" id="source-dialog" aria-labelledby="source-title"><div class="dialog-top"><h2 id="source-title"></h2><button class="modal-close" id="close-source">Close</button></div><div id="source-content"></div></dialog>
+<dialog class="modal" id="theme-dialog" aria-labelledby="theme-title"><div class="dialog-top"><div><p class="caption">Research theme</p><h2 id="theme-title"></h2></div><button class="modal-close" id="close-theme">Close</button></div><div id="theme-content"></div></dialog>
+<script type="application/json" id="presentation-data">__PRESENTATION_DATA__</script>
+<script src="week-engine.js?v=20261022-card-cleanup"></script>
+<script src="app.js?v=20261022-doc-route"></script>
+</body>
+</html>
