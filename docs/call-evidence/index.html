@@ -33,8 +33,9 @@
   <div class="alert-top"><p class="caption">Friday, September 25 · Weekly call insights</p><button class="modal-close" id="close-alert">Close</button></div>
   <h2 id="alert-title">The weekly review is ready</h2>
   <p id="alert-copy"></p>
-  <p>Questions to review</p><ol id="alert-questions"></ol><details class="alert-handoff"><summary>How the original handoff worked</summary><p>I could continue in Claude Code or copy the questions and quotes to use with the skill elsewhere. I checked the related Notion rows before recording a decision.</p></details><p id="copy-status" role="status" aria-live="polite"></p><label for="copy-fallback" class="sr-only">Questions to copy</label><textarea id="copy-fallback" readonly hidden></textarea>
-  <div class="actions"><button class="button primary" id="open-review">Review questions here</button><button class="button" id="copy-questions">Copy questions and evidence</button></div>
+  <p>Questions to review</p><ol id="alert-questions"></ol><details class="alert-handoff"><summary>How the original handoff worked</summary><p>I could continue in Claude Code or copy the questions and quotes to use with the skill elsewhere. I checked the related Notion rows before recording a decision.</p></details>
+  <div class="actions"><button class="button primary" id="open-review">Review questions here</button><div class="copy-action"><button class="button" id="copy-questions">Copy questions and evidence</button><p id="copy-status" role="status" aria-live="polite"></p></div></div>
+  <label for="copy-fallback" class="sr-only">Questions to copy</label><textarea id="copy-fallback" readonly hidden></textarea>
 </dialog>
 <dialog class="modal" id="source-dialog" aria-labelledby="source-title"><div class="dialog-top"><h2 id="source-title"></h2><button class="modal-close" id="close-source">Close</button></div><div id="source-content"></div></dialog>
 <dialog class="modal" id="theme-dialog" aria-labelledby="theme-title"><div class="dialog-top"><div><p class="caption">Research theme</p><h2 id="theme-title"></h2></div><button class="modal-close" id="close-theme">Close</button></div><div id="theme-content"></div></dialog>

@@ -53,7 +53,7 @@ body[data-stage=story] .notice:empty{display:none}
 .presentation-nav button[aria-current=step]{background:transparent;color:var(--ink);border-bottom-color:var(--signal)}
 .step-number{font-size:20px;font-weight:600;line-height:1.35;font-variant-numeric:tabular-nums}.step-title{display:block;font-size:20px;font-weight:600;line-height:1.35}
 #alert-copy{font-size:26px;font-weight:600}#alert-questions{padding-left:24px}#alert-questions li{margin:10px 0}
-#copy-status:empty{display:none}#copy-fallback{width:100%;min-height:180px;padding:12px;background:var(--paper);border:1px solid var(--muted);color:var(--ink)}
+#copy-status{margin:12px 0 0;font-size:18px}#copy-status:empty{display:none}#copy-fallback{width:100%;min-height:180px;padding:12px;background:var(--paper);border:1px solid var(--muted);color:var(--ink)}
 @media(max-width:900px){.presentation-nav ol{grid-template-columns:repeat(3,minmax(0,1fr))}.presentation-nav li:nth-child(3)::after{display:none}}
 @media(max-width:480px){.presentation-nav ol{grid-template-columns:repeat(2,minmax(0,1fr))}.presentation-nav li::after{display:none}}
 
@@ -125,7 +125,7 @@ cite{font-style:italic}
 #weekly-alert .alert-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
 #weekly-alert .alert-top .caption{margin:0}
 #weekly-alert .alert-top .modal-close{float:none;padding:4px 0 4px 12px}
-#weekly-alert .actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#weekly-alert .actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
 #weekly-alert .actions .button{width:100%}
 @media(max-width:650px){body{font-size:18px}header,main,footer{padding-left:20px;padding-right:20px}.masthead{gap:16px}.brand{width:100%;max-width:320px}.brand button{min-height:44px}.presentation-nav ol{gap:4px 12px}.presentation-nav button{min-height:52px}.step-title{font-size:17px}.step-number{font-size:17px}.intro,.hero-description,.call-takeaway{font-size:19px!important;line-height:1.55!important}.quote p{font-size:20px}.worked-layout{margin-top:18px}.modal .actions{justify-content:flex-start}.modal .actions button{width:100%}.table-wrap{max-width:100%}}
 @media(max-width:650px){#weekly-alert .actions{grid-template-columns:1fr}}
