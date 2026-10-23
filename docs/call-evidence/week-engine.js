@@ -83,7 +83,7 @@ class EvidenceWeek {
         row.handling = choice.startsWith('subset-') ? 'Subtheme added after review' : 'Proposed theme merged after review';
         if (choice.startsWith('subset-')) row.subthemes = [...(row.subthemes || []), { title, evidence: this.evidence(source) }];
       }
-      if (choice === 'new') add(newId, source, title);
+      if (choice === 'new') add(newId, source, this.state.reviews[question].themeName || title);
     }
     return rows;
   }
@@ -115,7 +115,7 @@ class EvidenceWeek {
     if (/^(merge|subset)-/.test(choice || '')) return Number(choice.split('-')[1]);
     return choice === 'new' ? ({ approval: 22, bounded: 23 }[id] || null) : null;
   }
-  saveDraft(id, choice, note) { this.state.drafts ||= {}; this.state.drafts[id] = { choice, note }; this.save(); }
+  saveDraft(id, choice, note, themeName) { this.state.drafts ||= {}; this.state.drafts[id] = { choice, note, ...(themeName !== undefined ? { themeName } : {}) }; this.save(); }
   decisionLabel(choice) {
     return ({ 'merge-7': 'Add evidence to “Starting with one small automation”', 'subset-7': 'Create a subtheme within “Starting with one small automation”', 'merge-2': 'Add evidence to “Checking AI-built workflows”', 'subset-2': 'Create an approval subtheme within “Checking AI-built workflows”', 'merge-13': 'Add evidence to “AI judgment and human review”', new: 'Keep as a separate theme', defer: 'Leave open for more evidence', unconfirmed: 'Keep Sam out of customer counts until identified', internal: 'Sam confirmed internal and excluded', 'customer-unconfirmed': 'Possible customer; confirm full identity before counting', investigate: 'Ask product to investigate the timeout', expected: 'Confirmed expected behavior; document it', bug: 'Confirmed bug; route to product' })[choice] || choice;
   }
@@ -167,7 +167,7 @@ class EvidenceWeek {
     const cell = value => { let v = String(value ?? ''); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replaceAll('"', '""') + '"'; };
     return this.exportRecords(labels).map(row => row.map(cell).join(',')).join('\r\n');
   }
-  review(id, choice, note = '') {
+  review(id, choice, note = '', themeName) {
     if (!this.state.ran) throw Error('Open Friday’s summary before reviewing the questions.');
     const options = {
       approval: ['merge-2', 'subset-2', 'merge-13', 'new', 'defer'],
@@ -178,7 +178,8 @@ class EvidenceWeek {
     };
     if (!options[id]?.includes(choice)) throw Error('Choose one of the responses for this question.');
     if (note.length > 1000) throw Error('Keep the note under 1,000 characters.');
-    this.state.reviews[id] = { choice, note: note.trim(), at: new Date().toISOString() };
+    if (choice === 'new' && themeName !== undefined && (!themeName.trim() || themeName.trim().length > 120)) throw Error('Enter a theme name of 1–120 characters.');
+    this.state.reviews[id] = { choice, note: note.trim(), ...(choice === 'new' && themeName !== undefined ? {themeName: themeName.trim()} : {}), at: new Date().toISOString() };
     if (this.state.drafts) delete this.state.drafts[id];
     return this.save();
   }

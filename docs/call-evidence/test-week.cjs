@@ -143,3 +143,16 @@ const migrated = new EvidenceWeek(data, {getItem: () => JSON.stringify(legacySta
 assert.equal(migrated.state.reviews.sam.choice, 'unconfirmed');
 assert.equal(migrated.state.reviews.timeout.choice, 'investigate');
 assert.equal(migrated.state.reviews.timeout.note, 'hi');
+const named = new EvidenceWeek(data, storage);
+named.run();
+for (const [id, themeId] of [['bounded', 23], ['approval', 22]]) {
+  named.saveDraft(id, 'new', 'A comment', 'hi');
+  assert.equal(new EvidenceWeek(data, storage).state.drafts[id].themeName, 'hi');
+  named.review(id, 'new', 'A comment', ' hi ');
+  assert.equal(named.themes().find(r => r.id === themeId).title, 'hi');
+  assert.equal(new EvidenceWeek(data, storage).state.reviews[id].themeName, 'hi');
+  assert(named.exportRecords({}).some(row => row[0] === 'hi'));
+  assert.throws(() => named.review(id, 'new', '', '   '));
+  assert.throws(() => named.review(id, 'new', '', 'x'.repeat(121)));
+}
+console.log('Passed: custom theme names, saved drafts, reloads, CSV export, and name validation.');
