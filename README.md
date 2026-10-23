@@ -24,11 +24,6 @@ Some skills were built and used on a real customer education team, then rewritte
 4. Swap in your own examples where the skill asks.
 5. Try it on real work and watch the first run. Check what it flags against your own judgment, then adjust the instructions.
 
-## What changed along the way
-
-- **course-dev** went from pasting every lesson into the LMS and checking it by hand, to building and checking the course through the MCP. Every lesson is now a modular lesson so it can take video, and every change is read back to confirm it saved.
-- **lesson-eval** went from 15 checks and a grading loop to 4 checks in one pass. Drafts kept coming back with lines like "It's not a delay, it's a safety net," so I kept adding checks to catch them. Then I found the cause: my drafting instructions told the AI to "express value through contrast," so it was writing those lines on purpose. Once I fixed the drafting instructions, most of the checks had nothing left to catch, and I cut them.
-
 ## Tips
 
 - Give each skill your context: company, learners, and tools.
