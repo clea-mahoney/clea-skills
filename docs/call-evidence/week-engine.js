@@ -13,6 +13,12 @@ class EvidenceWeek {
         if (old?.historicalReviews) this.state.historicalReviews = old.historicalReviews;
       }
     } catch {}
+    // Older sample choices could claim checks unavailable in this walkthrough.
+    for (const collection of [this.state.reviews, this.state.drafts]) {
+      if (!collection) continue;
+      if (['internal', 'customer-unconfirmed'].includes(collection.sam?.choice)) collection.sam.choice = 'unconfirmed';
+      if (['expected', 'bug'].includes(collection.timeout?.choice)) collection.timeout.choice = 'investigate';
+    }
   }
   clone(x) { return JSON.parse(JSON.stringify(x)); }
   save() { try { this.storage?.setItem(this.key, JSON.stringify(this.state)); } catch {} return this.clone(this.state); }
@@ -167,13 +173,10 @@ class EvidenceWeek {
       approval: ['merge-2', 'subset-2', 'merge-13', 'new', 'defer'],
       bounded: ['merge-7', 'subset-7', 'new', 'defer'],
       tom: ['retain', 'follow-up', 'defer'],
-      sam: ['unconfirmed', 'internal', 'customer-unconfirmed', 'defer'],
-      timeout: ['investigate', 'expected', 'bug', 'defer']
+      sam: ['unconfirmed', 'defer'],
+      timeout: ['investigate', 'defer']
     };
     if (!options[id]?.includes(choice)) throw Error('Choose one of the responses for this question.');
-    if ((id === 'sam' && choice === 'internal') || (id === 'timeout' && ['expected', 'bug'].includes(choice))) {
-      if (!note.trim()) throw Error('Add how you checked this before confirming the decision.');
-    }
     if (note.length > 1000) throw Error('Keep the note under 1,000 characters.');
     this.state.reviews[id] = { choice, note: note.trim(), at: new Date().toISOString() };
     if (this.state.drafts) delete this.state.drafts[id];
