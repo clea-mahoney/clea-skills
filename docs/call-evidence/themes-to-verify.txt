@@ -1,0 +1,27 @@
+21 themes to verify
+
+Reconstructed from the saved September 2026 notes. Not an original Notion export. Final dispositions may have changed later.
+
+1. Building faster with AI [Final route not recovered]
+2. Checking AI-built workflows [Final route not recovered]
+3. Handling high-volume automation [Final route not recovered]
+4. Knowing tool boundaries [Final route not recovered]
+5. Reporting and visibility [Final route not recovered]
+6. Custom integrations [Hold recorded]
+7. Starting with one bounded outcome [Final route not recovered]
+8. Organization and workspace mapping [Setup/product-focused]
+9. Governing reusable automation [Final route not recovered]
+10. Access for external AI clients [Final route not recovered]
+11. Measuring automation value [Final route not recovered]
+12. Managing an automation backlog [Final route not recovered]
+13. AI judgment and human review [Final route not recovered]
+14. Working with binary files [Final route not recovered]
+15. Moving between platform versions [Hold recorded]
+16. Secure customer-facing forms [Final route not recovered]
+17. Application building [Hold recorded]
+18. Access through a guardrailed AI [Hold recorded]
+19. Platform security controls [Final route not recovered]
+20. AI cost ownership [Final route not recovered]
+21. Understanding the new platform model [Documentation first]
+
+The source confirms four explicit Holds, one setup/product-first topic, and one documentation-first topic. It does not establish a final historical majority. Product bugs were also excluded from education evidence.

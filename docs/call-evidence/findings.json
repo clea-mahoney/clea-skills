@@ -1,0 +1,155 @@
+{
+  "title": "21 customer-evidence themes: anonymized reconstruction",
+  "provenance": "Reconstructed from saved September 2026 work notes, with Clea recollection dated 2026-10-21. Not an export of the original Notion database.",
+  "customer_data": "No original customer names, quotes, company names, call links, or speaker counts are included.",
+  "rows": [
+    {
+      "id": 1,
+      "title": "Building faster with AI",
+      "description": "Customer experiences of accelerating workflow development.",
+      "recovered_route": "unknown",
+      "source_note": "A ranked theme in the saved notes. Speed alone did not establish what education should build."
+    },
+    {
+      "id": 2,
+      "title": "Checking AI-built workflows",
+      "description": "Testing and verifying output before running it against real data.",
+      "recovered_route": "unknown",
+      "source_note": "A high-priority teachable theme. The later final format and disposition are not preserved."
+    },
+    {
+      "id": 3,
+      "title": "Handling high-volume automation",
+      "description": "Judgment about scale and workload before a large run.",
+      "recovered_route": "unknown",
+      "source_note": "The notes treated risky high-volume behavior as teaching evidence. Final route not recovered."
+    },
+    {
+      "id": 4,
+      "title": "Knowing tool boundaries",
+      "description": "Knowing what an AI or connected tool can and cannot reliably do.",
+      "recovered_route": "unknown",
+      "source_note": "Moved above reporting because education relevance drove the ranking. Final route not recovered."
+    },
+    {
+      "id": 5,
+      "title": "Reporting and visibility",
+      "description": "Visibility into what automation is doing and how results are reported.",
+      "recovered_route": "unknown",
+      "source_note": "A ranked theme. The surviving record does not preserve its later final disposition."
+    },
+    {
+      "id": 6,
+      "title": "Custom integrations",
+      "description": "Requests involving integration capabilities and custom connections.",
+      "recovered_route": "hold",
+      "source_note": "Explicitly on Hold in the saved ranked table."
+    },
+    {
+      "id": 7,
+      "title": "Starting with one bounded outcome",
+      "description": "Choosing a small first automation and proving it before expanding.",
+      "recovered_route": "unknown",
+      "source_note": "Kept above workspace mapping because it was a strategy skill. Final route not recovered."
+    },
+    {
+      "id": 8,
+      "title": "Organization and workspace mapping",
+      "description": "Clarifying how environments and customers map to the product setup.",
+      "recovered_route": "product",
+      "source_note": "Clea described this as setup/product-focused, with less for education to act on."
+    },
+    {
+      "id": 9,
+      "title": "Governing reusable automation",
+      "description": "Ownership and controls when multiple people reuse an automation.",
+      "recovered_route": "unknown",
+      "source_note": "A ranked theme. Its later final route is not preserved."
+    },
+    {
+      "id": 10,
+      "title": "Access for external AI clients",
+      "description": "Permissions and access when an external AI client connects to a platform.",
+      "recovered_route": "unknown",
+      "source_note": "A ranked theme. Its later final route is not preserved."
+    },
+    {
+      "id": 11,
+      "title": "Measuring automation value",
+      "description": "Choosing evidence that an automation has produced useful value.",
+      "recovered_route": "unknown",
+      "source_note": "A ranked theme. Its later final route is not preserved."
+    },
+    {
+      "id": 12,
+      "title": "Managing an automation backlog",
+      "description": "Deciding which automation requests to tackle next.",
+      "recovered_route": "unknown",
+      "source_note": "A ranked theme supported by customer evidence. Final route not recovered."
+    },
+    {
+      "id": 13,
+      "title": "AI judgment and human review",
+      "description": "Deciding when AI output needs a person to check or approve it.",
+      "recovered_route": "unknown",
+      "source_note": "A ranked theme. Its later final route is not preserved."
+    },
+    {
+      "id": 14,
+      "title": "Working with binary files",
+      "description": "File handling needs in an automation workflow.",
+      "recovered_route": "unknown",
+      "source_note": "A ranked theme. Its later final route is not preserved."
+    },
+    {
+      "id": 15,
+      "title": "Moving between platform versions",
+      "description": "A migration plan from one version of the platform to the next.",
+      "recovered_route": "hold",
+      "source_note": "Migration education was explicitly on Hold. Clea recalls that the plan was in progress and the team was not meant to create education at that stage."
+    },
+    {
+      "id": 16,
+      "title": "Secure customer-facing forms",
+      "description": "Access and identity concerns around forms exposed to customers.",
+      "recovered_route": "unknown",
+      "source_note": "A ranked theme. Its later final route is not preserved."
+    },
+    {
+      "id": 17,
+      "title": "Application building",
+      "description": "Customer needs and observations about the application-building experience.",
+      "recovered_route": "hold",
+      "source_note": "Explicitly on Hold in the saved ranked table."
+    },
+    {
+      "id": 18,
+      "title": "Access through a guardrailed AI",
+      "description": "Who can use an AI with limited access and how those limits work.",
+      "recovered_route": "hold",
+      "source_note": "Explicitly on Hold in the saved ranked table."
+    },
+    {
+      "id": 19,
+      "title": "Platform security controls",
+      "description": "Requests concerning security controls and access restrictions.",
+      "recovered_route": "unknown",
+      "source_note": "Added as row 19. Its rank was provisional, and no final route is preserved."
+    },
+    {
+      "id": 20,
+      "title": "AI cost ownership",
+      "description": "Who is accountable for AI costs and usage.",
+      "recovered_route": "unknown",
+      "source_note": "Added as row 20. Its rank was provisional, and no final route is preserved."
+    },
+    {
+      "id": 21,
+      "title": "Understanding the new platform model",
+      "description": "Explaining differences between the old and new platform models.",
+      "recovered_route": "docs",
+      "source_note": "The saved decision was documentation first; raise the gap only if documentation did not cover it. Rank was provisional."
+    }
+  ],
+  "classification_note": "Final routing is being checked with Clea. The surviving September snapshot does not establish the final proportion of product-related findings."
+}

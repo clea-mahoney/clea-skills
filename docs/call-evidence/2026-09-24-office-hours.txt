@@ -1,0 +1,53 @@
+# Flowstack office hours: Thursday, September 24, 2026
+
+Complete fictional sample call. All names, companies, dates, and dialogue are invented for this demonstration.
+
+[00:00:00] Dana Kim (Flowstack, product): Welcome. We have a few new folks today.
+
+[00:00:06] Dana Kim (Flowstack, product): We have about five minutes for this check-in. Omar, you mentioned getting connected in the chat. Can you start there?
+
+[00:00:17] Omar Haddad (Riverline Tech): First time here. Our biggest blocker is the connector setup. We couldn't tell which client each workspace belonged to.
+
+[00:00:28] Dana Kim (Flowstack, product): Does the connector fail, or is it hard to choose the right workspace?
+
+[00:00:36] Omar Haddad (Riverline Tech): It connects. We had to stop and work out the client names first. I would like the screen to make that clearer.
+
+[00:00:48] Jo Alvarez (Cedarline Tech): Mapping took us a full day too.
+
+[00:00:53] Dana Kim (Flowstack, product): Thanks, Jo. I am keeping those reports together for the product team. Omar, is the workflow you wanted to show using sample data?
+
+[00:01:05] Omar Haddad (Riverline Tech): Yes. No customer records in this one.
+
+[00:01:10] Omar Haddad (Riverline Tech): Here's my rough demo. It's messy, I know, I built it last night.
+
+[00:01:18] Dana Kim (Flowstack, product): That is fine for today. We can look at the question you are trying to answer without judging how polished it is. Marcus, what did you find in your test?
+
+[00:01:33] Marcus Lee (Bluegate Networks): We caught a workflow that would have emailed every client at once. The Assistant's test run looked fine. The real data didn't.
+
+[00:01:45] Dana Kim (Flowstack, product): Did anything get sent?
+
+[00:01:49] Marcus Lee (Bluegate Networks): No. We looked at the recipients before allowing the send. The test data only had one client, so it had not exposed the problem.
+
+[00:02:02] Lena Fischer (Westbrook Managed Services): That is the part I am trying to sort out with my team.
+
+[00:02:10] Lena Fischer (Westbrook Managed Services): Who approves what is the real question for us. Right now anyone on the team can approve a run that deletes things.
+
+[00:02:22] Dana Kim (Flowstack, product): Let us check the permission settings separately. Choosing who should approve and checking who currently can approve are both important here.
+
+[00:02:33] Ben Carter (Harborview IT): Honestly, I haven't tested the new license workflow yet. I'm not putting it live until I do.
+
+[00:02:43] Dana Kim (Flowstack, product): What is the smallest part you can test first?
+
+[00:02:49] Ben Carter (Harborview IT): Reading the license list for one test account. I can check that before we let it change anything.
+
+[00:02:59] Lena Fischer (Westbrook Managed Services): My team wanted to automate everything at once. I made them pick one workflow and prove it first.
+
+[00:03:09] Dana Kim (Flowstack, product): What did you narrow it down to?
+
+[00:03:14] Lena Fischer (Westbrook Managed Services): Someone half-jokingly asked for a whole help desk replacement. We picked one component: put a sample ticket into a category and let a person check the category. We can add routing after that works.
+
+[00:03:31] Dana Kim (Flowstack, product): That gives you a result you can check before you connect more steps. Aisha, we have time for your last question.
+
+[00:03:42] Aisha Okafor (Summitpoint Systems): Could we get dark mode for the builder?
+
+[00:03:48] Dana Kim (Flowstack, product): I will pass that feature request along. Thanks, everyone. We will follow up on workspace labels and approval permissions. Please keep testing with sample data while those questions are open.

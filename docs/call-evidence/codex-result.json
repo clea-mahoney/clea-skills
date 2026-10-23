@@ -1,0 +1,302 @@
+{
+  "themes": [
+    {
+      "id": "verify-ai",
+      "title": "Verify AI-built workflows before running them",
+      "status": "existing",
+      "rank": 1,
+      "reason": "Direct evidence of teachable verification habits and judgment. Add routine evidence to the existing theme. Tom's overconfidence is counterpoint evidence; Ben's caution is positive evidence. Tom's company remains unknown, and his evidence is retained. Ranking is provisional pending human review.",
+      "evidence": [
+        {
+          "call": "2026-09-22-office-hours.md",
+          "timestamp": "00:10:33",
+          "speaker": "Marcus Lee",
+          "quote": "I've started asking the Assistant to explain each step before I run anything. Half the time the explanation shows me what it got wrong.",
+          "label": "Positive evidence: checking AI reasoning"
+        },
+        {
+          "call": "2026-09-22-office-hours.md",
+          "timestamp": "00:11:40",
+          "speaker": "Tom Becker",
+          "quote": "I just trust Claude at this point. If it builds it, I ship it.",
+          "label": "Counterpoint: overconfidence; company unknown"
+        },
+        {
+          "call": "2026-09-24-office-hours.md",
+          "timestamp": "00:14:52",
+          "speaker": "Marcus Lee",
+          "quote": "We caught a workflow that would have emailed every client at once. The Assistant's test run looked fine. The real data didn't.",
+          "label": "Education opportunity: validate against real data"
+        },
+        {
+          "call": "2026-09-24-office-hours.md",
+          "timestamp": "00:19:20",
+          "speaker": "Ben Carter",
+          "quote": "Honestly, I haven't tested the new license workflow yet. I'm not putting it live until I do.",
+          "label": "Positive evidence: testing before production"
+        }
+      ]
+    },
+    {
+      "id": "approval-gates",
+      "title": "Define human approval gates for consequential actions",
+      "status": "proposed",
+      "rank": 2,
+      "reason": "Evidence supports teaching approval boundaries and who should approve destructive actions. Keep in the review queue until a human decides whether this is separate from verify-ai. Do not automatically add it to the research file. Ranking is provisional.",
+      "evidence": [
+        {
+          "call": "2026-09-22-office-hours.md",
+          "timestamp": "00:16:48",
+          "speaker": "Aisha Okafor",
+          "quote": "We put an approval step in front of anything that deletes or disables. I don't let the Assistant touch production without a person clicking approve.",
+          "label": "Positive evidence: human approval for consequential actions"
+        },
+        {
+          "call": "2026-09-24-office-hours.md",
+          "timestamp": "00:18:30",
+          "speaker": "Lena Fischer",
+          "quote": "Who approves what is the real question for us. Right now anyone on the team can approve a run that deletes things.",
+          "label": "Education opportunity: approval authority and judgment"
+        }
+      ]
+    },
+    {
+      "id": "start-small",
+      "title": "Prove one workflow before expanding automation",
+      "status": "proposed",
+      "rank": 3,
+      "reason": "A concrete example supports teaching scope control and proving a workflow before expanding. Keep in the review queue until a human approves it; do not automatically add it to the research file. Ranking is provisional.",
+      "evidence": [
+        {
+          "call": "2026-09-24-office-hours.md",
+          "timestamp": "00:22:02",
+          "speaker": "Lena Fischer",
+          "quote": "My team wanted to automate everything at once. I made them pick one workflow and prove it first.",
+          "label": "Positive evidence: start with one proven workflow"
+        }
+      ]
+    },
+    {
+      "id": "workspace-mapping",
+      "title": "Identify client workspaces during connector setup",
+      "status": "hold",
+      "rank": 4,
+      "reason": "Repeated setup confusion is product-shaped; the transcripts do not establish a teachable skill gap or its cause. Keep on Hold in the review queue despite broader customer evidence. A human must decide whether product investigation, documentation review, or a setup guide is appropriate. Do not automatically add it to the research file. Ranking is provisional.",
+      "evidence": [
+        {
+          "call": "2026-09-22-office-hours.md",
+          "timestamp": "00:04:12",
+          "speaker": "Ben Carter",
+          "quote": "Tenant mapping again. We have forty clients and the connector setup screen doesn't make it obvious which workspace is which.",
+          "label": "Held setup evidence: unclear workspace identification"
+        },
+        {
+          "call": "2026-09-22-office-hours.md",
+          "timestamp": "00:06:50",
+          "speaker": "Lena Fischer",
+          "quote": "We had the same mapping issue. We ended up writing our own spreadsheet to track it.",
+          "label": "Held setup evidence: spreadsheet workaround"
+        },
+        {
+          "call": "2026-09-24-office-hours.md",
+          "timestamp": "00:03:15",
+          "speaker": "Omar Haddad",
+          "quote": "First time here. Our biggest blocker is the connector setup. We couldn't tell which client each workspace belonged to.",
+          "label": "Held setup evidence: client-workspace ambiguity"
+        },
+        {
+          "call": "2026-09-24-office-hours.md",
+          "timestamp": "00:07:40",
+          "speaker": "Jo Alvarez",
+          "quote": "Mapping took us a full day too.",
+          "label": "Held setup evidence: reported setup effort"
+        }
+      ]
+    }
+  ],
+  "product": [
+    {
+      "id": "approval-time-zone",
+      "kind": "Likely bug",
+      "title": "Slack approval messages show UTC instead of the approvers' time zone",
+      "reason": "Jo reports a display behavior that causes missed approval windows. Treat it as a likely bug pending verification of intended time-zone behavior.",
+      "evidence": [
+        {
+          "call": "2026-09-22-office-hours.md",
+          "timestamp": "00:18:12",
+          "speaker": "Jo Alvarez",
+          "quote": "The Slack approval message shows the time in UTC, not our time zone. Our approvers keep missing the window.",
+          "label": "Likely bug: approval time-zone display"
+        }
+      ]
+    },
+    {
+      "id": "workspace-mapping",
+      "kind": "Needs investigation",
+      "title": "Clarify client-workspace identification during connector setup",
+      "reason": "Multiple customers report confusing mapping. The cause could involve the interface, configuration, or documentation; ask a person to investigate before choosing a product or education response.",
+      "evidence": [
+        {
+          "call": "2026-09-22-office-hours.md",
+          "timestamp": "00:04:12",
+          "speaker": "Ben Carter",
+          "quote": "Tenant mapping again. We have forty clients and the connector setup screen doesn't make it obvious which workspace is which.",
+          "label": "Product question: workspace identification"
+        },
+        {
+          "call": "2026-09-22-office-hours.md",
+          "timestamp": "00:06:50",
+          "speaker": "Lena Fischer",
+          "quote": "We had the same mapping issue. We ended up writing our own spreadsheet to track it.",
+          "label": "Product question: mapping workaround"
+        },
+        {
+          "call": "2026-09-24-office-hours.md",
+          "timestamp": "00:03:15",
+          "speaker": "Omar Haddad",
+          "quote": "First time here. Our biggest blocker is the connector setup. We couldn't tell which client each workspace belonged to.",
+          "label": "Product question: client-workspace ambiguity"
+        },
+        {
+          "call": "2026-09-24-office-hours.md",
+          "timestamp": "00:07:40",
+          "speaker": "Jo Alvarez",
+          "quote": "Mapping took us a full day too.",
+          "label": "Product question: setup effort"
+        }
+      ]
+    },
+    {
+      "id": "timeout",
+      "kind": "Needs investigation",
+      "title": "Verify whether the one-hour connector timeout is expected",
+      "reason": "Sam asks about expected behavior. The transcript establishes neither a defect nor an intended timeout. His first-name-only attribution can support this product question but does not count as an education customer.",
+      "evidence": [
+        {
+          "call": "2026-09-22-office-hours.md",
+          "timestamp": "00:21:30",
+          "speaker": "Sam",
+          "quote": "Quick one, is the connector supposed to time out after an hour?",
+          "label": "Unverified behavior question; first-name-only speaker"
+        }
+      ]
+    },
+    {
+      "id": "approval-permissions",
+      "kind": "Needs investigation",
+      "title": "Check approval permissions for destructive runs",
+      "reason": "Lena's report raises a question about configuration and available permission controls alongside the education opportunity. The transcript does not establish a permissions defect or a request for a new feature.",
+      "evidence": [
+        {
+          "call": "2026-09-24-office-hours.md",
+          "timestamp": "00:18:30",
+          "speaker": "Lena Fischer",
+          "quote": "Who approves what is the real question for us. Right now anyone on the team can approve a run that deletes things.",
+          "label": "Product question: approval permissions"
+        }
+      ]
+    },
+    {
+      "id": "builder-dark-mode",
+      "kind": "Feature request",
+      "title": "Add dark mode to the builder",
+      "reason": "Aisha explicitly requests a builder display feature.",
+      "evidence": [
+        {
+          "call": "2026-09-24-office-hours.md",
+          "timestamp": "00:24:10",
+          "speaker": "Aisha Okafor",
+          "quote": "Could we get dark mode for the builder?",
+          "label": "Feature request"
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "approval-gates",
+      "question": "Should approval-gates be a separate education theme or part of verify-ai?",
+      "why": "Aisha describes an approval practice and Lena raises approval authority. Human review must determine the theme boundary before adding proposed research.",
+      "options": [
+        "Create a separate education theme",
+        "Merge into verify-ai",
+        "Defer for more evidence"
+      ]
+    },
+    {
+      "id": "start-small",
+      "question": "Should start-small become a separate education theme?",
+      "why": "Lena provides a concrete scope-control example. The proposal remains in the review queue until a human decides.",
+      "options": [
+        "Create a separate education theme",
+        "Defer for more evidence"
+      ]
+    },
+    {
+      "id": "workspace-mapping",
+      "question": "What should happen next with the held workspace-mapping theme?",
+      "why": "Repeated customer reports establish setup confusion, but they do not establish whether product behavior, documentation, or instruction should address it.",
+      "options": [
+        "Keep on Hold; ask product to investigate",
+        "Keep on Hold; check documentation first",
+        "Approve a short setup guide",
+        "Defer for more evidence"
+      ]
+    },
+    {
+      "id": "timeout",
+      "question": "Is the connector timeout a defect or expected behavior?",
+      "why": "Sam's question contains no verification of intended behavior. Confirm the behavior before documenting it as expected or routing it as a confirmed bug.",
+      "options": [
+        "Request product investigation",
+        "Confirmed expected behavior; document it",
+        "Confirmed bug; route to product",
+        "Defer until behavior is verified"
+      ]
+    },
+    {
+      "id": "tom-company",
+      "question": "How should Tom Becker's missing company be handled?",
+      "why": "Tom is a full-name external customer, but his reply does not identify a company. Retain his counterpoint evidence and count him once within verify-ai while flagging the company as unknown.",
+      "options": [
+        "Keep company unknown; retain his evidence",
+        "Defer company lookup; retain his evidence"
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "call": "2026-09-22-office-hours.md",
+      "timestamp": "00:01:30",
+      "reason": "Internal staff introduction; no relevant education or product evidence and no external customer count."
+    },
+    {
+      "call": "2026-09-22-office-hours.md",
+      "timestamp": "00:12:05",
+      "reason": "Internal staff asks for company information; context for the missing-company flag, not theme evidence."
+    },
+    {
+      "call": "2026-09-22-office-hours.md",
+      "timestamp": "00:12:09",
+      "reason": "Tom's reply does not name a company. Use it to support the missing-company flag, not as separate education evidence."
+    },
+    {
+      "call": "2026-09-24-office-hours.md",
+      "timestamp": "00:02:00",
+      "reason": "Internal staff welcome; no relevant education or product evidence and no external customer count."
+    },
+    {
+      "call": "2026-09-24-office-hours.md",
+      "timestamp": "00:11:25",
+      "reason": "A self-described rough demo alone does not establish an education gap."
+    }
+  ],
+  "mismatches": [
+    {
+      "summary": "auto-summary-2026-09-22.md",
+      "call": "2026-09-22-office-hours.md",
+      "timestamp": "00:16:48",
+      "reason": "The automated summary attributes the approval-step and production-approval statement to Marcus Lee. The transcript attributes that entire statement to Aisha Okafor."
+    }
+  ]
+}
