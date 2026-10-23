@@ -2,7 +2,7 @@
 
 AI skills for customer education (mostly) and job search, by Clea Mahoney. Each skill does one job and leaves the judgment calls to a person. Adapt them to your own company, audience, and tools.
 
-Some skills were built and used on a real customer education team, then rewritten for sharing. No company, customer, or employee data is included.
+Some skills were built and used on a real customer education team, then rewritten for sharing without company, customer, or employee data. I shared them in the Skilljar by Gainsight webinar *"Wait, How Did You Get AI to Do That?: AI Workflows for Customer Education"* (October 15, 2026), co-presented with [Christie DeCarolis](https://christiedecarolis.com/aiworkflows.html).
 
 [![A peek into Clea's brain: click to start the interactive walkthrough](docs/walkthrough/cover.png)](https://clea-mahoney.github.io/clea-skills/walkthrough/)
 
@@ -30,10 +30,6 @@ Some skills were built and used on a real customer education team, then rewritte
 - Keep skills focused. Hand off between them instead of building one huge prompt.
 - When a skill keeps growing, look for where the mistake starts before you add another check.
 - Watch the first run yourself before you put a skill on a schedule.
-
-## Where they were shared
-
-Some of the customer education skills were shared in the Skilljar by Gainsight webinar *"Wait, How Did You Get AI to Do That?: AI Workflows for Customer Education"* (October 15, 2026), co-presented with [Christie DeCarolis](https://christiedecarolis.com/aiworkflows.html).
 
 ## License
 
