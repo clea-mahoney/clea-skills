@@ -80,8 +80,8 @@ const questions = {
 function decisionConsequence(id, choice) {
   if (choice === 'defer') return id === 'sam' ? 'Sam remains unconfirmed and excluded from customer counts.' : id === 'timeout' ? 'The timeout cause remains open for investigation.' : 'The evidence stays open. No new theme has been recorded.';
   if (id === 'bounded' && choice !== 'new') return 'The evidence stays with one existing theme. A possible learning activity is to build a ticket-category step, check it with sample tickets, and only then add routing.';
-  if (id === 'bounded') return '“Starting with one small workflow” now holds Lena’s evidence. I would define how it differs from “Starting with one small automation” before planning education.';
-  if (id === 'approval') return choice === 'new' ? '“Approval ownership for consequential runs” now holds the approval evidence. I would check product permissions and define how it differs from the existing verification theme.' : choice === 'subset-2' ? 'The verification topic would include a checklist: inspect the output, test it, and confirm who must approve the consequential action. Approval remains visible without becoming a separate top-level theme.' : 'This records where the approval evidence belongs. Product permissions still need checking before I choose what guidance to create.';
+  if (id === 'bounded') return `“${week.themes().find(r => r.id === 23).title}” now holds Lena’s evidence. I would define how it differs from “Starting with one small automation” before planning education.`;
+  if (id === 'approval') return choice === 'new' ? `“${week.themes().find(r => r.id === 22).title}” now holds the approval evidence. I would check product permissions and define how it differs from the existing verification theme.` : choice === 'subset-2' ? 'The verification topic would include a checklist: inspect the output, test it, and confirm who must approve the consequential action. Approval remains visible without becoming a separate top-level theme.' : 'This records where the approval evidence belongs. Product permissions still need checking before I choose what guidance to create.';
   if (id === 'timeout') return 'Product needs to establish the cause before I decide whether guidance would help. The report does not become an education priority.';
   return 'The evidence remains traceable while the identity or company information is handled separately.';
 }
@@ -96,7 +96,7 @@ function review() {
     <div class="review-layout"><nav class="question-list" aria-label="Review questions">${Object.entries(questions).sort(([a], [b]) => a === 'bounded' ? -1 : b === 'bounded' ? 1 : 0).map(([id, item]) => `<button data-question="${id}" aria-current="${id === activeQuestion}">${esc(item.label)}<small>${week.state.reviews[id] ? (week.followUp(id) || 'Decision recorded') : 'Needs review'}</small></button>`).join('')}</nav>
     <article class="question-content"><h3>${esc(q.title)}</h3><p>${esc(q.why)}</p>${evidence(q.evidence())}
     ${q.related.length ? `<div class="related"><p>Existing themes to compare</p>${q.related.map(id => `<button data-theme="${id}">${esc(rows.find(r => r.id === id).title)}</button>`).join('')}</div>` : ''}
-    <form class="review-form" id="decision-form"><label for="decision">Decision</label><select id="decision" name="choice" required><option value="">Choose a response</option>${q.options.map(value => `<option value="${value}" ${draft?.choice === value ? 'selected' : ''}>${esc(choiceLabels[value])}</option>`).join('')}</select>${q.options.includes('new') ? '<p class="caption">Theme names are fixed in this sample. Your review note adds a comment.</p>' : ''}<label for="decision-note">Review note (optional)</label><textarea name="note" id="decision-note" maxlength="1000">${esc(draft?.note || '')}</textarea><button class="button primary" type="submit">Record decision</button></form>
+    <form class="review-form" id="decision-form"><label for="decision">Decision</label><select id="decision" name="choice" required><option value="">Choose a response</option>${q.options.map(value => `<option value="${value}" ${draft?.choice === value ? 'selected' : ''}>${esc(choiceLabels[value])}</option>`).join('')}</select>${q.options.includes('new') ? `<div id="new-theme-field" ${draft?.choice === 'new' ? '' : 'hidden'}><label for="new-theme-name">New theme name</label><input id="new-theme-name" name="themeName" maxlength="120" value="${esc(draft?.themeName ?? (activeQuestion === 'bounded' ? 'Starting with one small workflow' : 'Approval ownership for consequential runs'))}" ${draft?.choice === 'new' ? 'required' : 'disabled'}></div>` : ''}<label for="decision-note">Review note (optional)</label><textarea name="note" id="decision-note" maxlength="1000">${esc(draft?.note || '')}</textarea><button class="button primary" type="submit">Record decision</button></form>
     ${saved ? `<div id="decision-result" class="decision-result" tabindex="-1" role="status"><p><strong>Decision recorded:</strong> ${esc(choiceLabels[saved.choice])}</p>${saved.note ? `<p>${esc(saved.note)}</p>` : ''}<p>${esc(decisionConsequence(activeQuestion, saved.choice))}</p>${week.affectedTheme(activeQuestion) ? `<button class="button" data-theme="${week.affectedTheme(activeQuestion)}">View the theme and its evidence</button>` : ''}${week.followUp(activeQuestion) ? `<p><strong>Follow-up:</strong> ${esc(week.followUp(activeQuestion))}</p>` : ''}</div>` : ''}
     </article></div></div></section>
     ${week.recorded() === 4 ? '<p class="decision-result" role="status"><strong>Sample review complete.</strong> Your decisions and follow-ups are recorded.</p>' : ''}
@@ -157,7 +157,7 @@ async function copyQuestions() {
 function bindSources(root = stage) { root.querySelectorAll('[data-source]').forEach(b => b.onclick = () => showSource(b.dataset.source, b.dataset.time)); }
 function captureDraft() {
   const form = document.getElementById('decision-form');
-  if (form) week.saveDraft(activeQuestion, form.elements.choice.value, form.elements.note.value);
+  if (form) week.saveDraft(activeQuestion, form.elements.choice.value, form.elements.note.value, form.elements.themeName?.value);
 }
 function render() {
   document.body.dataset.stage = stages[index].key;
@@ -181,8 +181,20 @@ function render() {
   if (run) run.onclick = () => { try { week.run(); render(); showAlert(); } catch (e) { message(e.message, true); } };
   const alert = document.getElementById('show-alert'); if (alert) alert.onclick = showAlert;
   const form = document.getElementById('decision-form');
-  if (form) form.oninput = captureDraft;
-  if (form) form.onsubmit = event => { event.preventDefault(); const values = new FormData(form); try { week.review(activeQuestion, values.get('choice'), values.get('note')); highlightedTheme = week.affectedTheme(activeQuestion); render(); document.getElementById('decision-result').focus(); document.getElementById('decision-result').scrollIntoView({ block: 'center' }); } catch (e) { message(e.message, true); notice.scrollIntoView({ block: 'center' }); } };
+  if (form) {
+    form.oninput = captureDraft;
+    form.elements.choice.onchange = () => {
+      const field = document.getElementById('new-theme-field');
+      if (field) {
+        const isNew = form.elements.choice.value === 'new';
+        field.hidden = !isNew;
+        form.elements.themeName.disabled = !isNew;
+        form.elements.themeName.required = isNew;
+      }
+      captureDraft();
+    };
+  }
+  if (form) form.onsubmit = event => { event.preventDefault(); const values = new FormData(form); try { week.review(activeQuestion, values.get('choice'), values.get('note'), values.get('themeName') ?? undefined); highlightedTheme = week.affectedTheme(activeQuestion); render(); document.getElementById('decision-result').focus(); document.getElementById('decision-result').scrollIntoView({ block: 'center' }); } catch (e) { message(e.message, true); notice.scrollIntoView({ block: 'center' }); } };
   stage.querySelectorAll('[data-history]').forEach(form => form.onsubmit = event => { event.preventDefault(); const values = new FormData(form); try { week.reviewHistorical(Number(form.dataset.history), values.get('route'), values.get('note')); render(); message('Historical decision recorded. Include it in the downloaded register when you are ready to share it.'); } catch (e) { message(e.message, true); } });
   const exportButton = document.getElementById('export'); if (exportButton) exportButton.onclick = exportHistory;
 }
