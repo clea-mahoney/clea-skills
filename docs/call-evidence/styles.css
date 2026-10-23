@@ -24,13 +24,13 @@
 .brand button{border:1px solid transparent;border-radius:var(--radius)}
 .brand button[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .evolution{align-items:start;gap:28px;margin:28px 0}
-.evolution details{margin:0}.evolution summary{list-style:none;border:1px solid var(--muted);border-radius:var(--radius);padding:20px;min-height:190px}
+.evolution details{margin:0;border:1px solid var(--muted);border-radius:var(--radius)}.evolution summary{list-style:none;padding:20px;min-height:190px}
 .evolution summary::-webkit-details-marker{display:none}
 .evolution summary .caption{display:block;margin:0 0 12px}
 .evolution-title{display:block;font:var(--display-weight) 26px/1.2 var(--display)}
 .expand-hint{display:block;margin-top:16px;font-size:18px;text-decoration:underline}
 .expand-hint::after{content:' +'}details[open] .expand-hint::after{content:' −'}
-.evolution details>p{padding:18px 0 0;margin:0}
+.evolution details[open]>summary{min-height:0}.evolution details>p{padding:0 20px 20px;margin:0}
 .closing{max-width:850px;margin-top:36px}
 @media(max-width:650px){.evolution summary{min-height:0}.evolution{gap:16px}}
 

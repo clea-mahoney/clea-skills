@@ -47,7 +47,7 @@ function quote(e) {
 function evidence(items) { return items.map(quote).join(''); }
 function story() {
   return `<h2>What I built</h2>
-  <p class="intro">The workflow organizes customer calls into evidence so I can decide what needs education or product review. The findings helped me refocus training for the new platform on directing the AI and checking its work.</p>
+  <p class="intro">An AI-assisted workflow organizes customer calls into evidence so I can decide what needs education or product review. The findings helped me refocus training for the new platform on directing the AI and checking its work.</p>
   <h2>How the workflow evolved</h2>
   <div class="evolution">
     <details><summary><span class="evolution-title">Manual call review</span><span class="expand-hint">Read more</span></summary><p>I copied Gong transcripts into Notion AI, checked the findings, and added verified input to a Notion database. I then created a Notion agent to repeat the review.</p></details>
