@@ -20,21 +20,9 @@ Some skills were built and used on a real customer education team, then rewritte
 
 1. Click **Download** in the table above. You get a compressed folder (a `.zip` file). Don't unzip it.
 2. In Claude, open **Settings → Capabilities → Skills** and upload that file.
-3. Open the skill's `SKILL.md` and fill in **Customize before you use it**: your company, program name, tools, and learners.
+3. Open the skill's `SKILL.md` and follow its setup instructions before you use it.
 4. Swap in your own examples where the skill asks.
 5. Try it on real work and watch the first run. Check what it flags against your own judgment, then adjust the instructions.
-
-## Make it yours
-
-- **course-dev:** replace `references/skilljar-notes.md` with your own LMS's quirks. Without an MCP connector, it hands you HTML to paste in.
-- **lesson-eval:** replace the pairs in `references/voice-examples.md` with before and after sentences from your own lessons. They teach it your voice better than any rule list.
-- **job-me:** edit `config.json` for your job titles, exclusions, and pay floor. Edit `companies.csv` for the company job boards you want to watch.
-
-## Try the examples
-
-`examples/` has fictional inputs with problems planted on purpose.
-
-- `examples/lesson-eval/lesson-draft.md`: AI-sounding writing, a vague screenshot placeholder, and a missing "Next up." lesson-eval should list them without rewriting the lesson.
 
 ## What changed along the way
 
