@@ -13,21 +13,9 @@ Some skills were built and used on a real customer education team, then rewritte
 | Skill | What it does | What a person decides | Download |
 |---|---|---|---|
 | [course-request](skills/course-request/) | Uses your audience, goals, evidence, and work context to triage a training request and draft an action map when learning is needed | Whether training is needed and what the response should include | [Download](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/course-request.zip) |
-| [course-dev](skills/course-dev/SKILL.md) | Drafts lessons from an approved outline, runs lesson-eval, builds the course in your LMS through its MCP connector, and checks the LMS against the drafts | Whether each lesson is ready, who reviews the course, and when learners can access it | [Download](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/course-dev.zip) |
+| [course-dev](skills/course-dev/) | Drafts lessons from an approved outline, runs lesson-eval, builds the course in your LMS through its MCP connector, and checks the LMS against the drafts | Whether each lesson is ready, who reviews the course, and when learners can access it | [Download](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/course-dev.zip) |
 | [lesson-eval](skills/lesson-eval/) | Checks a lesson draft in one pass and lists only what needs fixing: a clear point, specific media placeholders, a forward-pointing ending, and writing that sounds like a person | Which suggested changes to make and whether the lesson is ready to use | [Download](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/lesson-eval.zip) |
 | [job-me](skills/job-me/SKILL.md) | Checks public company job boards for roles that fit your search, keeps one list with a status per role, and builds a filterable board. Set up for L&D, training, instructional design, and customer education titles. Your matches stay on your machine. | Which roles to apply to and which to skip | [Download](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/job-me.zip) |
-
-## What course-dev needs
-
-Before using course-dev, prepare and approve an outline with:
-
-- Audience, goal, and prerequisites.
-- Lesson sequence and an observable outcome per lesson.
-- Each lesson's connection to the action map.
-- Planned practice and feedback.
-- Source material and drafting notes.
-
-You can use your own approved outline without running course-request first. Each skill has a specific job; use the ones that fit your work.
 
 ## Add a skill to Claude
 
