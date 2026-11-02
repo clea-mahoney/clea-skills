@@ -17,23 +17,6 @@ Some skills were built and used on a real customer education team, then rewritte
 | [lesson-eval](skills/lesson-eval/) | Checks a lesson draft in one pass and lists only what needs fixing: a clear point, specific media placeholders, a forward-pointing ending, and writing that sounds like a person | Only Fix items block. Take a look items are your call. | [Download](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/lesson-eval.zip) |
 | [job-me](skills/job-me/SKILL.md) | Checks public company job boards for roles that fit your search, keeps one list with a status per role, and builds a filterable board. Set up for L&D, training, instructional design, and customer education titles. Your matches stay on your machine. | Which roles to apply to and which to skip | [Download](https://github.com/clea-mahoney/clea-skills/raw/main/downloads/job-me.zip) |
 
-## Start with the request
-
-A request for a course usually arrives with a solution already attached. Product wants training because customers are making mistakes. Operations wants onboarding because new hires are routing work incorrectly. Before building anything, I want to know what people need to do, what's getting in their way, and whether learning would help.
-
-That's the job of **course-request**. Give it your audience, goals, setting, and whatever evidence you have. It helps you fill in missing context, considers the smallest useful response, and keeps assumptions visible. The answer might be practice, clearer documentation, a product or workflow change, or a combination. You confirm the recommendation. When learning is part of the answer, it drafts an action map connecting the goal, job actions, practice, and minimum information needed. You review that map before design starts.
-
-The shared version works for customer education, internal L&D, and other settings. It checks which support options are actually available instead of assuming every team can assign coaching or involve a learner's manager. You can use it entirely in chat.
-
-These skills cover selected parts of the process. course-request helps decide what response is needed. If that includes learning, the next step is designing the experience and approving an outline. That design step isn't packaged as a skill here. You can do it yourself or use AI to propose sequences, compare practice options, and flag gaps, while you make the design decisions. Once you have an approved outline, course-dev drafts and builds the lessons, using lesson-eval to check the drafts.
-
-### Try it
-
-These two fictional examples show how different evidence leads to different recommendations. The inputs and example outputs were written to illustrate the workflow; they are not recorded model tests or real customer or employee records.
-
-- **Customer education:** Product asks for a course because customers are making custom-report errors. [Input](examples/course-request/customer-education-input.md) · [Example draft output](examples/course-request/customer-education-output.md)
-- **Internal L&D:** Operations asks for onboarding training after routing mistakes. [Input](examples/course-request/internal-ld-input.md) · [Example draft output](examples/course-request/internal-ld-output.md)
-
 ## What course-dev needs
 
 Before using course-dev, prepare and approve an outline with:
