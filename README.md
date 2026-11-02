@@ -25,7 +25,7 @@ That's the job of **course-request**. Give it your audience, goals, setting, and
 
 The shared version works for customer education, internal L&D, and other settings. It checks which support options are actually available instead of assuming every team can assign coaching or involve a learner's manager. You can use it entirely in chat.
 
-This comes before course-dev. An approved action map guides the design of the learning experience and its outline. Once that outline is approved, course-dev drafts and builds the lessons, using lesson-eval to check the drafts. You can also use each skill on its own.
+These skills cover selected parts of the process. course-request helps decide what response is needed. If that includes learning, the next step is designing the experience and approving an outline. That design step isn't packaged as a skill here. You can do it yourself or use AI to propose sequences, compare practice options, and flag gaps, while you make the design decisions. Once you have an approved outline, course-dev drafts and builds the lessons, using lesson-eval to check the drafts.
 
 ### Try it
 
@@ -33,6 +33,18 @@ These two fictional examples show how different evidence leads to different reco
 
 - **Customer education:** Product asks for a course because customers are making custom-report errors. [Input](examples/course-request/customer-education-input.md) · [Example draft output](examples/course-request/customer-education-output.md)
 - **Internal L&D:** Operations asks for onboarding training after routing mistakes. [Input](examples/course-request/internal-ld-input.md) · [Example draft output](examples/course-request/internal-ld-output.md)
+
+## What course-dev needs
+
+Before using course-dev, prepare and approve an outline with:
+
+- Audience, goal, and prerequisites.
+- Lesson sequence and an observable outcome per lesson.
+- Each lesson's connection to the action map.
+- Planned practice and feedback.
+- Source material and drafting notes.
+
+You can use your own approved outline without running course-request first. Each skill has a specific job; use the ones that fit your work.
 
 ## Add a skill to Claude
 
