@@ -4,9 +4,9 @@ AI skills for customer education (mostly) and job search, by Clea Mahoney. Each 
 
 Some skills were built and used on a real customer education team, then rewritten for sharing without company, customer, or employee data. I shared lesson-eval and course-dev in the Skilljar by Gainsight webinar *"Wait, How Did You Get AI to Do That?: AI Workflows for Customer Education"* (October 15, 2026), co-presented with [Christie DeCarolis](https://christiedecarolis.com/aiworkflows.html).
 
-[![A peek into Clea's brain: click to start the interactive walkthrough](docs/walkthrough/cover.png)](https://clea-mahoney.github.io/clea-skills/walkthrough/)
+<a href="https://clea-mahoney.github.io/clea-skills/docs/walkthrough/" target="_blank" rel="noopener"><img src="docs/walkthrough/cover.png" alt="A peek into Clea's brain: click to start the interactive walkthrough"></a>
 
-**[Click through the webinar walkthrough](https://clea-mahoney.github.io/clea-skills/)** to see how lesson-eval and course-dev changed over time, or **[try the interactive version](https://clea-mahoney.github.io/clea-skills/walkthrough/)** to sort the findings and match the fixes yourself.
+**<a href="https://clea-mahoney.github.io/clea-skills/docs/" target="_blank" rel="noopener">Click through the webinar walkthrough</a>** to see how lesson-eval and course-dev changed over time, or **<a href="https://clea-mahoney.github.io/clea-skills/docs/walkthrough/" target="_blank" rel="noopener">try the interactive version</a>** to sort the findings and match the fixes yourself.
 
 ## The skills
 
