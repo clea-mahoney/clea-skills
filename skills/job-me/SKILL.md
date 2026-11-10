@@ -12,7 +12,7 @@ Finds new roles on public job boards and keeps one running list. Standard-librar
 All data lives in this `job-me/` folder, next to `SKILL.md`:
 
 - `config.json`: your filters (title terms, exclusions, salary floor, remote or local hybrid, age limit) and the board tiers
-- `companies.csv`: the job boards to watch (platform, slug, company, API URL). The sample has 12 boards; bring your own list
+- `companies.csv`: the job boards to watch (platform, slug, company, API URL). The sample has one placeholder board; bring your own list
 - `matches.csv`: created on the first scan. Every match, with a `status` column
 - `board.html`: created by `build_board.py`. A filterable board of open roles
 - `scripts/scan.py`: the scanner

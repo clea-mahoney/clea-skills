@@ -1,0 +1,2 @@
+platform,slug,company,api_url
+Greenhouse,examplecompany,Example Company,https://boards-api.greenhouse.io/v1/boards/examplecompany/jobs?content=true
